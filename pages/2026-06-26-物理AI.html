@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>物理AI产业前景 · 上下游主线</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #F7F5F3; --bg-secondary: #FFFFFF; --bg-card: #FFFFFF;
+  --bg-elevated: #FAFAF9; --bg-warm: #F5F2EE; --bg-dark: #2D2926;
+  --text-primary: #2D2926; --text-secondary: #5C5652;
+  --text-muted: #8A8480; --text-light: #A8A29E;
+  --accent: #D97706; --accent-light: #FEF3C7; --accent-hover: #B45309;
+  --border: #E5E2DE; --border-light: #F0EEEC;
+  --red: #DC2626; --green: #059669; --gold: #D97706; --blue: #2563EB;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', Georgia, serif;
+  background: var(--bg-primary); color: var(--text-primary);
+  line-height: 1.8; font-size: 16px; -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { font-family: inherit; font-weight: 600; letter-spacing: 0.02em; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+.prose { max-width: 760px; margin: 0 auto; }
+.prose p { font-size: 1.05rem; line-height: 1.9; margin-bottom: 20px; color: var(--text-primary); }
+.section-head { max-width: 1100px; display: grid; grid-template-columns: 120px 1fr; gap: 32px; align-items: baseline; margin: 0 auto 48px; padding: 0 48px; }
+.section-num { font-size: 0.9rem; color: var(--accent); letter-spacing: 0.15em; border-top: 1px solid var(--accent); padding-top: 8px; }
+.section-title { font-size: 2rem; }
+.section-lede { color: var(--text-muted); margin-top: 6px; font-size: 1rem; }
+section { padding: 72px 0; }
+
+/* ===== Nav ===== */
+nav { position: sticky; top: 0; z-index: 100; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; background: rgba(247,245,243,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-light); }
+.nav-logo { font-weight: 600; font-size: 1rem; }
+.nav-links { display: flex; gap: 28px; }
+.nav-links a { color: var(--text-secondary); font-size: 0.95rem; }
+.nav-links a:hover { color: var(--accent); }
+
+/* ===== Hero ===== */
+.hero { max-width: 1100px; margin: 0 auto; padding: 96px 48px 48px; }
+.kicker { color: var(--accent); font-size: 0.9rem; letter-spacing: 0.15em; font-weight: 500; margin-bottom: 24px; }
+.hero h1 { font-size: 3rem; line-height: 1.25; margin-bottom: 24px; max-width: 900px; }
+.hero-dek { max-width: 760px; font-size: 1.15rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 40px; }
+.host { display: inline-flex; align-items: center; gap: 12px; font-size: 0.95rem; color: var(--text-muted); }
+.host img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); }
+
+/* ===== Module 1 · Conclusion Card ===== */
+.conclusion-wrap { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+.conclusion-card {
+  padding: 40px 48px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-left: 6px solid var(--accent); border-radius: 20px;
+  box-shadow: 0 4px 28px rgba(217, 119, 6, 0.06);
+}
+#conclusion { padding: 0; }
+#conclusion .section-head { margin-bottom: 48px; }
+.cc-question {
+  font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em;
+  margin-bottom: 8px; text-transform: uppercase;
+}
+.cc-question-text {
+  font-size: 1.4rem; font-weight: 600; color: var(--text-primary);
+  margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px dashed var(--border);
+}
+.cc-question-text::before { content: "「"; color: var(--accent); }
+.cc-question-text::after { content: "」"; color: var(--accent); }
+
+.cc-snapshot { margin-bottom: 32px; }
+.cc-snapshot-label {
+  font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.18em;
+  font-weight: 600; margin-bottom: 14px; text-transform: uppercase;
+}
+.cc-snapshot-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  background: var(--bg-elevated); border: 1px solid var(--border-light);
+  border-radius: 12px; overflow: hidden;
+}
+.cc-snap-cell {
+  padding: 16px 20px;
+  border-right: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-elevated);
+}
+.cc-snap-cell:nth-child(4n) { border-right: none; }
+.cc-snap-cell:nth-last-child(-n+4) { border-bottom: none; }
+.cc-snap-cell-label {
+  font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+.cc-snap-cell-value {
+  font-size: 1.4rem; font-weight: 600; color: var(--text-primary);
+  font-variant-numeric: tabular-nums; line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+.cc-snap-cell-sub {
+  font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.cc-snap-up { color: var(--red); }
+.cc-snap-down { color: var(--green); }
+
+.cc-headline-label {
+  font-size: 0.8rem; color: var(--accent); letter-spacing: 0.2em;
+  font-weight: 600; margin-bottom: 14px; text-transform: uppercase;
+}
+.cc-headline {
+  font-size: 1.15rem; font-weight: 500; color: var(--text-primary);
+  letter-spacing: 0.01em; line-height: 1.75;
+  margin-bottom: 32px; padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+.cc-headline strong { font-weight: 700; color: var(--text-primary); }
+.cc-headline em { font-style: normal; font-weight: 700; color: var(--red); }
+
+.cc-actions-intro {
+  font-size: 0.95rem; color: var(--text-muted); letter-spacing: 0.02em;
+  margin-bottom: 18px;
+}
+.cc-actions {
+  display: flex; flex-direction: column;
+  margin-bottom: 28px;
+}
+.cc-action-row {
+  display: grid; grid-template-columns: 180px 1fr;
+  gap: 28px; padding: 18px 0; align-items: baseline;
+  border-bottom: 1px dashed var(--border-light);
+}
+.cc-action-row:last-child { border-bottom: none; }
+.cc-action-label {
+  font-weight: 600; color: var(--accent); font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+.cc-action-detail {
+  color: var(--text-primary); font-size: 1rem; line-height: 1.85;
+}
+.cc-action-detail strong { color: var(--text-primary); font-weight: 600; }
+
+.cc-vote {
+  display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
+  padding-top: 20px; border-top: 1px dashed var(--border);
+}
+.cc-vote-label { font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em; }
+.cc-vote-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.85rem; color: var(--text-secondary);
+  padding: 4px 12px; background: var(--bg-elevated); border-radius: 999px;
+  border: 1px solid var(--border-light);
+}
+.cc-vote-tag .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+/* ===== Module 2 · Voice Card ===== */
+.voice-stack { max-width: 1100px; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; gap: 24px; }
+.voice-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px 36px; min-width: 0; }
+.voice-head { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; margin-bottom: 16px; border-bottom: 1px solid var(--border-light); }
+.voice-head img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); }
+.voice-name { font-weight: 600; font-size: 1.1rem; flex: 1; }
+.voice-card ol, .voice-card ul { padding-left: 20px; }
+.voice-card li { margin-bottom: 12px; line-height: 1.8; }
+.voice-card strong { color: var(--text-primary); font-weight: 600; }
+.voice-card h4 { margin: 20px 0 10px; font-size: 1.05rem; color: var(--text-primary); }
+.voice-card p { margin-bottom: 14px; line-height: 1.85; color: var(--text-secondary); }
+.voice-card table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 0.95rem; margin: 16px 0; }
+.voice-card th, .voice-card td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border-light); }
+.voice-card th { color: var(--text-muted); font-weight: 500; background: var(--bg-elevated); font-size: 0.85rem; }
+.voice-card .table-scroll { overflow-x: auto; margin: 16px 0; }
+.voice-card .pull-quote { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 16px 0; color: var(--text-secondary); font-style: italic; }
+
+/* ===== Module 3a · Notes List（主持人札记） ===== */
+.notes-stack { max-width: 1100px; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; gap: 16px; }
+.note-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 24px 28px; display: grid; grid-template-columns: 56px 1fr; gap: 20px; align-items: baseline; }
+.note-num { font-size: 1.6rem; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1; opacity: 0.6; }
+.note-body h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text-primary); }
+.note-body p { font-size: 0.98rem; line-height: 1.85; color: var(--text-secondary); margin: 0 0 12px; }
+.note-body p:last-child { margin-bottom: 0; }
+.note-body p strong { color: var(--text-primary); }
+
+/* ===== Module 3b · Q&A Card（主持人 Q&A） ===== */
+.qa-stack { max-width: 1100px; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; gap: 18px; }
+.qa-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px 32px; }
+.qa-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; letter-spacing: 0.06em; padding: 4px 12px; border-radius: 999px; background: var(--bg-warm); color: var(--text-secondary); margin-bottom: 14px; font-weight: 500; }
+.qa-tag.tag-key { background: #FEF3C7; color: #B45309; }
+.qa-tag.tag-confuse { background: #FEE2E2; color: #B91C1C; }
+.qa-tag.tag-miss { background: #DBEAFE; color: #1D4ED8; }
+.qa-tag.tag-meta { background: #EDE9FE; color: #6D28D9; }
+.qa-question { font-size: 1.15rem; font-weight: 600; color: var(--text-primary); margin-bottom: 14px; line-height: 1.5; }
+.qa-question::before { content: "Q. "; color: var(--accent); font-weight: 700; }
+.qa-answer { color: var(--text-secondary); font-size: 1rem; line-height: 1.85; }
+.qa-answer::before { content: "A. "; color: var(--text-muted); font-weight: 600; margin-right: 4px; }
+.qa-answer p { margin-bottom: 12px; }
+.qa-answer p:last-child { margin-bottom: 0; }
+.qa-answer strong { color: var(--text-primary); }
+
+/* ===== Module 4 · Trigger Table（关键变量触发表） ===== */
+.trigger-wrap { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+.trigger-table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; font-variant-numeric: tabular-nums; }
+.trigger-table th, .trigger-table td { padding: 18px 22px; text-align: left; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+.trigger-table tr:last-child td { border-bottom: none; }
+.trigger-table th { background: var(--bg-elevated); color: var(--text-muted); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+.trigger-var { font-weight: 600; color: var(--text-primary); font-size: 1.02rem; min-width: 200px; }
+.trigger-var .now { display: block; font-weight: 400; color: var(--text-muted); font-size: 0.85rem; margin-top: 4px; letter-spacing: 0; text-transform: none; }
+.trigger-action { color: var(--text-secondary); font-size: 0.98rem; line-height: 1.85; }
+.trigger-action strong { color: var(--text-primary); font-weight: 600; }
+.trigger-action .up { color: var(--red); font-weight: 600; }
+.trigger-action .down { color: var(--green); font-weight: 600; }
+
+/* ===== Sub-section divider（用于 Module 3 内部 3a / 3b 分隔） ===== */
+.subsection-label { max-width: 1100px; margin: 48px auto 20px; padding: 0 48px; font-size: 0.85rem; color: var(--accent); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
+.subsection-label:first-of-type { margin-top: 0; }
+
+/* ===== Passage Card（兜底承接：4 模块外的非标内容） ===== */
+.passage-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 36px 40px; max-width: 1100px; margin: 0 auto 24px; }
+.passage-card h3 { font-size: 1.3rem; margin-bottom: 16px; color: var(--text-primary); }
+.passage-card h4 { font-size: 1.05rem; margin: 24px 0 10px; color: var(--text-primary); }
+.passage-card p { font-size: 1rem; line-height: 1.9; margin-bottom: 16px; color: var(--text-secondary); }
+.passage-card ul, .passage-card ol { padding-left: 22px; margin-bottom: 16px; }
+.passage-card li { margin-bottom: 8px; line-height: 1.85; color: var(--text-secondary); }
+.passage-card strong { color: var(--text-primary); font-weight: 600; }
+.passage-card table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 0.95rem; margin: 16px 0 24px; }
+.passage-card th, .passage-card td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+.passage-card th { color: var(--text-muted); font-weight: 500; background: var(--bg-elevated); letter-spacing: 0.04em; font-size: 0.85rem; }
+
+/* ===== Footer ===== */
+footer { background: var(--bg-dark); color: var(--text-light); padding: 48px; text-align: center; margin-top: 72px; }
+footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
+.footer-sub { margin-top: 16px; font-size: 0.8rem; color: var(--text-light); opacity: 0.7; }
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .container, .voice-stack, .qa-stack, .trigger-wrap, .notes-stack, .subsection-label, .conclusion-wrap { padding-left: 24px; padding-right: 24px; }
+  .hero { padding-left: 24px; padding-right: 24px; }
+  .conclusion-card { padding: 28px 24px; }
+  .cc-headline { font-size: 1.05rem; line-height: 1.7; }
+  .cc-action-row { grid-template-columns: 1fr; gap: 6px; }
+  .cc-snapshot-grid { grid-template-columns: repeat(2, 1fr); }
+  .cc-snap-cell:nth-child(4n) { border-right: 1px solid var(--border-light); }
+  .cc-snap-cell:nth-child(2n) { border-right: none; }
+  .cc-snap-cell:nth-last-child(-n+4) { border-bottom: 1px solid var(--border-light); }
+  .cc-snap-cell:nth-last-child(-n+2) { border-bottom: none; }
+  .hero h1 { font-size: 2.2rem; }
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .voice-card, .passage-card { padding: 24px; }
+  .qa-card { padding: 22px; }
+  .trigger-table th, .trigger-table td { padding: 14px 14px; }
+  .note-item { padding: 20px; grid-template-columns: 1fr; gap: 8px; }
+  .section-head { padding: 0 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo">📰 物理AI · 圆桌</a>
+  <div class="nav-links">
+    <a href="#conclusion">结论</a>
+    <a href="#voices">视角</a>
+    <a href="#thinking">思考</a>
+    <a href="#watch">关注</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="kicker">ROUND TABLE · 2026-06-26 · 产业链前瞻</div>
+  <h1>未来几年，物理AI的发展前景如何，上下游产业该压住哪些主线</h1>
+  <div class="hero-dek">4 位专家基于 6/25 收盘-6/26 盘中实时数据，从产业卡位、信号面、估值水位、盘面持续性四个维度独立诊断物理AI前景。</div>
+  <div class="host">
+    <img src="data:image/webp;base64,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" alt="投研主编">
+    <span>投研主编 · 圆汇众（Yuan）· 腾讯自选股股票投研专家团</span>
+  </div>
+</section>
+
+<!-- ==================== 模块 1 · 结论卡 ==================== -->
+<section id="conclusion">
+  <div class="section-head">
+    <div class="section-num">01 · 结论</div>
+    <div><h2>圆桌怎么看</h2><p class="section-dek">多视角交叉验证后的综合判断</p></div>
+  </div>
+  <div class="conclusion-wrap">
+    <div class="conclusion-card">
+
+      <div class="cc-question">YOU ASKED</div>
+      <div class="cc-question-text">未来几年，物理AI的发展前景如何，上下游产业该压住哪些主线？</div>
+
+      <div class="cc-snapshot">
+        <div class="cc-snapshot-label">当前关键数据 · 2026-06-25收盘 / 6-26盘中</div>
+        <div class="cc-snapshot-grid">
+          <div class="cc-snap-cell">
+            <div class="cc-snap-cell-label">人形机器人板块 5日</div>
+            <div class="cc-snap-cell-value cc-snap-down">-5.36%</div>
+            <div class="cc-snap-cell-sub cc-snap-down">本周全线下跌</div>
+          </div>
+          <div class="cc-snap-cell">
+            <div class="cc-snap-cell-label">机器人执行器 YTD</div>
+            <div class="cc-snap-cell-value cc-snap-down">-16.83%</div>
+            <div class="cc-snap-cell-sub cc-snap-down">硬件供应链最惨</div>
+          </div>
+          <div class="cc-snap-cell">
+            <div class="cc-snap-cell-label">绿的谐波 PE(TTM)</div>
+            <div class="cc-snap-cell-value">520.85</div>
+            <div class="cc-snap-cell-sub cc-snap-down">上游估值极贵</div>
+          </div>
+          <div class="cc-snap-cell">
+            <div class="cc-snap-cell-label">双环传动 PE(TTM)</div>
+            <div class="cc-snap-cell-value">25.52</div>
+            <div class="cc-snap-cell-sub cc-snap-up">减速器最便宜</div>
+          </div>
+          <div class="cc-snap-cell">
+            <div class="cc-snap-cell-label">德赛西威 PE(TTM)</div>
+            <div class="cc-snap-cell-value">20.62</div>
+            <div class="cc-snap-cell-sub cc-snap-up">下游智驾便宜</div>
+          </div>
+          <div class="cc-snap-cell">
+            <div class="cc-snap-cell-label">三花智控 20日主力</div>
+            <div class="cc-snap-cell-value cc-snap-down">-53.1亿</div>
+            <div class="cc-snap-cell-sub cc-snap-down">板块最大出逃</div>
+          </div>
+          <div class="cc-snap-cell">
+            <div class="cc-snap-cell-label">埃斯顿 5日主力</div>
+            <div class="cc-snap-cell-value cc-snap-up">+1.34亿</div>
+            <div class="cc-snap-cell-sub cc-snap-up">全板块唯一净流入</div>
+          </div>
+          <div class="cc-snap-cell">
+            <div class="cc-snap-cell-label">10年国债收益率</div>
+            <div class="cc-snap-cell-value">1.734%</div>
+            <div class="cc-snap-cell-sub">低利率支撑估值</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cc-headline-label">圆桌综合视角</div>
+      <div class="cc-headline">
+        物理AI是未来3-5年最确定的产业方向之一，政策连续写入国家战略+量产元年确认+催化密集，4位成员对<strong>方向无分歧</strong>。但2026下半年"该押"的时机未到——四层信号只亮两盏（政策+产业绿灯），资金在撤、<em>14只龙头破均线</em>、上游PE 300-520x已严重透支。产业链卡位最确定的是上游核心零部件（减速器&gt;丝杠&gt;电机），但估值匹配度最好的反而是下游智驾（PE 20-30x）。圆桌共识：<strong>方向偏多、时机观望</strong>——等资金信号或盈利拐点确认再动手。
+      </div>
+
+      <div class="cc-actions-intro">圆桌的几个核心视角：</div>
+      <div class="cc-actions">
+        <div class="cc-action-row">
+          <div class="cc-action-label">从产业卡位看</div>
+          <div class="cc-action-detail">量产元年阶段上游核心零部件确定性最高（减速器★★★★★ &gt; 丝杠★★★★ &gt; 电机★★★★），不管哪家整机厂跑出来都需要减速器/丝杠/电机。但龙头估值已严重透支（绿的谐波PE 519、目标价低于现价14%）。估值合理且卡位核心的稀缺组合：双环传动（PE 25.5）+ 汇川技术（PE 37）+ 伯特利（PE 16.5）。</div>
+        </div>
+        <div class="cc-action-row">
+          <div class="cc-action-label">从估值水位看</div>
+          <div class="cc-action-detail">上下游剪刀差极大——上游芯片/减速器PE 300-520x（PEG 2.6-6.5），下游智驾PE 20-30x（PEG 1.12）。但便宜的下游盈利在短期承压（德赛西威Q1净利-27%、汇川-24%），需等Q2验证EPS修复。比亚迪PEG 0.67看似便宜是陷阱——EPS斜率在往下弯（Q1-57%），线在弯时PE分位低不是便宜。</div>
+        </div>
+        <div class="cc-action-row">
+          <div class="cc-action-label">从信号面看</div>
+          <div class="cc-action-detail">四层信号50%对齐（政策+产业绿灯，资金+情绪黄灯偏红）。核心标的20日资金全线净流出：三花-53亿、兆威-62亿、绿的谐波-34.5亿。等三个确认信号至少出两个：成交量放大+主力5日转净流入+板块连涨3日。下半年关键催化：7-8月Optimus V3投产+三季报业绩兑现。</div>
+        </div>
+        <div class="cc-action-row">
+          <div class="cc-action-label">从盘面持续性看</div>
+          <div class="cc-action-detail">物理AI四个子方向5日全线下跌（-4.6%到-9.3%），17只龙头中14只破MA5+MA10。6/25大盘涨3%时物理AI在跌，6/26大盘跌2%物理AI跌得更狠——资金已切向半导体。唯一亮点：埃斯顿5日仅跌1.89%、主力逆势净流入1.34亿、MACD接近金叉，是全板块唯一有资金低位承接迹象的票。</div>
+        </div>
+      </div>
+
+      <div class="cc-vote">
+        <span class="cc-vote-label">投票分布：</span>
+        <span class="cc-vote-tag"><span class="dot" style="background:var(--red)"></span>产业方向偏多 4</span>
+        <span class="cc-vote-tag"><span class="dot" style="background:var(--gold)"></span>操作时机观望 3</span>
+        <span class="cc-vote-tag"><span class="dot" style="background:var(--green)"></span>当下盘面偏空 1</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 模块 2 · 子专家观点 ==================== -->
+<section id="voices">
+  <div class="section-head">
+    <div class="section-num">02 · 视角</div>
+    <div>
+      <div class="section-title">4 人怎么看</div>
+      <div class="section-lede">每位从自己的方法论独立诊断 —— 产业卡位 / 信号面 / 估值水位 / 盘面持续性</div>
+    </div>
+  </div>
+
+  <div class="voice-stack">
+
+    <!-- ===== 产业策略师 ===== -->
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="data:image/webp;base64,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" alt="产业策略师">
+        <div class="voice-name">🌊 产业策略师 · 星望远</div>
+      </div>
+      <p>自上而下看产业趋势——这不是脉冲，是持续多年的产业建设周期，从中央到地方系统性投入。</p>
+
+      <h4>产业生命周期：从"概念验证"迈入"量产交付"</h4>
+      <ul>
+        <li>2026 = 人形机器人"量产元年" + 自动驾驶"L3商业化元年"，两条线同时进入1到10爬坡期</li>
+        <li>中国整机企业超140家，出货量占全球84.7%；2026年国内意向订单突破12万台</li>
+        <li>核心零部件国产化率：执行系统约80%，六维力传感器仅30%（替代空间最大）</li>
+        <li>全球具身智能市场未来5年CAGR约73%，2030年达2388亿元</li>
+      </ul>
+
+      <h4>产业链卡位表（核心环节 · 估值硬约束筛选后）</h4>
+      <table>
+        <thead><tr><th>环节</th><th>卡位公司</th><th>PE(TTM)</th><th>2026E PE</th><th>卡位逻辑</th><th>估值</th></tr></thead>
+        <tbody>
+          <tr><td>减速器-谐波</td><td>绿的谐波</td><td>519</td><td>367</td><td>国内市占&gt;60%，订单排至Q3</td><td><span class="down">极贵</span></td></tr>
+          <tr><td>减速器-RV</td><td>双环传动</td><td>25.5</td><td>~25</td><td>重负载关节，预计获特斯拉30%+份额</td><td><span class="up">合理</span></td></tr>
+          <tr><td>丝杠</td><td>拓普集团</td><td>34.1</td><td>29.2</td><td>特斯拉线性关节独家，单机价值~3万</td><td><span class="up">合理</span></td></tr>
+          <tr><td>电机</td><td>汇川技术</td><td>37.1</td><td>29.8</td><td>无框力矩电机份额&gt;50%，多环节卡位</td><td><span class="up">合理</span></td></tr>
+          <tr><td>热管理</td><td>三花智控</td><td>44.1</td><td>38.7</td><td>大市值平台，热管理+机器人阀门</td><td>中等</td></tr>
+          <tr><td>智驾-线控</td><td>伯特利</td><td>16.5</td><td>13.9</td><td>线控制动龙头，L3直接受益</td><td><span class="up">最便宜</span></td></tr>
+          <tr><td>AI芯片</td><td>寒武纪</td><td>341.3</td><td>164.8</td><td>国产AI芯片龙头，增速160%+</td><td><span class="down">极贵</span></td></tr>
+        </tbody>
+      </table>
+
+      <h4>景气度排序</h4>
+      <table>
+        <thead><tr><th>排名</th><th>子方向</th><th>景气度</th><th>生命周期</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>人形机器人/具身智能</td><td>★★★★★</td><td>1到10启动期</td></tr>
+          <tr><td>2</td><td>自动驾驶L3/L4</td><td>★★★★☆</td><td>商业化元年</td></tr>
+          <tr><td>3</td><td>工业机器人智能化</td><td>★★★★</td><td>稳步渗透期</td></tr>
+          <tr><td>4</td><td>无人机/低空经济</td><td>★★★☆</td><td>试点转商业化</td></tr>
+        </tbody>
+      </table>
+
+      <div class="pull-quote">"物理AI这条线你要信就早信。但'早信'不等于'追高'——估值是硬约束，卡位好但太贵的，等它跌下来再说。"</div>
+    </article>
+
+    <!-- ===== 信号派首席 ===== -->
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="data:image/webp;base64,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" alt="信号派首席">
+        <div class="voice-name">📡 信号派首席 · 洲四方</div>
+      </div>
+      <p>四层信号体系——方向对但资金没来，等。好逻辑≠好投资，资金是最后一环确认键。</p>
+
+      <h4>四层信号矩阵</h4>
+      <table>
+        <thead><tr><th>信号层</th><th>状态</th><th>核心依据</th></tr></thead>
+        <tbody>
+          <tr><td>① 政策信号</td><td><span class="up">🟢 绿灯</span></td><td>首个全产业链标准+万台级落地专项行动+自动驾驶强制国标+低空经济写入报告</td></tr>
+          <tr><td>② 产业信号</td><td><span class="up">🟢→🟡</span></td><td>Optimus V3确认7-8月投产，周产目标2万台；核心零部件国产化率70-80%；但BOM成本仍超6万美元</td></tr>
+          <tr><td>③ 资金信号</td><td><span class="down">🟡→🔴</span></td><td>三花20日-53亿、绿的谐波-34.5亿、汇川-16.9亿、德赛西威-18.5亿——全线净流出</td></tr>
+          <tr><td>④ 情绪信号</td><td>🟡 黄灯</td><td>72家公司公告提示风险+证监会严查蹭热点；一级市场仍火爆但二级降温</td></tr>
+        </tbody>
+      </table>
+
+      <h4>下半年催化日历</h4>
+      <table>
+        <thead><tr><th>时间</th><th>事件</th><th>影响</th></tr></thead>
+        <tbody>
+          <tr><td>7-8月</td><td>特斯拉Optimus V3正式投产</td><td>⭐⭐⭐⭐⭐ 量产元年确认</td></tr>
+          <tr><td>下半年</td><td>宇树科技科创板上市</td><td>⭐⭐⭐⭐ 产业链估值重估</td></tr>
+          <tr><td>三季报</td><td>核心零部件企业业绩兑现</td><td>⭐⭐⭐⭐⭐ 从主题博弈转向价值验证</td></tr>
+          <tr><td>Q3</td><td>小鹏Robotaxi广州载客运营</td><td>⭐⭐⭐ 自动驾驶商业化里程碑</td></tr>
+        </tbody>
+      </table>
+
+      <h4>系统性风险预警</h4>
+      <ul>
+        <li>美联储鹰派转向（6/18点阵图9人预计加息）——<span class="down">已触发</span>，科技板块连续回调</li>
+        <li>证监会严查蹭热点炒概念——<span class="down">已触发</span>，对纯题材是利空，对有业绩核心标的是洗盘</li>
+        <li>板块获利盘兑现（人形机器人5月+12.84%）——<span class="down">正在进行</span></li>
+      </ul>
+
+      <div class="pull-quote">"物理AI方向我信，但我不做最早进场的人。等资金确认键亮绿灯，再上车不迟。墙要倒了你不能站在墙下面——现在风有点大，先躲一躲。"</div>
+    </article>
+
+    <!-- ===== 估值分析师 ===== -->
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="data:image/webp;base64,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" alt="估值分析师">
+        <div class="voice-name">🧮 估值分析师 · 文衡价</div>
+      </div>
+      <p>PE Bands/PEG精确定价——低利率撑估值，撑不了泡沫。上游透支、下游被错杀，剪刀差里藏着机会也藏着陷阱。</p>
+
+      <h4>上下游估值剪刀差</h4>
+      <table>
+        <thead><tr><th>环节</th><th>代表标的</th><th>PE(TTM)中位</th><th>PEG中位</th><th>EPS斜率</th><th>估值水位</th></tr></thead>
+        <tbody>
+          <tr><td>上游-芯片</td><td>海光/寒武纪</td><td>~320x</td><td>~1.7</td><td>↑强</td><td><span class="down">极贵</span></td></tr>
+          <tr><td>上游-减速器</td><td>绿的谐波/双环</td><td>~273x</td><td>~4.0</td><td>↑强</td><td><span class="down">贵（双环例外）</span></td></tr>
+          <tr><td>上游-电机</td><td>汇川技术</td><td>37x</td><td>1.48</td><td>↑波动</td><td><span class="up">合理偏便宜</span></td></tr>
+          <tr><td>下游-智驾</td><td>德赛西威</td><td>21x</td><td>1.12</td><td>↑但Q1降</td><td><span class="up">便宜</span></td></tr>
+          <tr><td>下游-整车</td><td>比亚迪</td><td>26x</td><td>0.67</td><td><span class="down">↓下滑</span></td><td>看似便宜（陷阱）</td></tr>
+        </tbody>
+      </table>
+
+      <h4>PEG分档与陷阱提示</h4>
+      <table>
+        <thead><tr><th>公司</th><th>PE(26E)</th><th>26E增速</th><th>PEG</th><th>判读</th></tr></thead>
+        <tbody>
+          <tr><td>德赛西威</td><td>17.31</td><td>15.39%</td><td><span class="up">1.12</span></td><td>✅ 合理偏便宜</td></tr>
+          <tr><td>汇川技术</td><td>29.82</td><td>20.17%</td><td>1.48</td><td>✅ 合理</td></tr>
+          <tr><td>寒武纪</td><td>164.78</td><td>178.69%</td><td>0.92</td><td>⚠️ 看似便宜（扭亏基数失真）</td></tr>
+          <tr><td>比亚迪</td><td>18.09</td><td>26.96%</td><td>0.67</td><td>⚠️ 陷阱（EPS在弯）</td></tr>
+          <tr><td>海光信息</td><td>189.55</td><td>73.65%</td><td>2.57</td><td><span class="down">偏贵</span></td></tr>
+          <tr><td>绿的谐波</td><td>367.14</td><td>56.86%</td><td><span class="down">6.45</span></td><td><span class="down">极贵</span></td></tr>
+        </tbody>
+      </table>
+
+      <h4>盈利变化跟踪：谁在加速，谁在陷阱</h4>
+      <ul>
+        <li><strong>盈利确认向上</strong>：海光信息、寒武纪、绿的谐波——但股价涨更快，涨的是PE不是EPS，机构目标价都低于现价</li>
+        <li><strong>短期承压待验证</strong>：汇川Q1-24%、德赛西威Q1-27%、豪威Q1-43%——年度趋势未破，等Q2财报</li>
+        <li><strong>盈利恶化（陷阱）</strong>：比亚迪Q1-57%，EPS斜率明确下行，PE分位低是线在弯不是便宜</li>
+      </ul>
+
+      <div class="pull-quote">"PE分位低+EPS下行=线在弯，不是买点。便宜的下游要等Q2验证EPS修复——盈利预期下修就跑，不设机械止损线。"</div>
+    </article>
+
+    <!-- ===== 短线冲浪手 ===== -->
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="data:image/webp;base64,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" alt="短线冲浪手">
+        <div class="voice-name">⚡ 短线冲浪手 · 磊追浪</div>
+      </div>
+      <p>天级别盘面——产业逻辑没错，但盘面不认。资金在半导体不在机器人，14只龙头破均线，主力在跑不在进。</p>
+
+      <h4>物理AI子方向当周盘面对比</h4>
+      <table>
+        <thead><tr><th>子方向</th><th>当日</th><th>5日</th><th>20日</th><th>YTD</th></tr></thead>
+        <tbody>
+          <tr><td>人形机器人</td><td><span class="down">-1.82%</span></td><td><span class="down">-5.36%</span></td><td>-5.94%</td><td>+0.32%</td></tr>
+          <tr><td>机器人执行器</td><td><span class="down">-1.93%</span></td><td><span class="down">-9.25%</span></td><td>-10.99%</td><td><span class="down">-16.83%</span></td></tr>
+          <tr><td>无人机</td><td><span class="down">-1.93%</span></td><td><span class="down">-4.72%</span></td><td>-6.32%</td><td>-2.99%</td></tr>
+          <tr><td>低空经济</td><td><span class="down">-2.15%</span></td><td><span class="down">-5.35%</span></td><td>-8.18%</td><td>-6.98%</td></tr>
+          <tr><td>车联网(智驾代理)</td><td><span class="down">-2.32%</span></td><td><span class="down">-5.45%</span></td><td>-9.98%</td><td>-12.18%</td></tr>
+        </tbody>
+      </table>
+
+      <h4>龙头强度排名（抗跌+技术+资金三维）</h4>
+      <table>
+        <thead><tr><th>排名</th><th>股票</th><th>5日</th><th>价vs MA10</th><th>5日主力</th><th>理由</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>埃斯顿</td><td><span class="up">-1.89%</span></td><td>上方</td><td><span class="up">+1.34亿</span></td><td>唯一逆势净流入，MACD接近金叉</td></tr>
+          <tr><td>2</td><td>柯力传感</td><td>-3.17%</td><td>上方</td><td>-1.96亿</td><td>今日唯一红盘</td></tr>
+          <tr><td>3</td><td>绿的谐波</td><td>-5.39%</td><td>上方</td><td>-5.51亿</td><td>60日+106%但MACD刚死叉</td></tr>
+          <tr><td>4+</td><td>拓普/三花/汇川等</td><td><span class="down">-6%~-13%</span></td><td><span class="down">破</span></td><td><span class="down">流出</span></td><td>全部破MA5+MA10，主力持续撤退</td></tr>
+        </tbody>
+      </table>
+
+      <h4>技术止损位（14/17只已触发）</h4>
+      <table>
+        <thead><tr><th>股票</th><th>当前价</th><th>MA5</th><th>MA10</th><th>状态</th><th>关键支撑</th></tr></thead>
+        <tbody>
+          <tr><td>拓普集团</td><td>54.17</td><td>57.38</td><td>59.24</td><td><span class="down">破5+10日</span></td><td>前期平台~50</td></tr>
+          <tr><td>汇川技术</td><td>64.71</td><td>66.73</td><td>68.13</td><td><span class="down">破5+10日</span></td><td>52周低59.63</td></tr>
+          <tr><td>三花智控</td><td>42.78</td><td>43.81</td><td>44.51</td><td><span class="down">破5+10日</span></td><td>前期平台~40</td></tr>
+          <tr><td>德赛西威</td><td>80.26</td><td>83.44</td><td>85.81</td><td><span class="down">破5+10日</span></td><td>52周低80.19（已逼近）</td></tr>
+          <tr><td>绿的谐波</td><td>385.00</td><td>386.20</td><td>382.05</td><td>破5日/在10日上</td><td>MA20=369.73</td></tr>
+          <tr><td>埃斯顿</td><td>35.71</td><td>37.13</td><td>35.47</td><td>破5日/在10日上</td><td>MA10=35.47（失守止损）</td></tr>
+        </tbody>
+      </table>
+
+      <div class="pull-quote">"破位的票不碰，时间也是成本。利好出来不涨反跌——6/25大盘涨3%时物理AI在跌，这不是主线，是退潮。"</div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ==================== 模块 3 · 深度思考 ==================== -->
+<section id="thinking">
+  <div class="section-head">
+    <div class="section-num">03 · 思考</div>
+    <div>
+      <div class="section-title">深度思考</div>
+      <div class="section-lede">主持人替你想到的 —— 你没想到的问题、可能误读的地方、应该问但没问的</div>
+    </div>
+  </div>
+
+  <div class="subsection-label">3a · 主持人札记</div>
+  <div class="notes-stack">
+    <article class="note-item">
+      <div class="note-num">01</div>
+      <div class="note-body">
+        <h4>"方向对"是4人共识，"时机到"是0人共识</h4>
+        <p>这是本次圆桌最关键的温差。4位成员对物理AI未来3-5年的产业方向没有任何分歧——政策持续加码、量产元年确认、CAGR 73%。但问到"2026下半年该不该押"，温度立刻分化：产业策略师说"早信但不追高"，信号派首席说"等资金确认键"，估值分析师说"观望偏空看下游"，短线冲浪手最直接——"14只龙头破均线，不猜底"。产业判断和操作时机是两件事，方向对不等于现在该动手。</p>
+      </div>
+    </article>
+    <article class="note-item">
+      <div class="note-num">02</div>
+      <div class="note-body">
+        <h4>产业策略师推荐的"估值合理卡位"，盘面全在破位</h4>
+        <p>这是我替读者注意到的最大矛盾。产业策略师推荐汇川、拓普、双环、伯特利4只"估值合理+核心卡位"的标的。但短线冲浪手的盘面数据显示：这4只全部破MA5+MA10，主力5日全部净流出（拓普-9亿、汇川-1.3亿）。产业看好≠盘面确认——卡位再好，资金在撤的时候进去就是接刀。这恰恰印证了信号派首席的核心纪律：方向对+资金没来=等。</p>
+      </div>
+    </article>
+    <article class="note-item">
+      <div class="note-num">03</div>
+      <div class="note-body">
+        <h4>"便宜"的三种面孔——不是所有低位都是买点</h4>
+        <p>估值分析师这次拆得非常细，值得读者留意：同样是"PE分位低"，背后可能是三种完全不同的情况。①德赛西威PE 21x在5-10分位——年度EPS仍增长，只是Q1短期承压，可能是真便宜（等Q2验证）；②比亚迪PE 26x在5分位——但EPS斜率在往下弯（Q1-57%），是"线在弯"的陷阱，不是便宜；③双环传动PE 25x——减速器方向最便宜的，但盘面也在破位。便宜+破位+资金流出=还在跌途中，不能因为"便宜"就忽视时机。</p>
+      </div>
+    </article>
+    <article class="note-item">
+      <div class="note-num">04</div>
+      <div class="note-body">
+        <h4>埃斯顿的"孤岛信号"——唯一逆势净流入，但估值分析师说贵</h4>
+        <p>短线冲浪手发现埃斯顿是全板块唯一5日主力逆势净流入（+1.34亿）、MACD接近金叉的票。但估值分析师的数据显示埃斯顿PE 267x、目标价低于现价35%——盘面异动和估值泡沫直接冲突。这个矛盾怎么解？我的判断：可能是资金在赌Q2扭亏加速（2026E增速377%但基数极低），属于低位博弈而非价值投资。短线可以盯，但按估值分析师的框架"PE 300x的标的除非有明确短线手法否则别碰"。</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="subsection-label">3b · 主持人 Q&amp;A</div>
+  <div class="qa-stack">
+    <article class="qa-card">
+      <span class="qa-tag tag-key">🔑 关键</span>
+      <div class="qa-question">上下游剪刀差这么大，该押上游还是下游？</div>
+      <div class="qa-answer">
+        <p>这是本次圆桌最核心的分歧。产业策略师和估值分析师给出了看似矛盾但实则互补的判断：产业策略师认为上游核心零部件确定性最高（不管哪家整机厂赢都需要减速器），但估值分析师拆开看——上游PE 300-520x已严重透支，下游PE 20-30x才是真便宜。两者不矛盾的关键在于"时间维度"：长期看（3-5年）上游零部件确实是卡位最确定的环节；但当下看（2026下半年）上游需要用下跌消化估值、下游需要用Q2财报验证盈利修复。如果非要选，估值分析师的框架更可操作——PE 20-30x+机构目标价上行43-59%+等Q2验证，比赌PE 300x的量产预期兑现安全得多。</p>
+      </div>
+    </article>
+    <article class="qa-card">
+      <span class="qa-tag tag-confuse">⚠️ 易混淆</span>
+      <div class="qa-question">比亚迪PEG 0.67看着最便宜，为什么都说不能买？</div>
+      <div class="qa-answer">
+        <p>这是本次最容易误读的数据。PEG=PE/增速，比亚迪PE 18x、2026E增速27%，算出来0.67确实"便宜"。但估值分析师点出关键：这个27%增速是从2025年的低基数（EPS从4.61降到3.58，降了22%）恢复上来的，而且2026Q1 EPS同比再降57%——近期盈利还在恶化。PE_fwd 44.37远高于PE_TTM 26.31，说明市场预期近期盈利会继续下滑。PEG低只是因为分母（增速）从坑里爬起来，不是真的便宜。按PE Bands看更清楚：EPS斜率在往下弯，线在弯的时候PE分位低是陷阱。要等EPS斜率确认拐头向上再考虑。</p>
+      </div>
+    </article>
+    <article class="qa-card">
+      <span class="qa-tag tag-miss">🔍 易疏忽</span>
+      <div class="qa-question">寒武纪PEG 0.92比德赛西威1.12还低，为什么估值分析师只给小仓位？</div>
+      <div class="qa-answer">
+        <p>因为PEG对扭亏型公司会严重失真。寒武纪2026E增速178.69%是从2025年刚扭亏的低基数上来的——178%不可能年年维持。估值分析师原话："这是数学假象，实际要看它能不能在2027-2028年维持50%+增速。"consensus预测2027E增速109%、2028E增速72%，如果真能兑现确实不贵，但这是"如果"。而德赛西威PEG 1.12是基于15.39%的稳定增速——这个增速可持续、可验证，PEG的参考价值远高于扭亏基数。所以估值分析师给寒武纪3-5%小仓位观察、给德赛西威3-5%等Q2验证——工具不同、信心不同。</p>
+      </div>
+    </article>
+    <article class="qa-card">
+      <span class="qa-tag tag-meta">⭐ 重要</span>
+      <div class="qa-question">如果Q2财报验证下游盈利修复，切换节奏怎么把握？</div>
+      <div class="qa-answer">
+        <p>这是下半年最关键的操作节点。估值分析师和信号派首席给了两套确认机制：估值面看Q2财报——德赛西威/汇川/豪威Q1 EPS分别-27%/-24%/-43%，如果Q2环比修复（年度EPS仍增长趋势未破），就是下游"便宜+盈利拐头"的买点确认。信号面看资金——等成交量放大+主力5日转净流入+板块连涨3日，三信号至少出两个。两套机制交叉验证最稳妥：如果Q2财报好+资金开始回流=右侧确认，可以逐步建仓下游；如果Q2财报好但资金没来=只赚业绩不赚估值，需更长耐心；如果Q2财报继续恶化=下游逻辑破坏，连"便宜"都不是买点了。</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ==================== 模块 4 · 后续关注 ==================== -->
+<section id="watch">
+  <div class="section-head">
+    <div class="section-num">04 · 关注</div>
+    <div>
+      <div class="section-title">后续关注</div>
+      <div class="section-lede">当下综合视角是基于现有数据的快照 —— 什么时候该回来重看，什么情况下我们这次的视角可能错了</div>
+    </div>
+  </div>
+
+  <div class="subsection-label">4a · 关键变量观察台</div>
+  <div class="trigger-wrap">
+    <table class="trigger-table">
+      <thead>
+        <tr>
+          <th style="width: 30%;">变量 · 当前</th>
+          <th>重新评估触发线</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="trigger-var">人形机器人板块 5日<span class="now">当前 -5.36%</span></td>
+          <td class="trigger-action">缩量止跌 + 板块连涨3日 → <span class="up">资金共识形成信号，进场窗口打开</span>；继续放量下跌 → <span class="down">下跌中继，继续等</span>。</td>
+        </tr>
+        <tr>
+          <td class="trigger-var">三花智控 20日主力<span class="now">当前 -53.1亿</span></td>
+          <td class="trigger-action">5日主力转净流入 → <span class="up">资金信号首个确认键亮起</span>；继续扩大 → <span class="down">板块最大出逃加剧</span>。</td>
+        </tr>
+        <tr>
+          <td class="trigger-var">埃斯顿 MA10<span class="now">当前 35.47 / 股价 35.71</span></td>
+          <td class="trigger-action">守住MA10+MACD金叉确认 → <span class="up">全板块唯一企稳信号成立</span>；跌破MA10 → <span class="down">孤岛信号失效，止损</span>。</td>
+        </tr>
+        <tr>
+          <td class="trigger-var">德赛西威 Q2财报<span class="now">当前 Q1 -27%</span></td>
+          <td class="trigger-action">Q2 EPS环比修复 → <span class="up">下游"便宜+盈利拐头"买点确认</span>；继续恶化 → <span class="down">下游逻辑破坏，便宜也不是买点</span>。</td>
+        </tr>
+        <tr>
+          <td class="trigger-var">绿的谐波 PE(TTM)<span class="now">当前 520.85</span></td>
+          <td class="trigger-action">回调至300以下 → <span class="up">机构一致预期目标价附近，估值消化后重新评估</span>；继续冲高 → <span class="down">泡沫加剧</span>。</td>
+        </tr>
+        <tr>
+          <td class="trigger-var">特斯拉 Optimus V3 投产<span class="now">预期 7-8月</span></td>
+          <td class="trigger-action">按期投产+周产达2万台 → <span class="up">量产元年确认，供应链订单兑现</span>；推迟 → <span class="down">上游PE 300x的量产预期叙事松动</span>。</td>
+        </tr>
+        <tr>
+          <td class="trigger-var">美联储 10月议息<span class="now">当前 9人预计加息</span></td>
+          <td class="trigger-action">加息落地 → <span class="down">系统性风险触发，高估值成长股无条件减仓</span>；维持不变 → <span class="up">外部压制解除</span>。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection-label">4b · 综合视角失效条件</div>
+  <div class="notes-stack">
+    <div class="note-item">
+      <div class="note-num">01</div>
+      <div class="note-body">
+        <strong>产业面失效</strong>：如果特斯拉Optimus V3投产推迟或周产远低于2万台目标，则"量产元年确认"的核心产业信号失效——上游PE 300-520x的远期定价假设动摇，本次"方向偏多"的综合视角可能被推翻。
+      </div>
+    </div>
+    <div class="note-item">
+      <div class="note-num">02</div>
+      <div class="note-body">
+        <strong>资金面失效</strong>：如果物理AI板块在Q3出现成交量持续放大+主力从净流出转5日净流入+板块连涨3日（三信号至少出两个），则"时机观望"的综合视角失效——资金共识已形成，应转为偏多操作。
+      </div>
+    </div>
+    <div class="note-item">
+      <div class="note-num">03</div>
+      <div class="note-body">
+        <strong>盈利面失效</strong>：如果Q2财报显示德赛西威/汇川/豪威EPS继续恶化（年度增长趋势被打破），则"下游智驾估值便宜"的判断失效——便宜的下游也变成陷阱，结构性看多下游的视角被推翻。
+      </div>
+    </div>
+    <div class="note-item">
+      <div class="note-num">04</div>
+      <div class="note-body">
+        <strong>宏观失效</strong>：如果美联储10月加息落地且伴随地缘冲突升级，全球流动性收紧+通胀失控，则"低利率撑估值"的宏观前提失效——高PE成长股系统性杀估值，方向再对也得先撤。
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <p>⚠️ 以上内容由 AI 基于公开信息整理生成，仅供参考，不构成任何投资建议或个股推荐。投资有风险，决策需谨慎。</p>
+  <p class="footer-sub">stock-partner-team · Generated 2026-06-26</p>
+</footer>
+
+</body>
+</html>

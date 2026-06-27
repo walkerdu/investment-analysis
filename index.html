@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投资研究 · 分析聚合</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- ===== Nav ===== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <span class="nav-logo-mark">研</span>
+      <span class="nav-logo-text">投资研究 · 分析聚合</span>
+    </a>
+    <div class="nav-tools">
+      <div class="search">
+        <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M21 21l-4.3-4.3M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"/></svg>
+        <input id="search" type="search" placeholder="搜索标题 / 标签 / 摘要…" autocomplete="off">
+        <kbd class="search-kbd">/</kbd>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<header class="hero">
+  <div class="hero-inner">
+    <p class="kicker">INVESTMENT RESEARCH HUB</p>
+    <h1 id="site-title">投资研究 · 分析聚合</h1>
+    <p class="hero-dek" id="site-desc">聚合个人投资研究与分析报告，按分类、标签、时间维度浏览。</p>
+    <div class="stats" id="stats" aria-live="polite"></div>
+  </div>
+</header>
+
+<!-- ===== Filters ===== -->
+<section class="filters" id="filters">
+  <div class="filters-inner">
+    <div class="filter-row">
+      <span class="filter-label">分类</span>
+      <div class="chips" id="cat-chips" role="group" aria-label="按分类筛选"></div>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">标签</span>
+      <div class="chips" id="tag-chips" role="group" aria-label="按标签筛选"></div>
+    </div>
+    <div class="filter-row filter-row--tools">
+      <div class="sort">
+        <span class="filter-label">排序</span>
+        <select id="sort">
+          <option value="date-desc">最新优先</option>
+          <option value="date-asc">最早优先</option>
+          <option value="title">按标题</option>
+          <option value="category">按分类</option>
+        </select>
+      </div>
+      <span class="result-count" id="result-count"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Grid ===== -->
+<main class="main">
+  <div class="grid" id="grid" aria-live="polite"></div>
+  <div class="empty" id="empty" hidden>
+    <div class="empty-mark">∅</div>
+    <p class="empty-title">没有匹配的分析</p>
+    <p class="empty-hint">试试调整筛选条件或清空搜索。</p>
+    <button class="btn" id="reset-filters">清空所有筛选</button>
+  </div>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p>本站为个人投资研究聚合，内容仅供学习交流，不构成投资建议。</p>
+    <p class="footer-meta">由 <code>config.json</code> 驱动 · <code>sync-pages.py</code> 同步</p>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

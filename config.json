@@ -1,0 +1,38 @@
+{
+  "site": {
+    "title": "投资研究 · 分析聚合",
+    "subtitle": "Investment Research Hub",
+    "description": "聚合个人投资研究与分析报告，按分类、标签、时间维度浏览。",
+    "author": "",
+    "updated": "2026-06-27"
+  },
+  "categories": [
+    { "id": "roundtable", "name": "圆桌报告", "color": "#D97706", "description": "多视角圆桌讨论形式的深度报告" },
+    { "id": "industry",   "name": "行业研究", "color": "#2563EB", "description": "行业景气度与产业链分析" },
+    { "id": "company",    "name": "公司分析", "color": "#059669", "description": "个股深度研究与估值" },
+    { "id": "macro",      "name": "宏观策略", "color": "#7C3AED", "description": "宏观经济与策略观点" },
+    { "id": "data",       "name": "数据复盘", "color": "#DC2626", "description": "市场数据与交易复盘" }
+  ],
+  "pages": [
+    {
+      "id": "2026-06-25-compute-vs-humanoid",
+      "title": "算力 VS 人形机器人 · 2026下半年主线",
+      "category": "roundtable",
+      "tags": ["算力", "人形机器人", "2026下半年", "主线", "AI"],
+      "date": "2026-06-25",
+      "source": "/Users/sasalu/WorkBuddy/2026-06-25-23-57-27/deliverables/stock-partner/2026-06-25/算力VS人形机器人-圆桌报告.html",
+      "path": "pages/2026-06-25-算力VS人形机器人.html",
+      "summary": "围绕算力与人形机器人两条 2026 下半年主线展开圆桌讨论，对比产业节奏、估值与配置策略。"
+    },
+    {
+      "id": "2026-06-26-physical-ai",
+      "title": "物理AI产业前景 · 上下游主线",
+      "category": "roundtable",
+      "tags": ["物理AI", "具身智能", "上下游", "AI"],
+      "date": "2026-06-26",
+      "source": "/Users/sasalu/WorkBuddy/2026-06-25-23-57-27/deliverables/stock-partner/2026-06-26/物理AI-圆桌报告.html",
+      "path": "pages/2026-06-26-物理AI.html",
+      "summary": "拆解物理AI产业链上下游，梳理具身智能主线的关键环节与投资节奏。"
+    }
+  ]
+}
