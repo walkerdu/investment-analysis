@@ -4,7 +4,7 @@
     "subtitle": "Investment Research Hub",
     "description": "聚合个人投资研究与分析报告，按分类、标签、时间维度浏览。",
     "author": "",
-    "updated": "2026-06-27"
+    "updated": "2026-06-28"
   },
   "categories": [
     { "id": "roundtable", "name": "圆桌报告", "color": "#D97706", "description": "多视角圆桌讨论形式的深度报告" },
@@ -33,6 +33,16 @@
       "source": "/Users/sasalu/WorkBuddy/2026-06-25-23-57-27/deliverables/stock-partner/2026-06-26/物理AI-圆桌报告.html",
       "path": "pages/2026-06-26-物理AI.html",
       "summary": "拆解物理AI产业链上下游，梳理具身智能主线的关键环节与投资节奏。"
+    },
+    {
+      "id": "2026-06-28-AI产业链定价权",
+      "title": "AI产业链定价权圆桌报告",
+      "category": "roundtable",
+      "tags": ["AI上游", "定价权", "港股科技", "苹果涨价", "估值剪刀差"],
+      "date": "2026-06-28",
+      "source": "/Users/sasalu/WorkBuddy/2026-06-28-15-33-19/deliverables/stock-partner/2026-06-28/AI产业链定价权-圆桌报告.html",
+      "path": "pages/2026-06-28-AI产业链定价权.html",
+      "summary": "AI上游定价权由HBM扩产周期锁定，景气撑到2027；但资金拥挤到极致、苹果涨价标志虹吸反噬消费端，9倍PE剪刀差已在回归前夜。"
     }
   ]
 }
