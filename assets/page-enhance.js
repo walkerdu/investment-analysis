@@ -136,6 +136,10 @@
       var pathParts = (p.path || '').split('/');
       var fileName = pathParts[pathParts.length - 1];
       var isCurrent = fileName === cur;
+      // 后备：URL 包含文件名（处理编码差异）
+      if (!isCurrent && location.href.indexOf(encodeURIComponent(fileName)) !== -1) {
+        isCurrent = true;
+      }
       var cls = isCurrent ? 'site-nav-item active' : 'site-nav-item';
       var cat = p.category || '';
       html += '<li><a href="' + fileName + '" class="' + cls + '" data-href="' + escapeHtml(fileName) + '">';
@@ -147,6 +151,11 @@
     nav.innerHTML = html;
 
     document.body.insertBefore(nav, document.body.firstChild);
+    // 滚动到当前报告位置（首次加载时当前报告可能在导航视口外）
+    var activeItem = nav.querySelector('.site-nav-item.active');
+    if (activeItem) {
+      activeItem.scrollIntoView({ block: 'center' });
+    }
   }
 
   /* ===== 4. 右侧 TOC ===== */
