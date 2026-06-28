@@ -2,13 +2,19 @@
  * page-enhance.js — 报告页面增强：左侧站点导航 + 右侧 TOC 目录
  * 由 sync-pages.py 自动注入到 pages/*.html
  * 依赖：同级目录的 ../config.json（fetch 读取报告列表）
+ * v2: SPA 导航（不整页刷新）+ 高亮修复（URL 解码）
  */
 (function () {
   'use strict';
 
+  var cssInjected = false;
+  var configCache = null;
+  var clickHandlerInstalled = false;
+  var scrollHandler = null;
+
   /* ===== 1. 注入增强 CSS ===== */
-  var css = [
-    '/* ===== Site Nav（左侧站点导航）===== */',
+  var CSS_TEXT = [
+    '/* ===== Site Nav ===== */',
     '.site-nav {',
     '  position: fixed; left: 0; top: 64px; bottom: 0;',
     '  width: 220px; overflow-y: auto; z-index: 90;',
@@ -35,6 +41,7 @@
     '  display: block; padding: 9px 11px; border-radius: 8px;',
     '  color: var(--text-secondary, #5C5652); text-decoration: none;',
     '  margin-bottom: 3px; transition: all 0.2s; border-left: 3px solid transparent;',
+    '  cursor: pointer;',
     '}',
     '.site-nav-item:hover { background: var(--bg-elevated, #FAFAF9); color: var(--accent, #D97706); }',
     '.site-nav-item.active {',
@@ -44,7 +51,7 @@
     '.site-nav-title { display: block; font-size: 0.82rem; line-height: 1.4; }',
     '.site-nav-meta { display: block; font-size: 0.7rem; color: var(--text-muted, #8A8480); margin-top: 3px; }',
     '',
-    '/* ===== TOC Sidebar（右侧目录，若页面未内置则自动生成）===== */',
+    '/* ===== TOC Sidebar ===== */',
     '.toc-sidebar {',
     '  position: fixed; right: 28px; top: 88px;',
     '  width: 220px; max-height: calc(100vh - 120px); overflow-y: auto;',
@@ -70,7 +77,11 @@
     '.toc-item.toc-sub { padding-left: 24px; font-size: 0.76rem; color: var(--text-light); }',
     '.toc-item.toc-sub.active { color: var(--accent); background: transparent; }',
     '',
-    '/* ===== 布局调整：宽屏时为左右导航留位 ===== */',
+    '/* ===== SPA 过渡 ===== */',
+    'body { transition: opacity 0.12s ease; }',
+    'body.pe-loading { opacity: 0.3; }',
+    '',
+    '/* ===== 布局 ===== */',
     '@media (min-width: 1201px) {',
     '  body { margin-left: 220px; margin-right: 250px; }',
     '}',
@@ -79,9 +90,14 @@
     '  .toc-sidebar { display: none; }',
     '}'
   ].join('\n');
-  var styleEl = document.createElement('style');
-  styleEl.textContent = css;
-  document.head.appendChild(styleEl);
+
+  function injectCSS() {
+    if (cssInjected) return;
+    cssInjected = true;
+    var el = document.createElement('style');
+    el.textContent = CSS_TEXT;
+    document.head.appendChild(el);
+  }
 
   /* ===== 2. 工具函数 ===== */
   function escapeHtml(s) {
@@ -90,19 +106,23 @@
     });
   }
 
-  function currentPath() {
+  /* 当前页面文件名（URL 解码后），如 "2026-06-26-物理AI.html" */
+  function currentFileName() {
     var p = location.pathname;
-    // 取最后一段 path，如 /pages/xxx.html → xxx.html
     var parts = p.split('/');
-    return parts[parts.length - 1];
+    return decodeURIComponent(parts[parts.length - 1]);
   }
 
   /* ===== 3. 左侧站点导航 ===== */
   function buildSiteNav(config) {
+    // 移除旧的
+    var old = document.getElementById('siteNav');
+    if (old) old.remove();
+
     var pages = (config.pages || []).slice().sort(function (a, b) {
       return (b.date || '').localeCompare(a.date || '');
     });
-    var cur = currentPath();
+    var cur = currentFileName();
 
     var nav = document.createElement('aside');
     nav.className = 'site-nav';
@@ -118,7 +138,7 @@
       var isCurrent = fileName === cur;
       var cls = isCurrent ? 'site-nav-item active' : 'site-nav-item';
       var cat = p.category || '';
-      html += '<li><a href="' + fileName + '" class="' + cls + '">';
+      html += '<li><a href="' + fileName + '" class="' + cls + '" data-href="' + escapeHtml(fileName) + '">';
       html += '<span class="site-nav-title">' + escapeHtml(p.title || p.id) + '</span>';
       html += '<span class="site-nav-meta">' + escapeHtml(p.date || '') + ' · ' + escapeHtml(cat) + '</span>';
       html += '</a></li>';
@@ -129,27 +149,16 @@
     document.body.insertBefore(nav, document.body.firstChild);
   }
 
-  /* ===== 4. 右侧 TOC（若页面未内置则自动生成）===== */
+  /* ===== 4. 右侧 TOC ===== */
   function buildTOC() {
-    var existing = document.getElementById('tocSidebar');
-    if (existing) {
-      // 已有 TOC 容器但可能没填充（shell.html 模板里的 JS 会填充）
-      // 如果已填充则跳过，否则填充
-      if (existing.children.length === 0) {
-        fillTOC(existing);
-      }
-      return;
-    }
+    // 移除旧的
+    var old = document.getElementById('tocSidebar');
+    if (old) old.remove();
+
     var toc = document.createElement('aside');
     toc.className = 'toc-sidebar';
     toc.id = 'tocSidebar';
-    // 插入到 body 开头（site-nav 之后）
-    var siteNav = document.getElementById('siteNav');
-    if (siteNav && siteNav.nextSibling) {
-      document.body.insertBefore(toc, siteNav.nextSibling);
-    } else {
-      document.body.appendChild(toc);
-    }
+    document.body.appendChild(toc);
     fillTOC(toc);
   }
 
@@ -190,6 +199,7 @@
         });
       }
     });
+    toc.innerHTML = '';
     items.forEach(function (it) {
       var a = document.createElement('a');
       a.className = 'toc-item' + (it.sub ? ' toc-sub' : '');
@@ -198,31 +208,92 @@
       a.title = it.label;
       toc.appendChild(a);
     });
-    // scrollspy
+    // scrollspy（清理旧 handler 避免重复绑定）
+    if (scrollHandler) {
+      window.removeEventListener('scroll', scrollHandler);
+    }
     var targets = items.map(function (it) { return document.getElementById(it.id); }).filter(Boolean);
     var links = Array.prototype.slice.call(toc.querySelectorAll('.toc-item'));
-    function onScroll() {
+    scrollHandler = function () {
       var y = window.scrollY + 140;
       var active = 0;
       for (var i = 0; i < targets.length; i++) {
         if (targets[i] && targets[i].offsetTop <= y) active = i;
       }
       links.forEach(function (l, i) { l.classList.toggle('active', i === active); });
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    };
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    scrollHandler();
   }
 
-  /* ===== 5. 初始化 ===== */
-  function init() {
-    // 先建右侧 TOC（不依赖网络）
-    buildTOC();
-    // 再 fetch config.json 建左侧站点导航
-    fetch('../config.json')
-      .then(function (r) { return r.json(); })
-      .then(function (config) { buildSiteNav(config); })
-      .catch(function (e) { console.warn('[page-enhance] site nav 加载失败:', e); });
+  /* ===== 5. SPA 导航（不整页刷新）===== */
+  function navigateTo(fileName, config) {
+    if (fileName === currentFileName()) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    document.body.classList.add('pe-loading');
+    fetch(encodeURI(fileName))
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.text();
+      })
+      .then(function (html) {
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        // 替换 body 内容
+        document.body.innerHTML = doc.body.innerHTML;
+        document.title = doc.title;
+        // 更新 URL
+        history.pushState({ file: fileName }, '', fileName);
+        // 重建 TOC 和站点导航
+        buildTOC();
+        buildSiteNav(config);
+        // 滚动到顶部
+        window.scrollTo(0, 0);
+        document.body.classList.remove('pe-loading');
+      })
+      .catch(function (e) {
+        console.warn('[page-enhance] SPA 导航失败，回退整页跳转:', e);
+        location.href = fileName;
+      });
   }
+
+  function setupClickHandler(config) {
+    if (clickHandlerInstalled) return;
+    clickHandlerInstalled = true;
+    // 事件委托：拦截 site-nav-item 点击
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('a.site-nav-item');
+      if (!link) return;
+      e.preventDefault();
+      var fileName = link.getAttribute('data-href') || link.getAttribute('href');
+      navigateTo(fileName, config);
+    });
+  }
+
+  /* ===== 6. 初始化 ===== */
+  function init() {
+    injectCSS();
+    buildTOC();
+    if (configCache) {
+      buildSiteNav(configCache);
+      setupClickHandler(configCache);
+    } else {
+      fetch('../config.json')
+        .then(function (r) { return r.json(); })
+        .then(function (config) {
+          configCache = config;
+          buildSiteNav(config);
+          setupClickHandler(config);
+        })
+        .catch(function (e) { console.warn('[page-enhance] site nav 加载失败:', e); });
+    }
+  }
+
+  // 浏览器前进/后退
+  window.addEventListener('popstate', function () {
+    location.reload();
+  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
