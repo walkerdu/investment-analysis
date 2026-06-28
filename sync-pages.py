@@ -82,7 +82,15 @@ def main():
             continue
 
         if need_copy:
-            shutil.copy2(source, dest)
+            # 读取源文件并注入 page-enhance.js（左侧站点导航 + 右侧 TOC）
+            with open(source, 'r', encoding='utf-8') as f:
+                content = f.read()
+            if 'page-enhance.js' not in content and '</body>' in content:
+                content = content.replace('</body>',
+                    '<script src="../assets/page-enhance.js"></script>\n</body>')
+            with open(dest, 'w', encoding='utf-8') as f:
+                f.write(content)
+            shutil.copystat(source, dest)
             print("✓ 已同步: {}".format(title))
             copied += 1
         else:

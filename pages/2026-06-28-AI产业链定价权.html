@@ -224,6 +224,33 @@ nav { position: sticky; top: 0; z-index: 100; height: 64px; display: flex; align
 .passage-card th, .passage-card td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--border-light); vertical-align: top; }
 .passage-card th { color: var(--text-muted); font-weight: 500; background: var(--bg-elevated); letter-spacing: 0.04em; font-size: 0.85rem; }
 
+/* ===== Right TOC Sidebar ===== */
+.toc-sidebar {
+  position: fixed; right: 28px; top: 88px;
+  width: 220px; max-height: calc(100vh - 120px); overflow-y: auto;
+  font-size: 0.82rem; line-height: 1.55; z-index: 50;
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+}
+.toc-sidebar::-webkit-scrollbar { width: 4px; }
+.toc-sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.toc-sidebar::before {
+  content: "目录 · INDEX"; display: block;
+  font-size: 0.7rem; letter-spacing: 0.18em; color: var(--text-muted);
+  font-weight: 600; text-transform: uppercase;
+  margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border-light);
+}
+.toc-item {
+  display: block; padding: 5px 0 5px 12px;
+  color: var(--text-muted); border-left: 2px solid var(--border-light);
+  transition: all 0.2s; cursor: pointer; text-decoration: none;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.toc-item:hover { color: var(--accent); border-left-color: var(--accent); }
+.toc-item.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; background: var(--accent-light); border-radius: 0 4px 4px 0; }
+.toc-item.toc-sub { padding-left: 24px; font-size: 0.76rem; color: var(--text-light); }
+.toc-item.toc-sub.active { color: var(--accent); background: transparent; }
+@media (max-width: 1200px) { .toc-sidebar { display: none; } }
+
 /* ===== Footer ===== */
 footer { background: var(--bg-dark); color: var(--text-light); padding: 48px; text-align: center; margin-top: 72px; }
 footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
@@ -253,6 +280,8 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
 </style>
 </head>
 <body>
+
+<aside class="toc-sidebar" id="tocSidebar"></aside>
 
 <nav>
   <a class="nav-logo">📰 AI产业链定价权 · 圆桌</a>
@@ -814,5 +843,69 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
   <p class="footer-sub">stock-partner-team · Generated 2026-06-28</p>
 </footer>
 
+<script>
+(function(){
+  var toc = document.getElementById('tocSidebar');
+  if(!toc) return;
+  var items = [];
+  var labelMap = {conclusion:'01 结论', voices:'02 视角', thinking:'03 思考', watch:'04 关注'};
+  document.querySelectorAll('section[id]').forEach(function(sec){
+    var label = labelMap[sec.id] || sec.id;
+    items.push({id: sec.id, label: label, sub: false});
+    if(sec.id === 'voices'){
+      sec.querySelectorAll('.voice-card').forEach(function(card, i){
+        var name = card.querySelector('.voice-name');
+        if(name){
+          var sid = 'toc-voice-' + i;
+          card.id = sid;
+          items.push({id: sid, label: name.textContent.trim(), sub: true});
+        }
+      });
+    }
+    if(sec.id === 'thinking'){
+      sec.querySelectorAll('.note-item').forEach(function(note, i){
+        var h4 = note.querySelector('.note-body h4');
+        if(h4){
+          var sid = 'toc-note-' + i;
+          note.id = sid;
+          items.push({id: sid, label: h4.textContent.trim(), sub: true});
+        }
+      });
+      sec.querySelectorAll('.qa-card').forEach(function(qa, i){
+        var q = qa.querySelector('.qa-question');
+        if(q){
+          var sid = 'toc-qa-' + i;
+          qa.id = sid;
+          var t = q.textContent.trim();
+          if(t.length > 22) t = t.slice(0, 22) + '…';
+          items.push({id: sid, label: t, sub: true});
+        }
+      });
+    }
+  });
+  items.forEach(function(it){
+    var a = document.createElement('a');
+    a.className = 'toc-item' + (it.sub ? ' toc-sub' : '');
+    a.href = '#' + it.id;
+    a.textContent = it.label;
+    a.title = it.label;
+    toc.appendChild(a);
+  });
+  var targets = items.map(function(it){ return document.getElementById(it.id); }).filter(Boolean);
+  var links = Array.prototype.slice.call(toc.querySelectorAll('.toc-item'));
+  function onScroll(){
+    var y = window.scrollY + 140;
+    var active = 0;
+    for(var i = 0; i < targets.length; i++){
+      if(targets[i] && targets[i].offsetTop <= y) active = i;
+    }
+    links.forEach(function(l, i){ l.classList.toggle('active', i === active); });
+  }
+  window.addEventListener('scroll', onScroll, {passive: true});
+  onScroll();
+})();
+</script>
+
+<script src="../assets/page-enhance.js"></script>
 </body>
 </html>
