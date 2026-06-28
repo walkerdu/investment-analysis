@@ -118,7 +118,7 @@
       var isCurrent = fileName === cur;
       var cls = isCurrent ? 'site-nav-item active' : 'site-nav-item';
       var cat = p.category || '';
-      html += '<li><a href="' + (p.path || '#') + '" class="' + cls + '">';
+      html += '<li><a href="' + fileName + '" class="' + cls + '">';
       html += '<span class="site-nav-title">' + escapeHtml(p.title || p.id) + '</span>';
       html += '<span class="site-nav-meta">' + escapeHtml(p.date || '') + ' · ' + escapeHtml(cat) + '</span>';
       html += '</a></li>';
