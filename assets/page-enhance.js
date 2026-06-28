@@ -254,6 +254,7 @@
         document.title = doc.title;
         // 更新 URL
         history.pushState({ file: fileName }, '', fileName);
+        spaPath = location.pathname;
         // 重建 TOC 和站点导航
         buildTOC();
         buildSiteNav(config);
@@ -270,13 +271,29 @@
   function setupClickHandler(config) {
     if (clickHandlerInstalled) return;
     clickHandlerInstalled = true;
-    // 事件委托：拦截 site-nav-item 点击
+    // 事件委托：拦截 site-nav-item 和 toc-item 点击
     document.addEventListener('click', function (e) {
-      var link = e.target.closest('a.site-nav-item');
-      if (!link) return;
-      e.preventDefault();
-      var fileName = link.getAttribute('data-href') || link.getAttribute('href');
-      navigateTo(fileName, config);
+      // 左侧站点导航：SPA 切换
+      var navLink = e.target.closest('a.site-nav-item');
+      if (navLink) {
+        e.preventDefault();
+        var fileName = navLink.getAttribute('data-href') || navLink.getAttribute('href');
+        navigateTo(fileName, config);
+        return;
+      }
+      // 右侧 TOC：平滑滚动，不修改 hash（避免触发 popstate → reload）
+      var tocLink = e.target.closest('a.toc-item');
+      if (tocLink) {
+        e.preventDefault();
+        var href = tocLink.getAttribute('href');
+        if (href && href.charAt(0) === '#') {
+          var target = document.getElementById(href.slice(1));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+        return;
+      }
     });
   }
 
@@ -299,9 +316,12 @@
     }
   }
 
-  // 浏览器前进/后退
+  // 浏览器前进/后退（只在 pathname 变化时 reload，hash 变化不 reload）
+  var spaPath = location.pathname;
   window.addEventListener('popstate', function () {
-    location.reload();
+    if (location.pathname !== spaPath) {
+      location.reload();
+    }
   });
 
   if (document.readyState === 'loading') {
