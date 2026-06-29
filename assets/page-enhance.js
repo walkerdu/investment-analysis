@@ -2,7 +2,7 @@
  * page-enhance.js — 报告页面增强：左侧站点导航 + 右侧 TOC 目录
  * 由 sync-pages.py 自动注入到 pages/*.html
  * 依赖：同级目录的 ../config.json（fetch 读取报告列表）
- * v2: SPA 导航（不整页刷新）+ 高亮修复（URL 解码）
+ * v3: SPA 导航样式隔离修复 — 切换时迁移 head 资源 + 清理旧 style + 强制重注入增强 CSS
  */
 (function () {
   'use strict';
@@ -16,8 +16,8 @@
   var CSS_TEXT = [
     '/* ===== Site Nav ===== */',
     '.site-nav {',
-    '  position: fixed; left: 0; top: 64px; bottom: 0;',
-    '  width: 220px; overflow-y: auto; z-index: 90;',
+    '  position: fixed !important; left: 0 !important; top: 64px !important; bottom: 0 !important;',
+    '  width: 220px !important; overflow-y: auto; z-index: 90;',
     '  background: var(--bg-primary, #F7F5F3);',
     '  border-right: 1px solid var(--border, #E5E2DE);',
     '  padding: 20px 14px; font-size: 0.82rem;',
@@ -27,11 +27,11 @@
     '.site-nav::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }',
     '.site-nav-back {',
     '  display: block; font-weight: 600; font-size: 0.82rem;',
-    '  color: var(--accent, #D97706); margin-bottom: 18px;',
+    '  color: var(--accent, #D97706) !important; margin-bottom: 18px;',
     '  padding-bottom: 12px; border-bottom: 1px solid var(--border-light, #F0EEEC);',
     '  text-decoration: none;',
     '}',
-    '.site-nav-back:hover { color: var(--accent-hover, #B45309); }',
+    '.site-nav-back:hover { color: var(--accent-hover, #B45309) !important; }',
     '.site-nav-label {',
     '  font-size: 0.68rem; letter-spacing: 0.18em; color: var(--text-muted, #8A8480);',
     '  font-weight: 600; text-transform: uppercase; margin-bottom: 10px;',
@@ -39,22 +39,22 @@
     '.site-nav-list { list-style: none; padding: 0; margin: 0; }',
     '.site-nav-item {',
     '  display: block; padding: 9px 11px; border-radius: 8px;',
-    '  color: var(--text-secondary, #5C5652); text-decoration: none;',
+    '  color: var(--text-secondary, #5C5652) !important; text-decoration: none !important;',
     '  margin-bottom: 3px; transition: all 0.2s; border-left: 3px solid transparent;',
     '  cursor: pointer;',
     '}',
-    '.site-nav-item:hover { background: var(--bg-elevated, #FAFAF9); color: var(--accent, #D97706); }',
+    '.site-nav-item:hover { background: var(--bg-elevated, #FAFAF9) !important; color: var(--accent, #D97706) !important; }',
     '.site-nav-item.active {',
-    '  background: var(--accent-light, #FEF3C7); color: var(--accent, #D97706);',
-    '  font-weight: 600; border-left-color: var(--accent, #D97706);',
+    '  background: var(--accent-light, #FEF3C7) !important; color: var(--accent, #D97706) !important;',
+    '  font-weight: 600; border-left-color: var(--accent, #D97706) !important;',
     '}',
     '.site-nav-title { display: block; font-size: 0.82rem; line-height: 1.4; }',
     '.site-nav-meta { display: block; font-size: 0.7rem; color: var(--text-muted, #8A8480); margin-top: 3px; }',
     '',
     '/* ===== TOC Sidebar ===== */',
     '.toc-sidebar {',
-    '  position: fixed; right: 28px; top: 88px;',
-    '  width: 220px; max-height: calc(100vh - 120px); overflow-y: auto;',
+    '  position: fixed !important; right: 28px !important; top: 88px !important;',
+    '  width: 220px !important; max-height: calc(100vh - 120px); overflow-y: auto;',
     '  font-size: 0.82rem; line-height: 1.55; z-index: 50;',
     '  scrollbar-width: thin; scrollbar-color: var(--border) transparent;',
     '}',
@@ -68,14 +68,14 @@
     '}',
     '.toc-item {',
     '  display: block; padding: 5px 0 5px 12px;',
-    '  color: var(--text-muted); border-left: 2px solid var(--border-light);',
-    '  transition: all 0.2s; cursor: pointer; text-decoration: none;',
+    '  color: var(--text-muted) !important; border-left: 2px solid var(--border-light);',
+    '  transition: all 0.2s; cursor: pointer; text-decoration: none !important;',
     '  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;',
     '}',
-    '.toc-item:hover { color: var(--accent); border-left-color: var(--accent); }',
-    '.toc-item.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; background: var(--accent-light); border-radius: 0 4px 4px 0; }',
+    '.toc-item:hover { color: var(--accent) !important; border-left-color: var(--accent) !important; }',
+    '.toc-item.active { color: var(--accent) !important; border-left-color: var(--accent) !important; font-weight: 600; background: var(--accent-light); border-radius: 0 4px 4px 0; }',
     '.toc-item.toc-sub { padding-left: 24px; font-size: 0.76rem; color: var(--text-light); }',
-    '.toc-item.toc-sub.active { color: var(--accent); background: transparent; }',
+    '.toc-item.toc-sub.active { color: var(--accent) !important; background: transparent; }',
     '',
     '/* ===== SPA 过渡 ===== */',
     'body { transition: opacity 0.12s ease; }',
@@ -83,25 +83,26 @@
     '',
     '/* ===== 布局 ===== */',
     '@media (min-width: 1201px) {',
-    '  body { margin-left: 220px; margin-right: 250px; }',
+    '  body { margin-left: 220px !important; margin-right: 250px !important; }',
     '}',
     '@media (max-width: 1200px) {',
-    '  .site-nav { display: none; }',
-    '  .toc-sidebar { display: none; }',
+    '  .site-nav { display: none !important; }',
+    '  .toc-sidebar { display: none !important; }',
     '}'
   ].join('\n');
 
+  /* 注入增强 CSS，force=true 时强制重新注入（SPA 切换后使用）*/
   function injectCSS(force) {
     if (!force && cssInjected) return;
-    // SPA 切换后 body.innerHTML 被替换，之前注入的 style 也被移除
-    // 每次都重新注入确保增强样式始终存在
     cssInjected = true;
+    // 清理之前从其他页面迁移来的 style 标签，避免累积
+    // 保留 page-enhance 自身的 (#pe-enhance-css)、Google Fonts、以及外部 link
+    document.querySelectorAll('head > style:not(#pe-enhance-css)').forEach(function (el) {
+      el.remove();
+    });
     var el = document.createElement('style');
     el.id = 'pe-enhance-css';
     el.textContent = CSS_TEXT;
-    // 先移除旧的（如果有）
-    var old = document.getElementById('pe-enhance-css');
-    if (old) old.remove();
     document.head.appendChild(el);
   }
 
@@ -121,7 +122,6 @@
 
   /* ===== 3. 左侧站点导航 ===== */
   function buildSiteNav(config) {
-    // 移除旧的
     var old = document.getElementById('siteNav');
     if (old) old.remove();
 
@@ -142,7 +142,6 @@
       var pathParts = (p.path || '').split('/');
       var fileName = pathParts[pathParts.length - 1];
       var isCurrent = fileName === cur;
-      // 后备：URL 包含文件名（处理编码差异）
       if (!isCurrent && location.href.indexOf(encodeURIComponent(fileName)) !== -1) {
         isCurrent = true;
       }
@@ -157,7 +156,6 @@
     nav.innerHTML = html;
 
     document.body.insertBefore(nav, document.body.firstChild);
-    // 滚动到当前报告位置（首次加载时当前报告可能在导航视口外）
     var activeItem = nav.querySelector('.site-nav-item.active');
     if (activeItem) {
       activeItem.scrollIntoView({ block: 'center' });
@@ -166,7 +164,6 @@
 
   /* ===== 4. 右侧 TOC ===== */
   function buildTOC() {
-    // 移除旧的
     var old = document.getElementById('tocSidebar');
     if (old) old.remove();
 
@@ -223,7 +220,6 @@
       a.title = it.label;
       toc.appendChild(a);
     });
-    // scrollspy（清理旧 handler 避免重复绑定）
     if (scrollHandler) {
       window.removeEventListener('scroll', scrollHandler);
     }
@@ -255,18 +251,34 @@
       })
       .then(function (html) {
         var doc = new DOMParser().parseFromString(html, 'text/html');
-        // 替换 body 内容
+
+        // Step 1: 清理之前迁移来的页面级 style 标签
+        document.querySelectorAll('head > style:not(#pe-enhance-css)').forEach(function (el) {
+          el.remove();
+        });
+
+        // Step 2: 迁移目标页面 head 中的 <style> 和外部 <link> 到当前 head
+        var headResources = doc.querySelectorAll('head > style, head > link[rel="stylesheet"]');
+        headResources.forEach(function (node) {
+          document.head.appendChild(node);
+        });
+
+        // Step 3: 替换 body 内容（包含目标页面的 HTML 结构和内联 style）
         document.body.innerHTML = doc.body.innerHTML;
         document.title = doc.title;
-        // 重新注入增强 CSS（body 替换后之前的 style 标签已丢失）
+
+        // Step 4: 注入 page-enhance 增强 CSS（最后执行，确保最高优先级）
         injectCSS(true);
-        // 更新 URL
+
+        // Step 5: 更新 URL
         history.pushState({ file: fileName }, '', fileName);
         spaPath = location.pathname;
-        // 重建 TOC 和站点导航
+
+        // Step 6: 重建 UI 组件
         buildTOC();
         buildSiteNav(config);
-        // 滚动到顶部
+
+        // Step 7: 滚动到顶部，移除加载态
         window.scrollTo(0, 0);
         document.body.classList.remove('pe-loading');
       })
@@ -279,9 +291,7 @@
   function setupClickHandler(config) {
     if (clickHandlerInstalled) return;
     clickHandlerInstalled = true;
-    // 事件委托：拦截 site-nav-item 和 toc-item 点击
     document.addEventListener('click', function (e) {
-      // 左侧站点导航：SPA 切换
       var navLink = e.target.closest('a.site-nav-item');
       if (navLink) {
         e.preventDefault();
@@ -289,7 +299,6 @@
         navigateTo(fileName, config);
         return;
       }
-      // 右侧 TOC：平滑滚动，不修改 hash（避免触发 popstate → reload）
       var tocLink = e.target.closest('a.toc-item');
       if (tocLink) {
         e.preventDefault();
@@ -324,7 +333,6 @@
     }
   }
 
-  // 浏览器前进/后退（只在 pathname 变化时 reload，hash 变化不 reload）
   var spaPath = location.pathname;
   window.addEventListener('popstate', function () {
     if (location.pathname !== spaPath) {
