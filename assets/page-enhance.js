@@ -2,7 +2,7 @@
  * page-enhance.js — 报告页面增强：左侧站点导航 + 右侧 TOC 目录
  * 由 sync-pages.py 自动注入到 pages/*.html
  * 依赖：同级目录的 ../config.json（fetch 读取报告列表）
- * v3: SPA 导航样式隔离修复 — 切换时迁移 head 资源 + 清理旧 style + 强制重注入增强 CSS
+ * v2: SPA 导航（不整页刷新）+ 高亮修复（URL 解码）
  */
 (function () {
   'use strict';
@@ -16,8 +16,8 @@
   var CSS_TEXT = [
     '/* ===== Site Nav ===== */',
     '.site-nav {',
-    '  position: fixed !important; left: 0 !important; top: 64px !important; bottom: 0 !important;',
-    '  width: 220px !important; overflow-y: auto; z-index: 90;',
+    '  position: fixed; left: 0; top: 64px; bottom: 0;',
+    '  width: 220px; overflow-y: auto; z-index: 90;',
     '  background: var(--bg-primary, #F7F5F3);',
     '  border-right: 1px solid var(--border, #E5E2DE);',
     '  padding: 20px 14px; font-size: 0.82rem;',
@@ -27,11 +27,11 @@
     '.site-nav::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }',
     '.site-nav-back {',
     '  display: block; font-weight: 600; font-size: 0.82rem;',
-    '  color: var(--accent, #D97706) !important; margin-bottom: 18px;',
+    '  color: var(--accent, #D97706); margin-bottom: 18px;',
     '  padding-bottom: 12px; border-bottom: 1px solid var(--border-light, #F0EEEC);',
     '  text-decoration: none;',
     '}',
-    '.site-nav-back:hover { color: var(--accent-hover, #B45309) !important; }',
+    '.site-nav-back:hover { color: var(--accent-hover, #B45309); }',
     '.site-nav-label {',
     '  font-size: 0.68rem; letter-spacing: 0.18em; color: var(--text-muted, #8A8480);',
     '  font-weight: 600; text-transform: uppercase; margin-bottom: 10px;',
@@ -39,22 +39,22 @@
     '.site-nav-list { list-style: none; padding: 0; margin: 0; }',
     '.site-nav-item {',
     '  display: block; padding: 9px 11px; border-radius: 8px;',
-    '  color: var(--text-secondary, #5C5652) !important; text-decoration: none !important;',
+    '  color: var(--text-secondary, #5C5652); text-decoration: none;',
     '  margin-bottom: 3px; transition: all 0.2s; border-left: 3px solid transparent;',
     '  cursor: pointer;',
     '}',
-    '.site-nav-item:hover { background: var(--bg-elevated, #FAFAF9) !important; color: var(--accent, #D97706) !important; }',
+    '.site-nav-item:hover { background: var(--bg-elevated, #FAFAF9); color: var(--accent, #D97706); }',
     '.site-nav-item.active {',
-    '  background: var(--accent-light, #FEF3C7) !important; color: var(--accent, #D97706) !important;',
-    '  font-weight: 600; border-left-color: var(--accent, #D97706) !important;',
+    '  background: var(--accent-light, #FEF3C7); color: var(--accent, #D97706);',
+    '  font-weight: 600; border-left-color: var(--accent, #D97706);',
     '}',
     '.site-nav-title { display: block; font-size: 0.82rem; line-height: 1.4; }',
     '.site-nav-meta { display: block; font-size: 0.7rem; color: var(--text-muted, #8A8480); margin-top: 3px; }',
     '',
     '/* ===== TOC Sidebar ===== */',
     '.toc-sidebar {',
-    '  position: fixed !important; right: 28px !important; top: 88px !important;',
-    '  width: 220px !important; max-height: calc(100vh - 120px); overflow-y: auto;',
+    '  position: fixed; right: 28px; top: 88px;',
+    '  width: 220px; max-height: calc(100vh - 120px); overflow-y: auto;',
     '  font-size: 0.82rem; line-height: 1.55; z-index: 50;',
     '  scrollbar-width: thin; scrollbar-color: var(--border) transparent;',
     '}',
@@ -68,14 +68,14 @@
     '}',
     '.toc-item {',
     '  display: block; padding: 5px 0 5px 12px;',
-    '  color: var(--text-muted) !important; border-left: 2px solid var(--border-light);',
-    '  transition: all 0.2s; cursor: pointer; text-decoration: none !important;',
+    '  color: var(--text-muted); border-left: 2px solid var(--border-light);',
+    '  transition: all 0.2s; cursor: pointer; text-decoration: none;',
     '  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;',
     '}',
-    '.toc-item:hover { color: var(--accent) !important; border-left-color: var(--accent) !important; }',
-    '.toc-item.active { color: var(--accent) !important; border-left-color: var(--accent) !important; font-weight: 600; background: var(--accent-light); border-radius: 0 4px 4px 0; }',
+    '.toc-item:hover { color: var(--accent); border-left-color: var(--accent); }',
+    '.toc-item.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; background: var(--accent-light); border-radius: 0 4px 4px 0; }',
     '.toc-item.toc-sub { padding-left: 24px; font-size: 0.76rem; color: var(--text-light); }',
-    '.toc-item.toc-sub.active { color: var(--accent) !important; background: transparent; }',
+    '.toc-item.toc-sub.active { color: var(--accent); background: transparent; }',
     '',
     '/* ===== SPA 过渡 ===== */',
     'body { transition: opacity 0.12s ease; }',
@@ -83,25 +83,18 @@
     '',
     '/* ===== 布局 ===== */',
     '@media (min-width: 1201px) {',
-    '  body { margin-left: 220px !important; margin-right: 250px !important; }',
+    '  body { margin-left: 220px; margin-right: 250px; }',
     '}',
     '@media (max-width: 1200px) {',
-    '  .site-nav { display: none !important; }',
-    '  .toc-sidebar { display: none !important; }',
+    '  .site-nav { display: none; }',
+    '  .toc-sidebar { display: none; }',
     '}'
   ].join('\n');
 
-  /* 注入增强 CSS，force=true 时强制重新注入（SPA 切换后使用）*/
-  function injectCSS(force) {
-    if (!force && cssInjected) return;
+  function injectCSS() {
+    if (cssInjected) return;
     cssInjected = true;
-    // 清理之前从其他页面迁移来的 style 标签，避免累积
-    // 保留 page-enhance 自身的 (#pe-enhance-css)、Google Fonts、以及外部 link
-    document.querySelectorAll('head > style:not(#pe-enhance-css)').forEach(function (el) {
-      el.remove();
-    });
     var el = document.createElement('style');
-    el.id = 'pe-enhance-css';
     el.textContent = CSS_TEXT;
     document.head.appendChild(el);
   }
@@ -122,6 +115,7 @@
 
   /* ===== 3. 左侧站点导航 ===== */
   function buildSiteNav(config) {
+    // 移除旧的
     var old = document.getElementById('siteNav');
     if (old) old.remove();
 
@@ -142,6 +136,7 @@
       var pathParts = (p.path || '').split('/');
       var fileName = pathParts[pathParts.length - 1];
       var isCurrent = fileName === cur;
+      // 后备：URL 包含文件名（处理编码差异）
       if (!isCurrent && location.href.indexOf(encodeURIComponent(fileName)) !== -1) {
         isCurrent = true;
       }
@@ -156,6 +151,7 @@
     nav.innerHTML = html;
 
     document.body.insertBefore(nav, document.body.firstChild);
+    // 滚动到当前报告位置（首次加载时当前报告可能在导航视口外）
     var activeItem = nav.querySelector('.site-nav-item.active');
     if (activeItem) {
       activeItem.scrollIntoView({ block: 'center' });
@@ -164,6 +160,7 @@
 
   /* ===== 4. 右侧 TOC ===== */
   function buildTOC() {
+    // 移除旧的
     var old = document.getElementById('tocSidebar');
     if (old) old.remove();
 
@@ -220,6 +217,7 @@
       a.title = it.label;
       toc.appendChild(a);
     });
+    // scrollspy（清理旧 handler 避免重复绑定）
     if (scrollHandler) {
       window.removeEventListener('scroll', scrollHandler);
     }
@@ -237,22 +235,45 @@
     scrollHandler();
   }
 
-  /* ===== 5. 页面导航（整页跳转）===== */
-  // 各页面是独立完整的 HTML 文档，有各自的 CSS 变量体系和全局样式，
-  // SPA 式 body.innerHTML 替换会导致不同页面的 CSS 互相污染，
-  // 所以直接用整页跳转，让浏览器正确加载各页面独立的样式。
+  /* ===== 5. SPA 导航（不整页刷新）===== */
   function navigateTo(fileName, config) {
     if (fileName === currentFileName()) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
-    location.href = fileName;
+    document.body.classList.add('pe-loading');
+    fetch(encodeURI(fileName))
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.text();
+      })
+      .then(function (html) {
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        // 替换 body 内容
+        document.body.innerHTML = doc.body.innerHTML;
+        document.title = doc.title;
+        // 更新 URL
+        history.pushState({ file: fileName }, '', fileName);
+        spaPath = location.pathname;
+        // 重建 TOC 和站点导航
+        buildTOC();
+        buildSiteNav(config);
+        // 滚动到顶部
+        window.scrollTo(0, 0);
+        document.body.classList.remove('pe-loading');
+      })
+      .catch(function (e) {
+        console.warn('[page-enhance] SPA 导航失败，回退整页跳转:', e);
+        location.href = fileName;
+      });
   }
 
   function setupClickHandler(config) {
     if (clickHandlerInstalled) return;
     clickHandlerInstalled = true;
+    // 事件委托：拦截 site-nav-item 和 toc-item 点击
     document.addEventListener('click', function (e) {
+      // 左侧站点导航：SPA 切换
       var navLink = e.target.closest('a.site-nav-item');
       if (navLink) {
         e.preventDefault();
@@ -260,6 +281,7 @@
         navigateTo(fileName, config);
         return;
       }
+      // 右侧 TOC：平滑滚动，不修改 hash（避免触发 popstate → reload）
       var tocLink = e.target.closest('a.toc-item');
       if (tocLink) {
         e.preventDefault();
@@ -294,6 +316,7 @@
     }
   }
 
+  // 浏览器前进/后退（只在 pathname 变化时 reload，hash 变化不 reload）
   var spaPath = location.pathname;
   window.addEventListener('popstate', function () {
     if (location.pathname !== spaPath) {
