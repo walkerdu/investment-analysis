@@ -237,55 +237,16 @@
     scrollHandler();
   }
 
-  /* ===== 5. SPA 导航（不整页刷新）===== */
+  /* ===== 5. 页面导航（整页跳转）===== */
+  // 各页面是独立完整的 HTML 文档，有各自的 CSS 变量体系和全局样式，
+  // SPA 式 body.innerHTML 替换会导致不同页面的 CSS 互相污染，
+  // 所以直接用整页跳转，让浏览器正确加载各页面独立的样式。
   function navigateTo(fileName, config) {
     if (fileName === currentFileName()) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
-    document.body.classList.add('pe-loading');
-    fetch(encodeURI(fileName))
-      .then(function (r) {
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.text();
-      })
-      .then(function (html) {
-        var doc = new DOMParser().parseFromString(html, 'text/html');
-
-        // Step 1: 清理之前迁移来的页面级 style 标签
-        document.querySelectorAll('head > style:not(#pe-enhance-css)').forEach(function (el) {
-          el.remove();
-        });
-
-        // Step 2: 迁移目标页面 head 中的 <style> 和外部 <link> 到当前 head
-        var headResources = doc.querySelectorAll('head > style, head > link[rel="stylesheet"]');
-        headResources.forEach(function (node) {
-          document.head.appendChild(node);
-        });
-
-        // Step 3: 替换 body 内容（包含目标页面的 HTML 结构和内联 style）
-        document.body.innerHTML = doc.body.innerHTML;
-        document.title = doc.title;
-
-        // Step 4: 注入 page-enhance 增强 CSS（最后执行，确保最高优先级）
-        injectCSS(true);
-
-        // Step 5: 更新 URL
-        history.pushState({ file: fileName }, '', fileName);
-        spaPath = location.pathname;
-
-        // Step 6: 重建 UI 组件
-        buildTOC();
-        buildSiteNav(config);
-
-        // Step 7: 滚动到顶部，移除加载态
-        window.scrollTo(0, 0);
-        document.body.classList.remove('pe-loading');
-      })
-      .catch(function (e) {
-        console.warn('[page-enhance] SPA 导航失败，回退整页跳转:', e);
-        location.href = fileName;
-      });
+    location.href = fileName;
   }
 
   function setupClickHandler(config) {
