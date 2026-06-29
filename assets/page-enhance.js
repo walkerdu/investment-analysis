@@ -91,11 +91,17 @@
     '}'
   ].join('\n');
 
-  function injectCSS() {
-    if (cssInjected) return;
+  function injectCSS(force) {
+    if (!force && cssInjected) return;
+    // SPA 切换后 body.innerHTML 被替换，之前注入的 style 也被移除
+    // 每次都重新注入确保增强样式始终存在
     cssInjected = true;
     var el = document.createElement('style');
+    el.id = 'pe-enhance-css';
     el.textContent = CSS_TEXT;
+    // 先移除旧的（如果有）
+    var old = document.getElementById('pe-enhance-css');
+    if (old) old.remove();
     document.head.appendChild(el);
   }
 
@@ -252,6 +258,8 @@
         // 替换 body 内容
         document.body.innerHTML = doc.body.innerHTML;
         document.title = doc.title;
+        // 重新注入增强 CSS（body 替换后之前的 style 标签已丢失）
+        injectCSS(true);
         // 更新 URL
         history.pushState({ file: fileName }, '', fileName);
         spaPath = location.pathname;
