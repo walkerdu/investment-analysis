@@ -11,7 +11,8 @@
     { "id": "industry",   "name": "行业研究", "color": "#2563EB", "description": "行业景气度与产业链分析" },
     { "id": "company",    "name": "公司分析", "color": "#059669", "description": "个股深度研究与估值" },
     { "id": "macro",      "name": "宏观策略", "color": "#7C3AED", "description": "宏观经济与策略观点" },
-    { "id": "data",       "name": "数据复盘", "color": "#DC2626", "description": "市场数据与交易复盘" }
+    { "id": "data",       "name": "数据复盘", "color": "#DC2626", "description": "市场数据与交易复盘" },
+    { "id": "basics",     "name": "投资基础", "color": "#0891B2", "description": "专业术语、缩写与基础知识图鉴，持续扩充" }
   ],
   "pages": [
     {
@@ -46,13 +47,13 @@
     },
     {
       "id": "2026-06-29-AI投研术语图鉴",
-      "title": "AI投研术语图鉴 · 三篇圆桌报告专业词语与缩写解释",
-      "category": "roundtable",
+      "title": "AI投研术语图鉴",
+      "category": "basics",
       "tags": ["术语图鉴", "估值指标", "HBM存储链", "物理AI产业链", "SVG图解"],
       "date": "2026-06-29",
       "source": "/Users/sasalu/.workbuddy/ai-artifacts/investment-glossary/2026-06-29-AI投研术语图鉴.html",
       "path": "pages/2026-06-29-AI投研术语图鉴.html",
-      "summary": "从三篇圆桌报告中系统提取60+个专业词语与缩写，按估值财务、技术分析、资金市场、半导体存储、物理AI、宏观市场六大类整理，对8个核心概念配SVG图解。"
+      "summary": "系统整理60+个投研专业词语与缩写，按估值财务、技术分析、资金市场、半导体存储、物理AI、宏观市场六大类编排，对8个核心概念配SVG图解，持续扩充。"
     }
   ]
 }
