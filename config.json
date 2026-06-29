@@ -4,7 +4,7 @@
     "subtitle": "Investment Research Hub",
     "description": "聚合个人投资研究与分析报告，按分类、标签、时间维度浏览。",
     "author": "",
-    "updated": "2026-06-28"
+    "updated": "2026-06-29"
   },
   "categories": [
     { "id": "roundtable", "name": "圆桌报告", "color": "#D97706", "description": "多视角圆桌讨论形式的深度报告" },
@@ -43,6 +43,16 @@
       "source": "/Users/sasalu/WorkBuddy/2026-06-28-15-33-19/deliverables/stock-partner/2026-06-28/AI产业链定价权-圆桌报告.html",
       "path": "pages/2026-06-28-AI产业链定价权.html",
       "summary": "AI上游定价权由HBM扩产周期锁定，景气撑到2027；但资金拥挤到极致、苹果涨价标志虹吸反噬消费端，9倍PE剪刀差已在回归前夜。"
+    },
+    {
+      "id": "2026-06-29-AI投研术语图鉴",
+      "title": "AI投研术语图鉴 · 三篇圆桌报告专业词语与缩写解释",
+      "category": "roundtable",
+      "tags": ["术语图鉴", "估值指标", "HBM存储链", "物理AI产业链", "SVG图解"],
+      "date": "2026-06-29",
+      "source": "/Users/sasalu/.workbuddy/ai-artifacts/investment-glossary/2026-06-29-AI投研术语图鉴.html",
+      "path": "pages/2026-06-29-AI投研术语图鉴.html",
+      "summary": "从三篇圆桌报告中系统提取60+个专业词语与缩写，按估值财务、技术分析、资金市场、半导体存储、物理AI、宏观市场六大类整理，对8个核心概念配SVG图解。"
     }
   ]
 }
