@@ -1204,6 +1204,24 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
   </div>
 </section>
 
+<script>
+window.addEventListener('load', function(){
+  var map = {
+    'valuation':'01 估值财务',
+    'technical':'02 技术分析',
+    'capital':'03 资金市场',
+    'semiconductor':'04 半导体存储',
+    'robotics':'05 物理AI',
+    'macro':'06 宏观市场'
+  };
+  document.querySelectorAll('#tocSidebar .toc-item').forEach(function(item){
+    var href = item.getAttribute('href') || '';
+    var id = href.replace('#','');
+    if(map[id]) item.textContent = map[id];
+  });
+});
+</script>
+
 
 <footer>
   <p>⚠️ 以上内容由 AI 基于公开信息整理生成，仅供参考，不构成任何投资建议或个股推荐。投资有风险，决策需谨慎。</p>
