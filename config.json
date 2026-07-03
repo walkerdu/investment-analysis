@@ -54,6 +54,16 @@
       "source": "/Users/sasalu/.workbuddy/ai-artifacts/investment-glossary/2026-06-29-AI投研术语图鉴.html",
       "path": "pages/2026-06-29-AI投研术语图鉴.html",
       "summary": "系统整理60+个投研专业词语与缩写，按估值财务、技术分析、资金市场、半导体存储、物理AI、宏观市场六大类编排，对8个核心概念配SVG图解，持续扩充。"
+    },
+    {
+      "id": "2026-07-03-自动驾驶未来方向",
+      "title": "自动驾驶未来方向 · 小马/萝卜/特斯拉/Waymo/比亚迪横评",
+      "category": "roundtable",
+      "tags": ["自动驾驶", "Robotaxi", "小马智行", "比亚迪", "技术路线"],
+      "date": "2026-07-03",
+      "source": "/Users/sasalu/.workbuddy/ai-artifacts/autodrive-roundtable/自动驾驶未来方向-圆桌报告.html",
+      "path": "pages/2026-07-03-自动驾驶未来方向.html",
+      "summary": "六视角圆桌横评自动驾驶五大玩家的技术路线与商业模式：方向对、26是产业拐点年，但确定性从上游硬件往下游运营递减，小马前装共建模式账能算平却仍需资金确认。"
     }
   ]
 }
