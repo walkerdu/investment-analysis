@@ -1210,42 +1210,49 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
   <div class="passage-card">
     <h3>图9 · SAE 自动驾驶分级：L2 与 L4 的分水岭是"谁来负责"</h3>
     <p>从 L0 到 L5 的六级阶梯，核心不是"技术多先进"，而是出了事谁兜底——这是理解自动驾驶标的最关键的一把尺</p>
-<svg viewBox="0 0 720 400" xmlns="http://www.w3.org/2000/svg">
-  <rect width="720" height="400" fill="#FFFFFF"/>
-  <text x="360" y="28" text-anchor="middle" font-family="Noto Serif SC, serif" font-size="14" fill="#8A8480" font-weight="500">责任归属的临界点在 L3：L2 及以下人负责，L4 及以上车负责</text>
+<svg viewBox="0 0 720 440" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="440" fill="#FFFFFF"/>
+  <text x="360" y="30" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="500" fill="#2D2926">SAE 自动驾驶分级：L2 与 L4 的分水岭是"谁来负责"</text>
+  <text x="360" y="52" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#5C5652">责任归属的临界点在 L3：L2 及以下人负责，L4 及以上车负责</text>
 
-  <!-- 分级阶梯 -->
-  <g transform="translate(40, 50)">
-    <!-- L0 -->
-    <rect x="0" y="300" width="100" height="34" rx="6" fill="#F5F2EE" stroke="#A8A29E" stroke-width="1.2"/>
-    <text x="50" y="322" text-anchor="middle" font-size="12" font-weight="600" fill="#5C5652">L0 无自动</text>
-    <!-- L1 -->
-    <rect x="106" y="256" width="100" height="34" rx="6" fill="#F0EEEC" stroke="#8A8480" stroke-width="1.2"/>
-    <text x="156" y="278" text-anchor="middle" font-size="12" font-weight="600" fill="#5C5652">L1 单项辅助</text>
-    <!-- L2 -->
-    <rect x="212" y="212" width="110" height="34" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.4"/>
-    <text x="267" y="234" text-anchor="middle" font-size="12" font-weight="600" fill="#1E40AF">L2 部分辅助</text>
-    <!-- L3 -->
-    <rect x="328" y="168" width="110" height="34" rx="6" fill="#FEF3C7" stroke="#D97706" stroke-width="1.4"/>
-    <text x="383" y="190" text-anchor="middle" font-size="12" font-weight="600" fill="#92400E">L3 有条件</text>
-    <!-- L4 -->
-    <rect x="444" y="124" width="110" height="34" rx="6" fill="#D1FAE5" stroke="#047857" stroke-width="1.5"/>
-    <text x="499" y="146" text-anchor="middle" font-size="12" font-weight="700" fill="#065F46">L4 高度自动</text>
-    <!-- L5 -->
-    <rect x="560" y="80" width="100" height="34" rx="6" fill="#A7F3D0" stroke="#047857" stroke-width="1.5"/>
-    <text x="610" y="102" text-anchor="middle" font-size="12" font-weight="700" fill="#065F46">L5 完全自动</text>
+  <g transform="translate(50, 75)">
+    <rect x="0" y="270" width="90" height="46" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1"/>
+    <text x="45" y="288" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#444441">L0</text>
+    <text x="45" y="306" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#5C5652">无自动</text>
 
-    <!-- 责任分界虚线 -->
-    <line x1="322" y1="70" x2="322" y2="344" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="6 4"/>
-    <text x="205" y="66" text-anchor="end" font-size="12" font-weight="600" fill="#2563EB">← 人负全责（需随时接管）</text>
-    <text x="338" y="66" font-size="12" font-weight="600" fill="#047857">车负全责（限定域内无人）→</text>
+    <rect x="104" y="218" width="90" height="46" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1"/>
+    <text x="149" y="236" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#444441">L1</text>
+    <text x="149" y="254" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#5C5652">单项辅助</text>
+
+    <rect x="208" y="166" width="98" height="46" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.2"/>
+    <text x="257" y="184" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#1E40AF">L2</text>
+    <text x="257" y="202" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#2563EB">部分辅助</text>
+
+    <line x1="318" y1="55" x2="318" y2="325" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="6 4"/>
+
+    <rect x="332" y="114" width="98" height="46" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="1.2"/>
+    <text x="381" y="132" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#92400E">L3</text>
+    <text x="381" y="150" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#B45309">有条件自动</text>
+
+    <rect x="444" y="62" width="98" height="46" rx="8" fill="#D1FAE5" stroke="#047857" stroke-width="1.2"/>
+    <text x="493" y="80" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#065F46">L4</text>
+    <text x="493" y="98" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#047857">高度自动</text>
+
+    <rect x="556" y="10" width="98" height="46" rx="8" fill="#A7F3D0" stroke="#047857" stroke-width="1.2"/>
+    <text x="605" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#065F46">L5</text>
+    <text x="605" y="46" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#047857">完全自动</text>
+
+    <text x="155" y="342" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#2563EB">← 人负全责（需随时接管）</text>
+    <text x="490" y="342" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#047857">车负全责（限定域内无人）→</text>
   </g>
 
-  <!-- 底部标的落位 -->
-  <g transform="translate(40, 356)">
-    <text x="0" y="0" font-size="11.5" fill="#5C5652"><tspan font-weight="600" fill="#2563EB">L2：</tspan>特斯拉消费者版 FSD（监督版）</text>
-    <text x="300" y="0" font-size="11.5" fill="#5C5652"><tspan font-weight="600" fill="#047857">L4：</tspan>小马 / 萝卜 / Waymo / 特斯拉 Robotaxi 车队</text>
-    <text x="0" y="22" font-size="11" fill="#A8A29E">同一家公司不同产品可处不同等级 —— 特斯拉是典型：卖给消费者的是 L2，自营 Robotaxi 是 L4</text>
+  <g transform="translate(50, 398)">
+    <rect x="0" y="-4" width="290" height="30" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="0.8"/>
+    <text x="14" y="14" font-family="system-ui, sans-serif" font-size="11" fill="#1E40AF" font-weight="600">L2：</text>
+    <text x="42" y="14" font-family="system-ui, sans-serif" font-size="11" fill="#5C5652">特斯拉消费者版 FSD（监督版）</text>
+    <rect x="310" y="-4" width="310" height="30" rx="6" fill="#D1FAE5" stroke="#047857" stroke-width="0.8"/>
+    <text x="324" y="14" font-family="system-ui, sans-serif" font-size="11" fill="#065F46" font-weight="600">L4：</text>
+    <text x="352" y="14" font-family="system-ui, sans-serif" font-size="11" fill="#5C5652">小马 / 萝卜 / Waymo / 特斯拉 Robotaxi</text>
   </g>
 </svg>
   </div>
@@ -1322,48 +1329,56 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
   <div class="passage-card">
     <h3>图7 · PE剪刀差：9倍估值落差的回归引力</h3>
     <p>AI上游A股PE中位数125倍 vs 港股科技14倍，差近9倍——估值引力会驱动资金从高PE流向低PE，2-3年内必然回归</p>
-<svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg">
-  <rect width="720" height="340" fill="#FFFFFF"/>
-  <text x="360" y="28" text-anchor="middle" font-size="15" font-weight="600" fill="#2D2926">AI上游 vs 港股科技 · PE剪刀差与YTD对比</text>
-  <g transform="translate(50, 55)">
-    <text x="130" y="0" text-anchor="middle" font-size="13" font-weight="600" fill="#2D2926">PE(TTM) 对比</text>
-    <line x1="40" y1="20" x2="40" y2="220" stroke="#A8A29E" stroke-width="1"/>
-    <line x1="40" y1="220" x2="260" y2="220" stroke="#A8A29E" stroke-width="1"/>
-    <rect x="60" y="30" width="60" height="190" fill="#DC2626" opacity="0.8"/>
-    <text x="90" y="25" text-anchor="middle" font-size="13" fill="#991B1B" font-weight="700">125x</text>
-    <text x="90" y="235" text-anchor="middle" font-size="11" fill="#5C5652">AI上游A股</text>
-    <text x="90" y="250" text-anchor="middle" font-size="10" fill="#8A8480">北方华创 106x</text>
-    <rect x="180" y="200" width="60" height="20" fill="#059669" opacity="0.8"/>
-    <text x="210" y="195" text-anchor="middle" font-size="13" fill="#065F46" font-weight="700">14x</text>
-    <text x="210" y="235" text-anchor="middle" font-size="11" fill="#5C5652">港股科技</text>
-    <text x="210" y="250" text-anchor="middle" font-size="10" fill="#8A8480">腾讯 14.1x</text>
-    <line x1="90" y1="30" x2="210" y2="30" stroke="#D97706" stroke-width="1.5" stroke-dasharray="4,3"/>
-    <line x1="90" y1="28" x2="90" y2="32" stroke="#D97706" stroke-width="1.5"/>
-    <line x1="210" y1="28" x2="210" y2="32" stroke="#D97706" stroke-width="1.5"/>
-    <text x="150" y="22" text-anchor="middle" font-size="14" fill="#D97706" font-weight="700">差 9 倍 ⚡</text>
+<svg viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="380" fill="#FFFFFF"/>
+  <text x="360" y="28" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" fill="#2D2926">AI上游 vs 港股科技 · PE剪刀差与YTD对比</text>
+
+  <g transform="translate(50, 58)">
+    <text x="130" y="0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#2D2926">PE(TTM) 对比</text>
+    <line x1="40" y1="18" x2="40" y2="230" stroke="#A8A29E" stroke-width="1"/>
+    <line x1="40" y1="230" x2="260" y2="230" stroke="#A8A29E" stroke-width="1"/>
+
+    <rect x="60" y="38" width="60" height="192" rx="4" fill="#DC2626" opacity="0.82"/>
+    <text x="90" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#991B1B" font-weight="700">125x</text>
+    <text x="90" y="248" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#5C5652">AI上游A股</text>
+    <text x="90" y="266" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8A8480">北方华创 106x</text>
+
+    <rect x="180" y="210" width="60" height="20" rx="4" fill="#059669" opacity="0.82"/>
+    <text x="210" y="202" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#065F46" font-weight="700">14x</text>
+    <text x="210" y="248" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#5C5652">港股科技</text>
+    <text x="210" y="266" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8A8480">腾讯 14.1x</text>
+
+    <line x1="90" y1="35" x2="210" y2="35" stroke="#D97706" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <line x1="90" y1="32" x2="90" y2="38" stroke="#D97706" stroke-width="1.5"/>
+    <line x1="210" y1="32" x2="210" y2="38" stroke="#D97706" stroke-width="1.5"/>
+    <rect x="118" y="14" width="64" height="18" rx="4" fill="#FEF3C7" stroke="#D97706" stroke-width="0.8"/>
+    <text x="150" y="26" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#92400E" font-weight="700">差 9 倍</text>
   </g>
-  <line x1="340" y1="55" x2="340" y2="280" stroke="#E5E2DE" stroke-width="1" stroke-dasharray="4,4"/>
-  <g transform="translate(380, 55)">
-    <text x="150" y="0" text-anchor="middle" font-size="13" font-weight="600" fill="#2D2926">YTD涨跌幅对比</text>
-    <line x1="40" y1="120" x2="280" y2="120" stroke="#A8A29E" stroke-width="1" stroke-dasharray="3,3"/>
-    <text x="30" y="124" text-anchor="end" font-size="10" fill="#8A8480">0%</text>
-    <rect x="60" y="50" width="60" height="70" fill="#DC2626" opacity="0.8"/>
-    <text x="90" y="45" text-anchor="middle" font-size="12" fill="#991B1B" font-weight="700">+337%</text>
-    <text x="90" y="135" text-anchor="middle" font-size="11" fill="#5C5652">AI上游</text>
-    <text x="90" y="150" text-anchor="middle" font-size="10" fill="#8A8480">佰维存储</text>
-    <rect x="180" y="120" width="60" height="50" fill="#059669" opacity="0.8"/>
-    <text x="210" y="182" text-anchor="middle" font-size="12" fill="#065F46" font-weight="700">-45.5%</text>
-    <text x="210" y="135" text-anchor="middle" font-size="11" fill="#5C5652">港股科技</text>
-    <text x="210" y="150" text-anchor="middle" font-size="10" fill="#8A8480">小米</text>
-    <text x="90" y="200" text-anchor="middle" font-size="20" fill="#DC2626">↑</text>
-    <text x="90" y="215" text-anchor="middle" font-size="10" fill="#B91C1C">涨的是PE</text>
-    <text x="210" y="200" text-anchor="middle" font-size="20" fill="#059669">↓</text>
-    <text x="210" y="215" text-anchor="middle" font-size="10" fill="#047857">资金面崩</text>
+
+  <line x1="340" y1="58" x2="340" y2="300" stroke="#E5E2DE" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <g transform="translate(380, 58)">
+    <text x="140" y="0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#2D2926">YTD涨跌幅对比</text>
+    <line x1="30" y1="130" x2="270" y2="130" stroke="#A8A29E" stroke-width="1" stroke-dasharray="3,3"/>
+    <text x="22" y="134" text-anchor="end" font-family="system-ui, sans-serif" font-size="10" fill="#8A8480">0%</text>
+
+    <rect x="60" y="50" width="60" height="80" rx="4" fill="#DC2626" opacity="0.82"/>
+    <text x="90" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#991B1B" font-weight="700">+337%</text>
+    <text x="90" y="148" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#5C5652">AI上游</text>
+    <text x="90" y="165" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8A8480">佰维存储</text>
+    <text x="90" y="190" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#B91C1C">涨的是PE</text>
+
+    <rect x="180" y="130" width="60" height="55" rx="4" fill="#059669" opacity="0.82"/>
+    <text x="210" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#065F46" font-weight="700">-45.5%</text>
+    <text x="210" y="218" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#5C5652">港股科技</text>
+    <text x="210" y="235" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8A8480">小米</text>
+    <text x="210" y="260" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#047857">资金面崩</text>
   </g>
-  <g transform="translate(100, 285)">
-    <rect x="0" y="0" width="520" height="40" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
-    <text x="260" y="18" text-anchor="middle" font-size="12" fill="#92400E" font-weight="600">估值引力定律</text>
-    <text x="260" y="34" text-anchor="middle" font-size="11" fill="#B45309">9倍剪刀差 = 风格切换的种子 · 2-3年内必然回归（路径2硬着陆 + 路径3资金回流组合概率最大）</text>
+
+  <g transform="translate(100, 322)">
+    <rect x="0" y="0" width="520" height="44" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="1.2"/>
+    <text x="260" y="18" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#92400E" font-weight="600">估值引力定律</text>
+    <text x="260" y="36" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#B45309">9倍剪刀差 = 风格切换的种子 · 2-3年内必然回归（路径2硬着陆 + 路径3资金回流组合概率最大）</text>
   </g>
 </svg>
   </div>
@@ -1510,6 +1525,5 @@ window.addEventListener('load', function(){
 })();
 </script>
 
-<script src="../assets/page-enhance.js"></script>
 </body>
 </html>
