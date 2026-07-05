@@ -290,6 +290,7 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
     <a href="#voices">视角</a>
     <a href="#thinking">思考</a>
     <a href="#watch">关注</a>
+    <a href="#appendix">附录</a>
   </div>
 </nav>
 
@@ -823,7 +824,7 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
   var toc = document.getElementById('tocSidebar');
   if(!toc) return;
   var items = [];
-  var labelMap = {conclusion:'01 结论', voices:'02 视角', thinking:'03 思考', watch:'04 关注'};
+  var labelMap = {conclusion:'01 结论', voices:'02 视角', thinking:'03 思考', watch:'04 关注', appendix:'05 附录'};
   document.querySelectorAll('section[id]').forEach(function(sec){
     var label = labelMap[sec.id] || sec.id;
     items.push({id: sec.id, label: label, sub: false});
@@ -882,7 +883,7 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
 </script>
 
 <!-- ===== 附录：可视化图表 ===== -->
-<section style="padding:72px 0;">
+<section id="appendix" style="padding:72px 0;">
   <div class="section-head">
     <div class="section-num">05 · 附录</div>
     <div>
@@ -966,6 +967,5 @@ new Chart(document.getElementById('bizChart'), {
 })();
 </script>
 
-<script src="../assets/page-enhance.js"></script>
 </body>
 </html>
