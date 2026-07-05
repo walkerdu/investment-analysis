@@ -299,10 +299,10 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
   <div class="kicker">GLOSSARY · 更新至 2026-07-04 · 投资基础 · 持续扩充</div>
   <h1>投研术语图鉴</h1>
   <div class="hero-dek">
-    系统整理 80+ 个投研专业词语与缩写，按估值财务、技术分析、资金市场、半导体存储、物理AI、宏观市场六大类编排，并对 10 个核心概念配 SVG 图解。本图鉴作为投资基础知识库，将持续扩充——本次新增自动驾驶/Robotaxi 圆桌涌现的估值方法（EV/Sales、SOTP、期权价值框架）、商业基本面（UE 单车经济、GAAP、现金跑道）与交易概念（禁售期、基石、SAE 分级）。
+    系统整理 90+ 个投研专业词语与缩写，按估值财务、技术分析、资金市场、半导体存储、物理AI、宏观市场六大类编排，并对 10 个核心概念配 SVG 图解。本图鉴作为投资基础知识库，将持续扩充——本次新增小米圆桌涌现的技术分析（ADX/DMI、布林带、射击之星、空头排列）、资金面（黄金坑、卖空比率、回购、集合竞价）、半导体（存储超级周期、SoC）等 10 个核心术语。
   </div>
   <div class="host">
-    <span>📚 术语总数：80+　·　🎨 SVG图解：10幅　·　🗓 更新日期：2026-07-04</span>
+    <span>📚 术语总数：90+　·　🎨 SVG图解：10幅　·　🗓 更新日期：2026-07-05</span>
   </div>
 </section>
 
@@ -687,6 +687,30 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
           <td>Bias / Deviation Rate</td>
           <td>股价偏离均线的百分比。(股价-MA)/MA×100%。乖离过大（如&gt;7%）说明短期超买，有回归均线的压力。<br><strong>报告用法</strong>：海光信息乖离7.9%——股价远在MA5之上，短期有洗盘回调压力。</td>
         </tr>
+        <tr>
+          <td><strong>平均趋向指数 / 趋向指标</strong></td>
+          <td>ADX / DMI</td>
+          <td>Average Directional Index / Directional Movement Index</td>
+          <td>ADX 衡量趋势的<strong>强度</strong>（不分方向），&gt;25 为有趋势、&gt;50 为强趋势、&gt;75 极强趋势；DMI 由 +DI（多头方向）和 -DI（空头方向）组成，谁高谁主导。<strong>关键读法</strong>：ADX 高 + (-DI &gt; +DI) = 强下跌趋势；ADX 高 + (+DI &gt; -DI) = 强上涨趋势。ADX 低（&lt;20）说明无趋势、震荡市，指标失效。<br><strong>报告用法</strong>：小米 ADX=75.30（极强趋势）+ PDI(18.10) &lt; MDI(36.65)——"高强度下跌趋势，下跌动能远未衰竭"，是趋势破位最硬的技术确认。</td>
+        </tr>
+        <tr>
+          <td><strong>布林带</strong></td>
+          <td>BOLL</td>
+          <td>Bollinger Bands</td>
+          <td>由中轨（通常 MA20）+ 上下轨（中轨 ± 2 倍标准差）构成的带状通道。股价贴近上轨=超买区，贴近下轨=超卖区；带宽收口=波动率降低、变盘临近，开口放大=趋势加速。<strong>常用阈值</strong>：跌破下轨=极端超卖（短线反弹概率高），突破上轨=极端超买。<br><strong>报告用法</strong>：小米 BOLL 上轨 29.16 / 中轨 24.66 / 下轨 20.15——现价 22.96 在中下轨之间，跌破下轨 20.15 是 21.3 破位后的下一目标位。</td>
+        </tr>
+        <tr>
+          <td><strong>射击之星 / 墓碑十字</strong></td>
+          <td>—</td>
+          <td>Shooting Star / Gravestone Doji</td>
+          <td>K 线形态：开盘价与收盘价接近（实体极小或十字星），但上方有显著长上影（最高价远高于开盘/收盘），下影极短。出现在反弹高位或阻力位下方时，是<strong>多头冲高被空头砸回</strong>的反转预警，配合放量=抛压确认。出现在下跌中继=反弹碰阻力被砸回。<br><strong>报告用法</strong>：小米 7/3 开 22.98 冲 24.10 收 22.96——上影 1.14 港元 + 30 日最大量，"放量射击之星 + MA20 阻力"确认抛压。</td>
+        </tr>
+        <tr>
+          <td><strong>均线空头排列</strong></td>
+          <td>—</td>
+          <td>Moving Average Bearish Alignment</td>
+          <td>短期均线在下、长期均线在上，由下到上依次为 MA5 &lt; MA10 &lt; MA20 &lt; MA60 &lt; MA120 &lt; MA250，价格在最下方运行。是<strong>教科书级下跌趋势结构</strong>——所有持有者都亏损、均线呈压制态势。空头排列下每次反弹碰中期均线（如 MA20/MA60）都是卖点，而非买点。反转需看到均线收敛（短长期均线靠拢）+ 价格站上 MA60。<br><strong>报告用法</strong>：小米均线 MA5(22.10) &lt; MA10(22.67) &lt; MA20(24.66) &lt; MA60(28.66) &lt; MA250(41.19)——"全部空头排列，反弹碰 MA20 被砸回是教科书结构"。</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -814,6 +838,30 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
           <td>Pre-IPO Shareholder Exit</td>
           <td>上市前进入的财务投资人（VC/PE）在解禁后"落袋为安"退出，属正常行为，但会形成阶段性抛压。要区分是财务股东退出还是产业/战略股东离场（后者信号更负面）。<br><strong>报告用法</strong>：小马智行红杉持股9.1%→5.2%、IDG/五源退出前十（财务落袋），而丰田反增成最大外部股东——真正抛压来自财务股东而非产业方。</td>
         </tr>
+        <tr>
+          <td><strong>黄金坑</strong></td>
+          <td>—</td>
+          <td>Golden Pit</td>
+          <td>信号派首席的核心判定模型：股价大幅下跌后，是否构成"该抄底的位置"。<strong>两个硬前提必须同时满足</strong>：①行业地位不可替代（垄断或绝对龙头）②基本面没有实质恶化（利润下滑是周期性而非结构性）。两个都不满足=继续等；只满足一个=观察不进场；两个都满足=分批进。<strong>动态判定</strong>：黄金坑不是一次性标签，Q2/Q3 财报验证后需重新评估。<br><strong>报告用法</strong>：小米从高点跌 63% 看似便宜，但行业地位可替代（手机非垄断、汽车非龙头）+ 基本面实质恶化（营收-10.9%、净利-56.5%）——"明确不是黄金坑，是基本面杀估值过程"。</td>
+        </tr>
+        <tr>
+          <td><strong>卖空比率 / 沽空比率</strong></td>
+          <td>—</td>
+          <td>Short Selling Ratio</td>
+          <td>当日卖空成交额 ÷ 总成交额。反映空头活跃度——港股科技股平均 10% 左右，&gt;20% 偏高，&gt;30% 极端空头拥挤。<strong>双刃剑</strong>：高卖空比率说明做空力量强，但若有利好催化剂，空头被迫回补会触发逼空行情。<strong>常配合主力净流出看</strong>：主力出货 + 卖空高位 = 真空头；主力流入 + 卖空高位 = 多空分歧。<br><strong>报告用法</strong>：小米 7/3 卖空比率 28.03%、6/30 高达 36.14%——52 周低点附近空头还在加码，"他们不认为这里是底"。</td>
+        </tr>
+        <tr>
+          <td><strong>股份回购</strong></td>
+          <td>—</td>
+          <td>Share Buyback / Repurchase</td>
+          <td>公司用自有资金在二级市场买回自家股票并注销（或库存）。<strong>作用双面</strong>：①托底——提供下方买盘支撑、减缓下跌速度；②信号——管理层认为股价被低估。但回购是托底因素不是反转催化剂——日均回购额相对日均成交额通常杯水车薪，无法改变趋势方向。<strong>观察要点</strong>：回购力度（金额/期限）+ 执行节奏（自动回购 vs 时机择时）+ 是否伴随基本面改善。<br><strong>报告用法</strong>：小米 200 亿港元回购分 12 个月、日均不到 1 亿，面对日均 50 亿成交额——"杯水车薪，只能减缓下跌速度，不足以改变趋势方向"。</td>
+        </tr>
+        <tr>
+          <td><strong>集合竞价</strong></td>
+          <td>—</td>
+          <td>Opening / Closing Auction</td>
+          <td>交易所开盘前（港股 09:00-09:30）和收盘前（港股 16:00-16:10）的撮合阶段，所有买卖单集中配对，形成开盘价/收盘价。<strong>开盘竞价信号</strong>：高开（&gt;前日收盘 1%）+ 竞价放量=有承接；低开+竞价缩量=抛压。<strong>关键观察</strong>：开盘 25 分钟内的量价集中度——若全天 1/3 成交发生在开盘前 25 分钟，说明追涨盘/砸盘盘都集中在此，是当日情绪的温度计。<br><strong>报告用法</strong>：小米 7/3 开盘 22.98 高开 1.7%，前 25 分钟成交占全天 35%——追涨盘推到 24 但被砸回，"开盘竞价有承接但被砸盘方赢了"。</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -936,6 +984,18 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
           <td>—</td>
           <td>Contract Price</td>
           <td>存储芯片厂与客户签订的长期供货合同价格，区别于现货价。合约价环比变化是判断存储周期的核心指标——转跌=周期见顶，继续涨=景气延续。<br><strong>报告用法</strong>：DRAM合约价环比转跌是存储超级周期见顶的确认信号之一。</td>
+        </tr>
+        <tr>
+          <td><strong>存储超级周期</strong></td>
+          <td>—</td>
+          <td>Memory Super Cycle</td>
+          <td>由 AI 服务器/HPC 需求驱动的存储芯片（DRAM/NAND/HBM）价格持续大幅上涨周期，2025 Q3 启动、涨价幅度数倍起。<strong>产业链利益分配</strong>：上游有矿有产能（三星、海力士、长鑫、兆易、佰维）<strong>最受益</strong>；下游采购整机厂（手机厂、车厂）<strong>最受伤</strong>——物料成本占整机成本从 10-15% 飙到 30-40%，毛利直接被吃。<strong>"选矿还是选铲子"</strong>：这一轮存储涨价周期，钱流向上游的"矿"，没流到下游的"整机厂"。<br><strong>报告用法</strong>：小米手机毛利率从 12.4% 压到 10.1%，"存储涨价周期里小米正好站在被收税的那一端"——存储价格见顶回落是小米成本端的最大右侧信号。</td>
+        </tr>
+        <tr>
+          <td><strong>系统级芯片</strong></td>
+          <td>SoC</td>
+          <td>System on Chip</td>
+          <td>把 CPU/GPU/NPU/基带/ISP 等多个功能模块集成在一颗芯片上的完整系统级解决方案（如苹果 A 系列、高通骁龙、华为麒麟、小米玄戒）。<strong>战略价值三层</strong>：①降本——自研芯片高端机型采购成本可降 20%+；②卡位——减少对高通/联发科依赖；③估值重塑——从"组装厂估值"往"硬核科技公司估值"靠。<strong>自研 SoC 是手机厂往产业链上游爬的关键标志</strong>，全球能自研 3nm 工艺 SoC 的仅苹果、三星、华为、小米四家。<br><strong>报告用法</strong>：小米玄戒 O1 是 3nm 工艺、190 亿晶体管，中国大陆首家自研 3nm SoC——"产业链卡位最关键的一次上移"。</td>
         </tr>
       </tbody>
     </table>
@@ -1210,42 +1270,49 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
   <div class="passage-card">
     <h3>图9 · SAE 自动驾驶分级：L2 与 L4 的分水岭是"谁来负责"</h3>
     <p>从 L0 到 L5 的六级阶梯，核心不是"技术多先进"，而是出了事谁兜底——这是理解自动驾驶标的最关键的一把尺</p>
-<svg viewBox="0 0 720 400" xmlns="http://www.w3.org/2000/svg">
-  <rect width="720" height="400" fill="#FFFFFF"/>
-  <text x="360" y="28" text-anchor="middle" font-family="Noto Serif SC, serif" font-size="14" fill="#8A8480" font-weight="500">责任归属的临界点在 L3：L2 及以下人负责，L4 及以上车负责</text>
+<svg viewBox="0 0 720 440" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="440" fill="#FFFFFF"/>
+  <text x="360" y="30" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="500" fill="#2D2926">SAE 自动驾驶分级：L2 与 L4 的分水岭是"谁来负责"</text>
+  <text x="360" y="52" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="#5C5652">责任归属的临界点在 L3：L2 及以下人负责，L4 及以上车负责</text>
 
-  <!-- 分级阶梯 -->
-  <g transform="translate(40, 50)">
-    <!-- L0 -->
-    <rect x="0" y="300" width="100" height="34" rx="6" fill="#F5F2EE" stroke="#A8A29E" stroke-width="1.2"/>
-    <text x="50" y="322" text-anchor="middle" font-size="12" font-weight="600" fill="#5C5652">L0 无自动</text>
-    <!-- L1 -->
-    <rect x="106" y="256" width="100" height="34" rx="6" fill="#F0EEEC" stroke="#8A8480" stroke-width="1.2"/>
-    <text x="156" y="278" text-anchor="middle" font-size="12" font-weight="600" fill="#5C5652">L1 单项辅助</text>
-    <!-- L2 -->
-    <rect x="212" y="212" width="110" height="34" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.4"/>
-    <text x="267" y="234" text-anchor="middle" font-size="12" font-weight="600" fill="#1E40AF">L2 部分辅助</text>
-    <!-- L3 -->
-    <rect x="328" y="168" width="110" height="34" rx="6" fill="#FEF3C7" stroke="#D97706" stroke-width="1.4"/>
-    <text x="383" y="190" text-anchor="middle" font-size="12" font-weight="600" fill="#92400E">L3 有条件</text>
-    <!-- L4 -->
-    <rect x="444" y="124" width="110" height="34" rx="6" fill="#D1FAE5" stroke="#047857" stroke-width="1.5"/>
-    <text x="499" y="146" text-anchor="middle" font-size="12" font-weight="700" fill="#065F46">L4 高度自动</text>
-    <!-- L5 -->
-    <rect x="560" y="80" width="100" height="34" rx="6" fill="#A7F3D0" stroke="#047857" stroke-width="1.5"/>
-    <text x="610" y="102" text-anchor="middle" font-size="12" font-weight="700" fill="#065F46">L5 完全自动</text>
+  <g transform="translate(50, 75)">
+    <rect x="0" y="270" width="90" height="46" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1"/>
+    <text x="45" y="288" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#444441">L0</text>
+    <text x="45" y="306" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#5C5652">无自动</text>
 
-    <!-- 责任分界虚线 -->
-    <line x1="322" y1="70" x2="322" y2="344" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="6 4"/>
-    <text x="205" y="66" text-anchor="end" font-size="12" font-weight="600" fill="#2563EB">← 人负全责（需随时接管）</text>
-    <text x="338" y="66" font-size="12" font-weight="600" fill="#047857">车负全责（限定域内无人）→</text>
+    <rect x="104" y="218" width="90" height="46" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="1"/>
+    <text x="149" y="236" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#444441">L1</text>
+    <text x="149" y="254" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#5C5652">单项辅助</text>
+
+    <rect x="208" y="166" width="98" height="46" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.2"/>
+    <text x="257" y="184" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#1E40AF">L2</text>
+    <text x="257" y="202" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#2563EB">部分辅助</text>
+
+    <line x1="318" y1="55" x2="318" y2="325" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="6 4"/>
+
+    <rect x="332" y="114" width="98" height="46" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="1.2"/>
+    <text x="381" y="132" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#92400E">L3</text>
+    <text x="381" y="150" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#B45309">有条件自动</text>
+
+    <rect x="444" y="62" width="98" height="46" rx="8" fill="#D1FAE5" stroke="#047857" stroke-width="1.2"/>
+    <text x="493" y="80" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#065F46">L4</text>
+    <text x="493" y="98" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#047857">高度自动</text>
+
+    <rect x="556" y="10" width="98" height="46" rx="8" fill="#A7F3D0" stroke="#047857" stroke-width="1.2"/>
+    <text x="605" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#065F46">L5</text>
+    <text x="605" y="46" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#047857">完全自动</text>
+
+    <text x="155" y="342" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#2563EB">← 人负全责（需随时接管）</text>
+    <text x="490" y="342" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#047857">车负全责（限定域内无人）→</text>
   </g>
 
-  <!-- 底部标的落位 -->
-  <g transform="translate(40, 356)">
-    <text x="0" y="0" font-size="11.5" fill="#5C5652"><tspan font-weight="600" fill="#2563EB">L2：</tspan>特斯拉消费者版 FSD（监督版）</text>
-    <text x="300" y="0" font-size="11.5" fill="#5C5652"><tspan font-weight="600" fill="#047857">L4：</tspan>小马 / 萝卜 / Waymo / 特斯拉 Robotaxi 车队</text>
-    <text x="0" y="22" font-size="11" fill="#A8A29E">同一家公司不同产品可处不同等级 —— 特斯拉是典型：卖给消费者的是 L2，自营 Robotaxi 是 L4</text>
+  <g transform="translate(50, 398)">
+    <rect x="0" y="-4" width="290" height="30" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="0.8"/>
+    <text x="14" y="14" font-family="system-ui, sans-serif" font-size="11" fill="#1E40AF" font-weight="600">L2：</text>
+    <text x="42" y="14" font-family="system-ui, sans-serif" font-size="11" fill="#5C5652">特斯拉消费者版 FSD（监督版）</text>
+    <rect x="310" y="-4" width="310" height="30" rx="6" fill="#D1FAE5" stroke="#047857" stroke-width="0.8"/>
+    <text x="324" y="14" font-family="system-ui, sans-serif" font-size="11" fill="#065F46" font-weight="600">L4：</text>
+    <text x="352" y="14" font-family="system-ui, sans-serif" font-size="11" fill="#5C5652">小马 / 萝卜 / Waymo / 特斯拉 Robotaxi</text>
   </g>
 </svg>
   </div>
@@ -1322,48 +1389,56 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
   <div class="passage-card">
     <h3>图7 · PE剪刀差：9倍估值落差的回归引力</h3>
     <p>AI上游A股PE中位数125倍 vs 港股科技14倍，差近9倍——估值引力会驱动资金从高PE流向低PE，2-3年内必然回归</p>
-<svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg">
-  <rect width="720" height="340" fill="#FFFFFF"/>
-  <text x="360" y="28" text-anchor="middle" font-size="15" font-weight="600" fill="#2D2926">AI上游 vs 港股科技 · PE剪刀差与YTD对比</text>
-  <g transform="translate(50, 55)">
-    <text x="130" y="0" text-anchor="middle" font-size="13" font-weight="600" fill="#2D2926">PE(TTM) 对比</text>
-    <line x1="40" y1="20" x2="40" y2="220" stroke="#A8A29E" stroke-width="1"/>
-    <line x1="40" y1="220" x2="260" y2="220" stroke="#A8A29E" stroke-width="1"/>
-    <rect x="60" y="30" width="60" height="190" fill="#DC2626" opacity="0.8"/>
-    <text x="90" y="25" text-anchor="middle" font-size="13" fill="#991B1B" font-weight="700">125x</text>
-    <text x="90" y="235" text-anchor="middle" font-size="11" fill="#5C5652">AI上游A股</text>
-    <text x="90" y="250" text-anchor="middle" font-size="10" fill="#8A8480">北方华创 106x</text>
-    <rect x="180" y="200" width="60" height="20" fill="#059669" opacity="0.8"/>
-    <text x="210" y="195" text-anchor="middle" font-size="13" fill="#065F46" font-weight="700">14x</text>
-    <text x="210" y="235" text-anchor="middle" font-size="11" fill="#5C5652">港股科技</text>
-    <text x="210" y="250" text-anchor="middle" font-size="10" fill="#8A8480">腾讯 14.1x</text>
-    <line x1="90" y1="30" x2="210" y2="30" stroke="#D97706" stroke-width="1.5" stroke-dasharray="4,3"/>
-    <line x1="90" y1="28" x2="90" y2="32" stroke="#D97706" stroke-width="1.5"/>
-    <line x1="210" y1="28" x2="210" y2="32" stroke="#D97706" stroke-width="1.5"/>
-    <text x="150" y="22" text-anchor="middle" font-size="14" fill="#D97706" font-weight="700">差 9 倍 ⚡</text>
+<svg viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="380" fill="#FFFFFF"/>
+  <text x="360" y="28" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="600" fill="#2D2926">AI上游 vs 港股科技 · PE剪刀差与YTD对比</text>
+
+  <g transform="translate(50, 58)">
+    <text x="130" y="0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#2D2926">PE(TTM) 对比</text>
+    <line x1="40" y1="18" x2="40" y2="230" stroke="#A8A29E" stroke-width="1"/>
+    <line x1="40" y1="230" x2="260" y2="230" stroke="#A8A29E" stroke-width="1"/>
+
+    <rect x="60" y="38" width="60" height="192" rx="4" fill="#DC2626" opacity="0.82"/>
+    <text x="90" y="28" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#991B1B" font-weight="700">125x</text>
+    <text x="90" y="248" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#5C5652">AI上游A股</text>
+    <text x="90" y="266" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8A8480">北方华创 106x</text>
+
+    <rect x="180" y="210" width="60" height="20" rx="4" fill="#059669" opacity="0.82"/>
+    <text x="210" y="202" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#065F46" font-weight="700">14x</text>
+    <text x="210" y="248" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#5C5652">港股科技</text>
+    <text x="210" y="266" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8A8480">腾讯 14.1x</text>
+
+    <line x1="90" y1="35" x2="210" y2="35" stroke="#D97706" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <line x1="90" y1="32" x2="90" y2="38" stroke="#D97706" stroke-width="1.5"/>
+    <line x1="210" y1="32" x2="210" y2="38" stroke="#D97706" stroke-width="1.5"/>
+    <rect x="118" y="14" width="64" height="18" rx="4" fill="#FEF3C7" stroke="#D97706" stroke-width="0.8"/>
+    <text x="150" y="26" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#92400E" font-weight="700">差 9 倍</text>
   </g>
-  <line x1="340" y1="55" x2="340" y2="280" stroke="#E5E2DE" stroke-width="1" stroke-dasharray="4,4"/>
-  <g transform="translate(380, 55)">
-    <text x="150" y="0" text-anchor="middle" font-size="13" font-weight="600" fill="#2D2926">YTD涨跌幅对比</text>
-    <line x1="40" y1="120" x2="280" y2="120" stroke="#A8A29E" stroke-width="1" stroke-dasharray="3,3"/>
-    <text x="30" y="124" text-anchor="end" font-size="10" fill="#8A8480">0%</text>
-    <rect x="60" y="50" width="60" height="70" fill="#DC2626" opacity="0.8"/>
-    <text x="90" y="45" text-anchor="middle" font-size="12" fill="#991B1B" font-weight="700">+337%</text>
-    <text x="90" y="135" text-anchor="middle" font-size="11" fill="#5C5652">AI上游</text>
-    <text x="90" y="150" text-anchor="middle" font-size="10" fill="#8A8480">佰维存储</text>
-    <rect x="180" y="120" width="60" height="50" fill="#059669" opacity="0.8"/>
-    <text x="210" y="182" text-anchor="middle" font-size="12" fill="#065F46" font-weight="700">-45.5%</text>
-    <text x="210" y="135" text-anchor="middle" font-size="11" fill="#5C5652">港股科技</text>
-    <text x="210" y="150" text-anchor="middle" font-size="10" fill="#8A8480">小米</text>
-    <text x="90" y="200" text-anchor="middle" font-size="20" fill="#DC2626">↑</text>
-    <text x="90" y="215" text-anchor="middle" font-size="10" fill="#B91C1C">涨的是PE</text>
-    <text x="210" y="200" text-anchor="middle" font-size="20" fill="#059669">↓</text>
-    <text x="210" y="215" text-anchor="middle" font-size="10" fill="#047857">资金面崩</text>
+
+  <line x1="340" y1="58" x2="340" y2="300" stroke="#E5E2DE" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <g transform="translate(380, 58)">
+    <text x="140" y="0" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#2D2926">YTD涨跌幅对比</text>
+    <line x1="30" y1="130" x2="270" y2="130" stroke="#A8A29E" stroke-width="1" stroke-dasharray="3,3"/>
+    <text x="22" y="134" text-anchor="end" font-family="system-ui, sans-serif" font-size="10" fill="#8A8480">0%</text>
+
+    <rect x="60" y="50" width="60" height="80" rx="4" fill="#DC2626" opacity="0.82"/>
+    <text x="90" y="40" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#991B1B" font-weight="700">+337%</text>
+    <text x="90" y="148" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#5C5652">AI上游</text>
+    <text x="90" y="165" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8A8480">佰维存储</text>
+    <text x="90" y="190" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#B91C1C">涨的是PE</text>
+
+    <rect x="180" y="130" width="60" height="55" rx="4" fill="#059669" opacity="0.82"/>
+    <text x="210" y="200" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#065F46" font-weight="700">-45.5%</text>
+    <text x="210" y="218" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#5C5652">港股科技</text>
+    <text x="210" y="235" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8A8480">小米</text>
+    <text x="210" y="260" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#047857">资金面崩</text>
   </g>
-  <g transform="translate(100, 285)">
-    <rect x="0" y="0" width="520" height="40" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
-    <text x="260" y="18" text-anchor="middle" font-size="12" fill="#92400E" font-weight="600">估值引力定律</text>
-    <text x="260" y="34" text-anchor="middle" font-size="11" fill="#B45309">9倍剪刀差 = 风格切换的种子 · 2-3年内必然回归（路径2硬着陆 + 路径3资金回流组合概率最大）</text>
+
+  <g transform="translate(100, 322)">
+    <rect x="0" y="0" width="520" height="44" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="1.2"/>
+    <text x="260" y="18" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#92400E" font-weight="600">估值引力定律</text>
+    <text x="260" y="36" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#B45309">9倍剪刀差 = 风格切换的种子 · 2-3年内必然回归（路径2硬着陆 + 路径3资金回流组合概率最大）</text>
   </g>
 </svg>
   </div>
