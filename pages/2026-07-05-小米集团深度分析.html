@@ -626,6 +626,224 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
   </div>
 </section>
 
+<section id="extended">
+  <div class="section-head">
+    <div class="section-num">02.5 · 扩展</div>
+    <div>
+      <div class="section-title">2026 走势与近 10 年业务演变</div>
+      <div class="section-lede">用户追加维度的补充研究 —— 4 位成员基于历史数据与年内 K 线独立完成，合入原圆桌报告</div>
+    </div>
+  </div>
+
+  <div class="passage-card" style="margin-bottom:32px;">
+    <h3 style="font-size:1.1rem;margin-bottom:16px;">图表 1 · 2026 年内股价月度走势</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px;font-size:12px;color:#78716C;">
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#D85A30;"></span>月末收盘价</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#B4B2A9;opacity:0.5;"></span>月内最高/最低区间</span>
+    </div>
+    <div style="position:relative;width:100%;height:300px;">
+      <canvas id="chart2026" role="img" aria-label="小米2026年1月至7月股价月度走势折线图">小米2026年股价从39.30跌至22.96，年内跌幅41.58%</canvas>
+    </div>
+    <p style="font-size:11px;color:#888780;margin-top:6px;">数据来源：westock-data K线 | 截至2026-07-03收盘 | 单位：港元</p>
+  </div>
+
+  <div class="passage-card" style="margin-bottom:32px;">
+    <h3 style="font-size:1.1rem;margin-bottom:16px;">图表 2 · 近 10 年业务结构变化</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px;font-size:12px;color:#78716C;">
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#378ADD;"></span>手机</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#1D9E75;"></span>IoT</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#BA7517;"></span>互联网</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#D85A30;"></span>汽车</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#888780;"></span>其他</span>
+    </div>
+    <div style="position:relative;width:100%;height:300px;">
+      <canvas id="chartBiz" role="img" aria-label="小米2017至2026年业务结构堆叠柱状图">手机占比从70%降至41%，汽车从0升至23%</canvas>
+    </div>
+    <p style="font-size:11px;color:#888780;margin-top:6px;">数据来源：小米各年度业绩公告 | 占比不受币种影响</p>
+  </div>
+
+  <div class="passage-card" style="margin-bottom:32px;">
+    <h3 style="font-size:1.1rem;margin-bottom:16px;">图表 3 · 2018 年 IPO 后股价走势</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px;font-size:12px;color:#78716C;">
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;border-radius:50%;background:#378ADD;"></span>IPO/当前</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;border-radius:50%;background:#1D9E75;"></span>历史大底</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:8px;height:8px;border-radius:50%;background:#E24B4A;"></span>历史最高/年内最低</span>
+    </div>
+    <div style="position:relative;width:100%;height:320px;">
+      <canvas id="chartIPO" role="img" aria-label="小米2018年IPO后股价走势折线图">发行价17港元，历史最低8.31，历史最高61.45，当前22.96</canvas>
+    </div>
+    <p style="font-size:11px;color:#888780;margin-top:6px;">数据来源：westock-data 月线（前复权）| 关键节点来自公开历史事件</p>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <script>
+  new Chart(document.getElementById('chart2026'), {
+    type: 'line',
+    data: {
+      labels: ['1月','2月','3月','4月','5月','6月','7月(至7/3)'],
+      datasets: [{
+        label: '月末收盘价', data: [35.50,34.90,31.76,29.02,28.04,21.64,22.96],
+        borderColor: '#D85A30', backgroundColor: 'rgba(216,90,48,0.1)',
+        borderWidth: 2.5, tension: 0.3, fill: true,
+        pointRadius: [5,5,5,5,5,7,5],
+        pointBackgroundColor: ['#D85A30','#D85A30','#D85A30','#D85A30','#D85A30','#E24B4A','#378ADD'],
+        pointBorderColor: '#fff', pointBorderWidth: 2
+      },{
+        label: '月内最高', data: [40.50,37.50,37.18,32.94,32.14,29.74,24.10],
+        borderColor: 'rgba(184,178,169,0.5)', borderWidth: 1, borderDash: [4,3], tension: 0.3, pointRadius: 0
+      },{
+        label: '月内最低', data: [34.50,33.32,31.46,28.80,27.50,21.30,22.02],
+        borderColor: 'rgba(184,178,169,0.5)', backgroundColor: 'rgba(184,178,169,0.08)',
+        borderWidth: 1, borderDash: [4,3], tension: 0.3, pointRadius: 0, fill: '-1'
+      }]
+    },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { y: { min: 18, max: 42, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } }
+    }
+  });
+  new Chart(document.getElementById('chartBiz'), {
+    type: 'bar',
+    data: {
+      labels: ['2017','2018','2019','2020','2021','2022','2023','2024','2025','2026Q1'],
+      datasets: [
+        { label:'手机', data:[70,65.1,59.3,61.9,63.6,59.7,58.1,52.4,40.8,44.7], backgroundColor:'#378ADD', stack:'s' },
+        { label:'IoT', data:[20,25.1,30.2,27.4,25.9,28.5,29.6,28.5,26.9,24.9], backgroundColor:'#1D9E75', stack:'s' },
+        { label:'互联网', data:[9,9.1,9.6,9.7,8.6,10.1,11.1,9.3,8.2,9.6], backgroundColor:'#BA7517', stack:'s' },
+        { label:'汽车', data:[0,0,0,0,0,0,0,9.0,23.2,20.0], backgroundColor:'#D85A30', stack:'s' },
+        { label:'其他', data:[1,0.7,0.9,1.0,1.9,1.7,1.2,0.8,0.9,0.9], backgroundColor:'#888780', stack:'s' }
+      ]
+    },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { x: { stacked: true, grid: { display: false } },
+        y: { stacked: true, max: 100, grid: { color: 'rgba(0,0,0,0.05)' }, ticks: { callback: function(v){return v+'%';} } } }
+    }
+  });
+  new Chart(document.getElementById('chartIPO'), {
+    type: 'line',
+    data: {
+      labels: ['2018.07 IPO','2018.12','2019.01','2020.03','2020.12','2021.01','2021.12','2022.10','2023.12','2024.02','2024.12','2025.06','2025.12','2026.06','2026.07 当前'],
+      datasets: [{
+        label: '股价', data: [17.00,12.92,9.84,10.44,33.20,35.90,18.90,8.31,15.60,13.22,34.50,61.45,39.30,21.30,22.96],
+        borderColor: '#D85A30', backgroundColor: 'rgba(216,90,48,0.08)',
+        borderWidth: 2, tension: 0.35, fill: true,
+        pointRadius: [7,3,3,3,3,3,3,7,3,3,3,7,3,7,7],
+        pointBackgroundColor: ['#378ADD','#D85A30','#D85A30','#D85A30','#D85A30','#D85A30','#D85A30','#1D9E75','#D85A30','#D85A30','#D85A30','#E24B4A','#D85A30','#E24B4A','#378ADD'],
+        pointBorderColor: '#fff', pointBorderWidth: 2
+      }]
+    },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: { y: { min: 0, max: 70, grid: { color: 'rgba(0,0,0,0.05)' } },
+        x: { grid: { display: false }, ticks: { maxRotation: 45, font: { size: 10 } } } }
+    }
+  });
+  </script>
+
+  <div class="voice-stack">
+
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="avatars/shortterm-surfer.png" alt="短线冲浪手">
+        <div class="voice-name">⚡ 短线冲浪手 · 2026 年内走势复盘</div>
+      </div>
+      <p>三段式崩盘：估值杀（1-2月）→ 预期杀（3-4月）→ 基本面杀（5-6月），YTD -41.58%，跑输恒生科技 23 个百分点。</p>
+
+      <h4>月度走势</h4>
+      <table>
+        <thead><tr><th>月份</th><th>月末</th><th>月涨跌</th><th>核心驱动</th></tr></thead>
+        <tbody>
+          <tr><td>1月</td><td>35.50</td><td class="down">-9.67%</td><td>存储预期恶化、林斌减持、估值压缩</td></tr>
+          <tr><td>2月</td><td>34.90</td><td class="down">-1.69%</td><td>25 亿回购启动未能扭转</td></tr>
+          <tr><td>3月</td><td>31.76</td><td class="down">-9.00%</td><td>投行集体下调、SU7 Ultra 定价、3/20 单日 -8.59%</td></tr>
+          <tr><td>4月</td><td>29.02</td><td class="down">-8.63%</td><td>一季报预期悲观、存储涨价发酵</td></tr>
+          <tr><td>5月</td><td>28.04</td><td class="down">-3.38%</td><td>5/26 一季报暴雷，200 亿回购宣布</td></tr>
+          <tr><td>6月</td><td>21.64</td><td class="down"><strong>-22.82%</strong></td><td>财报余震、月线九连阴、外资 32%→22%</td></tr>
+          <tr><td>7月</td><td>22.96</td><td class="up">+6.10%</td><td>超跌反弹、北水扫货 45.38 亿</td></tr>
+        </tbody>
+      </table>
+
+      <h4>5 次反弹全部失败</h4>
+      <p>2/5-2/11(+12.6%)、3/3-3/19(+15.0%)、4/8-4/20(+6.7%)、5/4-5/14(+10.6%)、6/24-7/3(+12.5%)——前四次每次碰 MA20 被砸回。<strong>均线逐级走坏</strong>：1/5 跌破 MA250→1/13 跌破 MA20→3/2 跌破 MA60→3 月中旬死亡交叉→5 月跌破 MA120→6 月全空头排列。</p>
+
+      <div class="pull-quote">"估值杀→预期杀→基本面杀三段式崩盘，5 次反弹全部失败。"</div>
+    </article>
+
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="avatars/industry-strategist.png" alt="产业策略师">
+        <div class="voice-name">🌊 产业策略师 · 10 年业务结构三阶段演进</div>
+      </div>
+      <p>小米 10 年干了一件事——从"卖手机的中间商"变成"从芯片到汽车全链条的生态公司"。</p>
+
+      <h4>三阶段演进</h4>
+      <table>
+        <thead><tr><th>阶段</th><th>时间</th><th>手机%</th><th>汽车%</th><th>产业周期</th></tr></thead>
+        <tbody>
+          <tr><td>一·手机打底</td><td>2016-2018</td><td>65-70%</td><td>-</td><td>移动互联网见顶</td></tr>
+          <tr><td>二·IoT 扩张</td><td>2019-2022</td><td>59-64%</td><td>-</td><td>5G+IoT+NEV 政策</td></tr>
+          <tr><td>三·全生态</td><td>2023-2026</td><td><strong>41%</strong></td><td><strong>23%</strong></td><td>NEV 爆发+AI 浪潮</td></tr>
+        </tbody>
+      </table>
+      <p>每次战略转向都踩在产业周期拐点上。当前处在"<em>产业扩产期的利润低谷</em>"——方向对、卡位上移，但短期利润被侵蚀。三个关键拐点：2021.3 宣布造车 → 2024.3 SU7 上市 → 2025.5 玄戒 O1 3nm 芯片。</p>
+
+      <div class="pull-quote">"从一个卖手机的中间商，变成了从芯片到汽车全链条自己干的生态公司。"</div>
+    </article>
+
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="avatars/valuation-analyst.png" alt="估值分析师">
+        <div class="voice-name">🧮 估值分析师 · 10 年估值方法论演变</div>
+      </div>
+      <p>10 年走了一个完整的圈：PE 从 18x 出发，到 39x 顶峰，再回到 15x。起点和终点几乎重合。</p>
+
+      <h4>三轮估值框架切换</h4>
+      <table>
+        <thead><tr><th>阶段</th><th>市场身份</th><th>工具</th><th>PE 区间</th></tr></thead>
+        <tbody>
+          <tr><td>2018-2019</td><td>手机公司</td><td>PE</td><td>18-27x</td></tr>
+          <tr><td>2020-2021</td><td>AIoT 生态</td><td>PEG+PE</td><td>25-39x</td></tr>
+          <tr><td>2022</td><td>工具失效</td><td>PB+PS</td><td>PE 失真</td></tr>
+          <tr><td>2023</td><td>手机×AIoT</td><td>PE</td><td>13-22x</td></tr>
+          <tr><td>2024-2025H1</td><td>人车家全生态</td><td>SOTP</td><td>28-40x</td></tr>
+          <tr><td>2025H2-2026</td><td>退回手机公司</td><td>PE</td><td><strong>14.75x</strong></td></tr>
+        </tbody>
+      </table>
+
+      <h4>2026 戴维斯双杀拆解</h4>
+      <p><strong>Price = EPS × PE</strong>。股价 -41.6% = PE 压缩(<em>-35.3%</em>，主因) × EPS 下滑(-9.8%，次因)。PE 压缩来自汽车从"成长期权"(PS 4x) 跌回"烧钱现实"(PS 1.5x)、手机毛利率创新低、智驾安全事故发酵。</p>
+
+      <div class="pull-quote">"61.45→22.96 只用了 13 个月——溢价的回吐速度比兑现速度快得多。"</div>
+    </article>
+
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="avatars/fundamental-researcher.png" alt="财报研究员">
+        <div class="voice-name">🔬 财报研究员 · 10 年分部财务演变</div>
+      </div>
+      <p>毛利率翻倍是 10 年最核心的基本面改善：从 2016 年 10.6% 到 2025 年 22.3%。</p>
+
+      <h4>10 年关键里程碑</h4>
+      <ul>
+        <li>收入破千亿(2017)→破两千亿(2019)→破三千亿(2021)→破四千亿(2025)</li>
+        <li>经调整净利破百亿(2019)→破三百亿(2025)；IFRS 净利破四百亿(2025)</li>
+        <li>汽车收入破千亿(2025)；汽车首次全年盈利(2025，9 亿)</li>
+        <li><strong>毛利率翻倍</strong>：10.6%(2016) → 21.2%(2023) → 22.3%(2025)</li>
+      </ul>
+
+      <h4>手机出货量与 ASP</h4>
+      <p>出货量走 V 字形：2015 年 6655 万台 → 2021 年历史最高 1.9 亿台 → 2025 年 1.652 亿台。<strong>ASP 十年从 807 元涨到 1129 元（+40%）</strong>——高端化战略的标志。</p>
+
+      <h4>互联网服务：被低估的利润引擎</h4>
+      <p>MAU 从 1.12 亿到 7 亿+（翻 6 倍），毛利率 76.5%。<strong>收入只占 8.2%，但贡献全公司毛利超 25%</strong>——这是小米"不是纯硬件公司"的财务根基。</p>
+
+      <div class="pull-quote">"只要毛利率趋势不变，基本面就没有变。"</div>
+    </article>
+
+  </div>
+</section>
+
 <section id="thinking">
   <div class="section-head">
     <div class="section-num">03 · 思考</div>
@@ -670,6 +888,27 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
       <div class="note-body">
         <h4>情绪 7-8 分恐慌但未到极致——逆向投资人的克制是合理的</h4>
         <p>逆向投资人给的情绪温度是 7-8 分恐慌，但明确说"还没到血流成河的极致"——21.3 两次没破、公司在回购、南向有单日加仓。这个判断和信号派首席"不是黄金坑"的结论看起来矛盾，其实不矛盾：逆向看的是"恐慌够不够深"（够了但没极致），信号派看的是"基本面有没有实质恶化"（有）。两个维度都成立——所以逆向选择"谨慎偏多分批"而非"激进抄底"，这个克制是合理的。</p>
+      </div>
+    </article>
+    <article class="note-item">
+      <div class="note-num">06</div>
+      <div class="note-body">
+        <h4>估值倍数起点和终点几乎重合——"故事溢价有期限"的最强证据</h4>
+        <p>小米的产业卡位确实在系统性上移——研发投入从 2017 年几十亿涨到 2025 年 331 亿，研发团队超 2 万人。但估值倍数的起点和终点几乎重合——2018 年 PE 约 39x，2026 年 PE 14.75x。中间经历了 AIoT 溢价、造车期权溢价，但每次溢价都在"故事需要兑现为盈利"时回吐。<strong>61.45→22.96 只用了 13 个月——溢价的回吐速度比兑现速度快得多。</strong></p>
+      </div>
+    </article>
+    <article class="note-item">
+      <div class="note-num">07</div>
+      <div class="note-body">
+        <h4>"越回购越跌"是 2026 年最容易被误读的信号</h4>
+        <p>年内累计回购 104.62 亿港元，但股价从 39.30 跌到 22.96。外资持股从 32% 砍到 22%，机构减仓远超回购体量。"公司在回购"不等于"底到了"——回购是托底因素不是反转催化剂，2022 年腾讯回购了一年股价才见底。当基本面恶化 + 资金面压制同时发生时，回购的买盘力量会被机构卖盘完全淹没。</p>
+      </div>
+    </article>
+    <article class="note-item">
+      <div class="note-num">08</div>
+      <div class="note-body">
+        <h4>毛利率从 10.6% 爬到 22.3% 是 10 年最核心的基本面改善，但 Q4 手机毛利率 8.3% 是警示信号</h4>
+        <p>毛利率翻倍背后是产品升级（ASP 从 807 元到 1129 元）+ 业务结构优化 + 规模效应三层逻辑。但 2025 Q4 手机毛利率降到 8.3% 是必须盯的信号——如果下个季度继续恶化，"毛利率翻倍"这条核心改善曲线可能要打折扣。<strong>只要毛利率趋势不变，基本面就没有变。</strong></p>
       </div>
     </article>
   </div>
@@ -814,6 +1053,46 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
             维持不修正 → <span class="up">管理层信心信号</span>；
             下修到 45-50 万 → <span class="down">利空兑现但预期重置</span>；
             超额完成 → <span class="up">估值上修催化</span>。
+          </td>
+        </tr>
+        <tr>
+          <td class="trigger-var">
+            手机毛利率
+            <span class="now">Q1 2026 为 10.1%，Q4 2025 曾降到 8.3%</span>
+          </td>
+          <td class="trigger-action">
+            Q2 财报手机毛利率 ≥11% → <span class="up">毛利率趋势未变</span>；
+            ≤9% → <span class="down">"毛利率翻倍"核心改善曲线动摇</span>。
+          </td>
+        </tr>
+        <tr>
+          <td class="trigger-var">
+            MA20（24.66）
+            <span class="now">年内 5 次反弹全部在此被砸回</span>
+          </td>
+          <td class="trigger-action">
+            放量站稳 MA20 一周以上 → <span class="up">反弹持续性首次确认</span>；
+            反弹到 MA20 被砸回 → <span class="down">第 6 次失败，空头排列未变</span>。
+          </td>
+        </tr>
+        <tr>
+          <td class="trigger-var">
+            月线九连阴
+            <span class="now">6 月为第 9 根月阴线</span>
+          </td>
+          <td class="trigger-action">
+            7 月收月阳线 → <span class="up">九连阴终结，技术修复启动</span>；
+            7 月继续收阴 → <span class="down">月线十连阴，历史罕见极端</span>。
+          </td>
+        </tr>
+        <tr>
+          <td class="trigger-var">
+            外资持股比例
+            <span class="now">6 月从 32% 降至 22%</span>
+          </td>
+          <td class="trigger-action">
+            回升至 25%+ → <span class="up">外资回流信号</span>；
+            继续降至 20% 以下 → <span class="down">资金面恶化加剧</span>。
           </td>
         </tr>
       </tbody>
