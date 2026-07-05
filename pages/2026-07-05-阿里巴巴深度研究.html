@@ -881,6 +881,91 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
 })();
 </script>
 
+<!-- ===== 附录：可视化图表 ===== -->
+<section style="padding:72px 0;">
+  <div class="section-head">
+    <div class="section-num">05 · 附录</div>
+    <div>
+      <div class="section-title">可视化图表</div>
+      <div class="section-lede">近10年业务结构演变 + 港股上市以来股价走势</div>
+    </div>
+  </div>
+
+  <div style="max-width:1100px;margin:0 auto;padding:0 48px;">
+    <!-- 图表1：业务结构 -->
+    <div style="background:#fff;border-radius:12px;border:0.5px solid #E5E2DE;padding:24px 28px;margin-bottom:40px;">
+      <h3 style="font-size:1.1rem;margin-bottom:4px;">阿里巴巴 · 近10年业务收入结构演变</h3>
+      <p style="font-size:0.85rem;color:#8A8480;margin-bottom:16px;">FY2016–FY2026（财年截至次年3月）· 单位：亿元人民币 · 堆叠面积图</p>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:12px;font-size:12px;color:#5C5652;">
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#534AB7;"></span>淘天/核心电商</span>
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#1D9E75;"></span>云智能</span>
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#D85A30;"></span>国际数字商业</span>
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#378ADD;"></span>本地生活/即时零售</span>
+        <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#888780;"></span>其他（菜鸟/高鑫/文娱等）</span>
+      </div>
+      <div style="position:relative;width:100%;height:320px;">
+        <canvas id="bizChart" role="img" aria-label="阿里巴巴近10年各业务线营收堆叠面积图"></canvas>
+      </div>
+      <p style="font-size:11px;color:#A8A29E;margin-top:10px;">数据来源：阿里巴巴历年财报 · 注：FY26已处置高鑫/银泰导致"其他"缩减；本地生活FY19前不单独披露</p>
+    </div>
+
+    <!-- 图表2：股价走势 -->
+    <div style="background:#fff;border-radius:12px;border:0.5px solid #E5E2DE;padding:24px 28px;">
+      <h3 style="font-size:1.1rem;margin-bottom:4px;">阿里巴巴（09988.HK）港股股价走势</h3>
+      <p style="font-size:0.85rem;color:#8A8480;margin-bottom:16px;">2019年11月上市至2026年7月 · 港元 · 关键事件已标注</p>
+      <div style="position:relative;width:100%;height:340px;">
+        <canvas id="priceChart" role="img" aria-label="阿里巴巴港股2019-2026股价走势"></canvas>
+      </div>
+      <p style="font-size:11px;color:#A8A29E;margin-top:10px;">数据来源：westock-data 月K线 · 当前价94.1港元（2026/7/3收盘）</p>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+// 图表1：业务结构堆叠面积图
+new Chart(document.getElementById('bizChart'), {
+  type: 'line',
+  data: {
+    labels: ['FY16','FY17','FY18','FY19','FY20','FY21','FY22','FY23','FY24','FY25','FY26'],
+    datasets: [
+      {label:'淘天/核心电商',data:[847,1339,1938,2476,3014,3521,3920,4180,4349,4516,4650],backgroundColor:'rgba(83,74,183,0.7)',borderColor:'#534AB7',fill:true,tension:0.3,pointRadius:0},
+      {label:'云智能',data:[30,67,134,247,400,601,746,772,1060,1180,1450],backgroundColor:'rgba(29,158,117,0.7)',borderColor:'#1D9E75',fill:true,tension:0.3,pointRadius:0},
+      {label:'国际数字商业',data:[56,94,147,196,280,427,540,692,948,1120,1280],backgroundColor:'rgba(216,90,48,0.7)',borderColor:'#D85A30',fill:true,tension:0.3,pointRadius:0},
+      {label:'本地生活/即时零售',data:[0,0,0,88,192,328,442,532,612,730,860],backgroundColor:'rgba(55,138,221,0.7)',borderColor:'#378ADD',fill:true,tension:0.3,pointRadius:0},
+      {label:'其他',data:[78,113,168,285,445,733,1218,1620,1930,1570,997],backgroundColor:'rgba(136,135,128,0.5)',borderColor:'#888780',fill:true,tension:0.3,pointRadius:0}
+    ]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false,
+    interaction:{mode:'index',intersect:false},
+    plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+c.parsed.y+'亿';}}}},
+    scales:{
+      x:{grid:{display:false},ticks:{font:{size:11}}},
+      y:{stacked:true,grid:{color:'rgba(0,0,0,0.06)'},ticks:{font:{size:11},callback:function(v){return v>=10000?(v/10000).toFixed(1)+'万亿':v+'亿';}}}
+    }
+  }
+});
+
+// 图表2：股价走势
+(function(){
+  var labels=['2019/11','2020/01','2020/03','2020/05','2020/07','2020/09','2020/10','2021/01','2021/03','2021/06','2021/09','2021/12','2022/03','2022/06','2022/09','2022/10','2022/12','2023/03','2023/06','2023/09','2023/12','2024/01','2024/03','2024/06','2024/09','2024/12','2025/01','2025/03','2025/06','2025/09','2025/10','2026/01','2026/03','2026/05','2026/07'];
+  var prices=[176,208,185,200,250,280,309,265,230,210,160,120,90,88,75,60,80,85,80,75,72,60,73,78,79,85,110,135,150,170,185,142,140,130,94];
+  var annotations=[{idx:6,text:'历史高点 HK$309',color:'#059669'},{idx:10,text:'反垄断罚款182亿',color:'#A32D2D'},{idx:15,text:'绝对低点 HK$60',color:'#A32D2D'},{idx:30,text:'DeepSeek高点 HK$185',color:'#059669'},{idx:34,text:'当前 HK$94',color:'#A32D2D'}];
+  new Chart(document.getElementById('priceChart'),{
+    type:'line',
+    data:{labels:labels,datasets:[{label:'09988.HK',data:prices,borderColor:'#534AB7',backgroundColor:'rgba(83,74,183,0.08)',fill:true,tension:0.3,pointRadius:0,pointHoverRadius:5,borderWidth:2}]},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return 'HK$'+c.parsed.y;}}}},
+      scales:{x:{grid:{display:false},ticks:{font:{size:10},maxRotation:45,autoSkip:true,maxTicksLimit:12}},y:{grid:{color:'rgba(0,0,0,0.06)'},ticks:{font:{size:11},callback:function(v){return 'HK$'+v;}},min:40,max:340}}
+    },
+    plugins:[{afterDraw:function(chart){var ctx2=chart.ctx;var meta=chart.getDatasetMeta(0);annotations.forEach(function(a){var pt=meta.data[a.idx];if(!pt)return;ctx2.save();ctx2.fillStyle=a.color;ctx2.beginPath();ctx2.arc(pt.x,pt.y,4,0,Math.PI*2);ctx2.fill();ctx2.font='500 11px sans-serif';ctx2.textAlign='center';ctx2.fillText(a.text,pt.x,pt.y-12);ctx2.restore();});}}]
+  });
+})();
+</script>
+
 <script src="../assets/page-enhance.js"></script>
 </body>
 </html>
