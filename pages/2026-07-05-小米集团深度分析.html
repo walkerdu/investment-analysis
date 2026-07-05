@@ -1148,7 +1148,7 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
   var toc = document.getElementById('tocSidebar');
   if(!toc) return;
   var items = [];
-  var labelMap = {conclusion:'01 结论', voices:'02 视角', thinking:'03 思考', watch:'04 关注'};
+  var labelMap = {conclusion:'01 结论', voices:'02 视角', thinking:'03 思考', watch:'04 关注', extended:'05 扩展'};
   document.querySelectorAll('section[id]').forEach(function(sec){
     var label = labelMap[sec.id] || sec.id;
     items.push({id: sec.id, label: label, sub: false});
