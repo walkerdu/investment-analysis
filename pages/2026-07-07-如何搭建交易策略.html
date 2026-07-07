@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如何搭建自己的交易策略 · 圆桌报告</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #F7F5F3; --bg-secondary: #FFFFFF; --bg-card: #FFFFFF;
+  --bg-elevated: #FAFAF9; --bg-warm: #F5F2EE; --bg-dark: #2D2926;
+  --text-primary: #2D2926; --text-secondary: #5C5652;
+  --text-muted: #8A8480; --text-light: #A8A29E;
+  --accent: #D97706; --accent-light: #FEF3C7; --accent-hover: #B45309;
+  --border: #E5E2DE; --border-light: #F0EEEC;
+  --red: #DC2626; --green: #059669; --gold: #D97706; --blue: #2563EB;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', Georgia, serif;
+  background: var(--bg-primary); color: var(--text-primary);
+  line-height: 1.8; font-size: 16px; -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { font-family: inherit; font-weight: 600; letter-spacing: 0.02em; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+.prose { max-width: 760px; margin: 0 auto; }
+.prose p { font-size: 1.05rem; line-height: 1.9; margin-bottom: 20px; color: var(--text-primary); }
+.section-head { max-width: 1100px; display: grid; grid-template-columns: 120px 1fr; gap: 32px; align-items: baseline; margin: 0 auto 48px; padding: 0 48px; }
+.section-num { font-size: 0.9rem; color: var(--accent); letter-spacing: 0.15em; border-top: 1px solid var(--accent); padding-top: 8px; }
+.section-title { font-size: 2rem; }
+.section-lede { color: var(--text-muted); margin-top: 6px; font-size: 1rem; }
+section { padding: 72px 0; }
+
+/* ===== Nav ===== */
+nav { position: sticky; top: 0; z-index: 100; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; background: rgba(247,245,243,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-light); }
+.nav-logo { font-weight: 600; font-size: 1rem; }
+.nav-links { display: flex; gap: 28px; }
+.nav-links a { color: var(--text-secondary); font-size: 0.95rem; }
+.nav-links a:hover { color: var(--accent); }
+
+/* ===== Hero ===== */
+.hero { max-width: 1100px; margin: 0 auto; padding: 96px 48px 48px; }
+.kicker { color: var(--accent); font-size: 0.9rem; letter-spacing: 0.15em; font-weight: 500; margin-bottom: 24px; }
+.hero h1 { font-size: 3rem; line-height: 1.25; margin-bottom: 24px; max-width: 900px; }
+.hero-dek { max-width: 760px; font-size: 1.15rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 40px; }
+.host { display: inline-flex; align-items: center; gap: 12px; font-size: 0.95rem; color: var(--text-muted); }
+.host img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); }
+
+/* ===== Module 1 · Conclusion Card ===== */
+.conclusion-wrap { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+.conclusion-card {
+  padding: 40px 48px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-left: 6px solid var(--accent); border-radius: 20px;
+  box-shadow: 0 4px 28px rgba(217, 119, 6, 0.06);
+}
+#conclusion { padding: 0; }
+#conclusion .section-head { margin-bottom: 48px; }
+.cc-question {
+  font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em;
+  margin-bottom: 8px; text-transform: uppercase;
+}
+.cc-question-text {
+  font-size: 1.4rem; font-weight: 600; color: var(--text-primary);
+  margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px dashed var(--border);
+}
+.cc-question-text::before { content: "「"; color: var(--accent); }
+.cc-question-text::after { content: "」"; color: var(--accent); }
+
+.cc-snapshot { margin-bottom: 32px; }
+.cc-snapshot-label {
+  font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.18em;
+  font-weight: 600; margin-bottom: 14px; text-transform: uppercase;
+}
+.cc-snapshot-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  background: var(--bg-elevated); border: 1px solid var(--border-light);
+  border-radius: 12px; overflow: hidden;
+}
+.cc-snap-cell {
+  padding: 16px 20px;
+  border-right: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-elevated);
+}
+.cc-snap-cell:nth-child(4n) { border-right: none; }
+.cc-snap-cell:nth-last-child(-n+4) { border-bottom: none; }
+.cc-snap-cell-label {
+  font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+.cc-snap-cell-value {
+  font-size: 1.4rem; font-weight: 600; color: var(--text-primary);
+  font-variant-numeric: tabular-nums; line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+.cc-snap-cell-sub {
+  font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.cc-snap-up { color: var(--red); }
+.cc-snap-down { color: var(--green); }
+
+.cc-headline-label {
+  font-size: 0.8rem; color: var(--accent); letter-spacing: 0.2em;
+  font-weight: 600; margin-bottom: 14px; text-transform: uppercase;
+}
+.cc-headline {
+  font-size: 1.15rem; font-weight: 500; color: var(--text-primary);
+  letter-spacing: 0.01em; line-height: 1.75;
+  margin-bottom: 32px; padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+.cc-headline strong { font-weight: 700; color: var(--text-primary); }
+.cc-headline em { font-style: normal; font-weight: 700; color: var(--red); }
+
+.cc-actions-intro {
+  font-size: 0.95rem; color: var(--text-muted); letter-spacing: 0.02em;
+  margin-bottom: 18px;
+}
+.cc-actions {
+  display: flex; flex-direction: column;
+  margin-bottom: 28px;
+}
+.cc-action-row {
+  display: grid; grid-template-columns: 180px 1fr;
+  gap: 28px; padding: 18px 0; align-items: baseline;
+  border-bottom: 1px dashed var(--border-light);
+}
+.cc-action-row:last-child { border-bottom: none; }
+.cc-action-label {
+  font-weight: 600; color: var(--accent); font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+.cc-action-detail {
+  color: var(--text-primary); font-size: 1rem; line-height: 1.85;
+}
+.cc-action-detail strong { color: var(--text-primary); font-weight: 600; }
+
+.cc-vote {
+  display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
+  padding-top: 20px; border-top: 1px dashed var(--border);
+}
+.cc-vote-label { font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em; }
+.cc-vote-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.85rem; color: var(--text-secondary);
+  padding: 4px 12px; background: var(--bg-elevated); border-radius: 999px;
+  border: 1px solid var(--border-light);
+}
+.cc-vote-tag .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+/* ===== Module 2 · Voice Card ===== */
+.voice-stack { max-width: 1100px; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; gap: 24px; }
+.voice-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px 36px; min-width: 0; }
+.voice-head { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; margin-bottom: 16px; border-bottom: 1px solid var(--border-light); }
+.voice-head img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); }
+.voice-name { font-weight: 600; font-size: 1.1rem; flex: 1; }
+.voice-card ol, .voice-card ul { padding-left: 20px; }
+.voice-card li { margin-bottom: 12px; line-height: 1.8; }
+.voice-card strong { color: var(--text-primary); font-weight: 600; }
+.voice-card h4 { margin: 20px 0 10px; font-size: 1.05rem; color: var(--text-primary); }
+.voice-card p { margin-bottom: 14px; line-height: 1.85; color: var(--text-secondary); }
+.voice-card table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 0.95rem; margin: 16px 0; }
+.voice-card th, .voice-card td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border-light); }
+.voice-card th { color: var(--text-muted); font-weight: 500; background: var(--bg-elevated); font-size: 0.85rem; }
+.voice-card .table-scroll { overflow-x: auto; margin: 16px 0; }
+.voice-card .pull-quote { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 16px 0; color: var(--text-secondary); font-style: italic; }
+
+/* ===== Module 3a · Notes List（主持人札记） ===== */
+.notes-stack { max-width: 1100px; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; gap: 16px; }
+.note-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 24px 28px; display: grid; grid-template-columns: 56px 1fr; gap: 20px; align-items: baseline; }
+.note-num { font-size: 1.6rem; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1; opacity: 0.6; }
+.note-body h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text-primary); }
+.note-body p { font-size: 0.98rem; line-height: 1.85; color: var(--text-secondary); margin: 0 0 12px; }
+.note-body p:last-child { margin-bottom: 0; }
+.note-body p strong { color: var(--text-primary); }
+
+/* ===== Module 3b · Q&A Card（主持人 Q&A） ===== */
+.qa-stack { max-width: 1100px; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; gap: 18px; }
+.qa-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px 32px; }
+.qa-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; letter-spacing: 0.06em; padding: 4px 12px; border-radius: 999px; background: var(--bg-warm); color: var(--text-secondary); margin-bottom: 14px; font-weight: 500; }
+.qa-tag.tag-key { background: #FEF3C7; color: #B45309; }
+.qa-tag.tag-confuse { background: #FEE2E2; color: #B91C1C; }
+.qa-tag.tag-miss { background: #DBEAFE; color: #1D4ED8; }
+.qa-tag.tag-meta { background: #EDE9FE; color: #6D28D9; }
+.qa-question { font-size: 1.15rem; font-weight: 600; color: var(--text-primary); margin-bottom: 14px; line-height: 1.5; }
+.qa-question::before { content: "Q. "; color: var(--accent); font-weight: 700; }
+.qa-answer { color: var(--text-secondary); font-size: 1rem; line-height: 1.85; }
+.qa-answer::before { content: "A. "; color: var(--text-muted); font-weight: 600; margin-right: 4px; }
+.qa-answer p { margin-bottom: 12px; }
+.qa-answer p:last-child { margin-bottom: 0; }
+.qa-answer strong { color: var(--text-primary); }
+
+/* ===== Module 4 · Trigger Table（关键变量触发表） ===== */
+.trigger-wrap { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+.trigger-table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; font-variant-numeric: tabular-nums; }
+.trigger-table th, .trigger-table td { padding: 18px 22px; text-align: left; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+.trigger-table tr:last-child td { border-bottom: none; }
+.trigger-table th { background: var(--bg-elevated); color: var(--text-muted); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+.trigger-var { font-weight: 600; color: var(--text-primary); font-size: 1.02rem; min-width: 200px; }
+.trigger-var .now { display: block; font-weight: 400; color: var(--text-muted); font-size: 0.85rem; margin-top: 4px; letter-spacing: 0; text-transform: none; }
+.trigger-action { color: var(--text-secondary); font-size: 0.98rem; line-height: 1.85; }
+.trigger-action strong { color: var(--text-primary); font-weight: 600; }
+.trigger-action .up { color: var(--red); font-weight: 600; }
+.trigger-action .down { color: var(--green); font-weight: 600; }
+
+/* ===== Sub-section divider（用于 Module 3 内部 3a / 3b 分隔） ===== */
+.subsection-label { max-width: 1100px; margin: 48px auto 20px; padding: 0 48px; font-size: 0.85rem; color: var(--accent); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
+.subsection-label:first-of-type { margin-top: 0; }
+
+/* ===== Passage Card（兜底承接：4 模块外的非标内容） ===== */
+.passage-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 36px 40px; max-width: 1100px; margin: 0 auto 24px; }
+.passage-card h3 { font-size: 1.3rem; margin-bottom: 16px; color: var(--text-primary); }
+.passage-card h4 { font-size: 1.05rem; margin: 24px 0 10px; color: var(--text-primary); }
+.passage-card p { font-size: 1rem; line-height: 1.9; margin-bottom: 16px; color: var(--text-secondary); }
+.passage-card ul, .passage-card ol { padding-left: 22px; margin-bottom: 16px; }
+.passage-card li { margin-bottom: 8px; line-height: 1.85; color: var(--text-secondary); }
+.passage-card strong { color: var(--text-primary); font-weight: 600; }
+.passage-card table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 0.95rem; margin: 16px 0 24px; }
+.passage-card th, .passage-card td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+.passage-card th { color: var(--text-muted); font-weight: 500; background: var(--bg-elevated); letter-spacing: 0.04em; font-size: 0.85rem; }
+
+/* ===== Right TOC Sidebar ===== */
+.toc-sidebar {
+  position: fixed; right: 28px; top: 88px;
+  width: 220px; max-height: calc(100vh - 120px); overflow-y: auto;
+  font-size: 0.82rem; line-height: 1.55; z-index: 50;
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+}
+.toc-sidebar::-webkit-scrollbar { width: 4px; }
+.toc-sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.toc-sidebar::before {
+  content: "目录 · INDEX"; display: block;
+  font-size: 0.7rem; letter-spacing: 0.18em; color: var(--text-muted);
+  font-weight: 600; text-transform: uppercase;
+  margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border-light);
+}
+.toc-item {
+  display: block; padding: 5px 0 5px 12px;
+  color: var(--text-muted); border-left: 2px solid var(--border-light);
+  transition: all 0.2s; cursor: pointer; text-decoration: none;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.toc-item:hover { color: var(--accent); border-left-color: var(--accent); }
+.toc-item.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; background: var(--accent-light); border-radius: 0 4px 4px 0; }
+.toc-item.toc-sub { padding-left: 24px; font-size: 0.76rem; color: var(--text-light); }
+.toc-item.toc-sub.active { color: var(--accent); background: transparent; }
+
+/* ===== Footer ===== */
+footer { background: var(--bg-dark); color: var(--text-light); padding: 48px; text-align: center; margin-top: 72px; }
+footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
+.footer-sub { margin-top: 16px; font-size: 0.8rem; color: var(--text-light); opacity: 0.7; }
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .container, .voice-stack, .qa-stack, .trigger-wrap, .notes-stack, .subsection-label, .conclusion-wrap { padding-left: 24px; padding-right: 24px; }
+  .hero { padding-left: 24px; padding-right: 24px; }
+  .conclusion-card { padding: 28px 24px; }
+  .cc-headline { font-size: 1.05rem; line-height: 1.7; }
+  .cc-action-row { grid-template-columns: 1fr; gap: 6px; }
+  .cc-snapshot-grid { grid-template-columns: repeat(2, 1fr); }
+  .cc-snap-cell:nth-child(4n) { border-right: 1px solid var(--border-light); }
+  .cc-snap-cell:nth-child(2n) { border-right: none; }
+  .cc-snap-cell:nth-last-child(-n+4) { border-bottom: 1px solid var(--border-light); }
+  .cc-snap-cell:nth-last-child(-n+2) { border-bottom: none; }
+  .hero h1 { font-size: 2.2rem; }
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .voice-card, .passage-card { padding: 24px; }
+  .qa-card { padding: 22px; }
+  .trigger-table th, .trigger-table td { padding: 14px 14px; }
+  .note-item { padding: 20px; grid-template-columns: 1fr; gap: 8px; }
+  .section-head { padding: 0 24px; }
+}
+@media (max-width: 1200px) { .toc-sidebar { display: none; } }
+</style>
+</head>
+<body>
+
+<aside class="toc-sidebar" id="tocSidebar"></aside>
+
+<nav>
+  <a class="nav-logo">📰 交易策略 · 圆桌</a>
+  <div class="nav-links">
+    <a href="#conclusion">结论</a>
+    <a href="#voices">视角</a>
+    <a href="#thinking">思考</a>
+    <a href="#watch">关注</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="kicker">ROUND TABLE · 2026-07-07 · 方法论专题</div>
+  <h1>如何搭建自己的交易策略？</h1>
+  <div class="hero-dek">6 位穿越牛熊的大佬，各自把自己流派的"策略搭建心法"讲透——从自上而下的产业卡位，到极简左侧的十份分批，再到超短线的破均线止损。没有最好的策略，只有最适合你的策略。</div>
+  <div class="host">
+    <img src="data:image/webp;base64,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" alt="投研主编">
+    <span>投研主编 · 圆汇众（Yuan）· 腾讯自选股股票投研专家团</span>
+  </div>
+</section>
+
+<section id="conclusion">
+  <div class="section-head">
+    <div class="section-num">01 · 结论</div>
+    <div><h2>圆桌怎么看</h2><p class="section-dek">六派方法论交叉之后的综合判断</p></div>
+  </div>
+  <div class="conclusion-wrap">
+    <div class="conclusion-card">
+
+      <div class="cc-question">YOU ASKED</div>
+      <div class="cc-question-text">如何搭建自己的交易策略</div>
+
+      <div class="cc-snapshot">
+        <div class="cc-snapshot-label">六大流派关键维度 · 2026-07-07</div>
+        <div class="cc-snapshot-grid">
+          <div class="cc-snap-cell">
+            <div class="cc-snap-cell-label">方向流派</div>
+            <div class="cc-snap-cell-value">自上而下 3 派</div>
+            <div class="cc-snap-cell-sub">产业 / 信号 / 估值</div>
+          </div>
+          <div class="cc-snap-cell">
+            <div class="cc-snap-cell-label">持仓周期跨度</div>
+            <div class="cc-snap-cell-value">天 ↔ 年</div>
+            <div class="cc-snap-cell-sub">短线 3-5 天 · 逆向以年计</div>
+          </div>
+          <div class="cc-snap-cell">
+            <div class="cc-snap-cell-label">永远不满仓</div>
+            <div class="cc-snap-cell-value">2 派</div>
+            <div class="cc-snap-cell-sub">估值 / 信号</div>
+          </div>
+          <div class="cc-snap-cell">
+            <div class="cc-snap-cell-label">永远满仓靠调仓</div>
+            <div class="cc-snap-cell-value">1 派</div>
+            <div class="cc-snap-cell-sub">财报派</div>
+          </div>
+          <div class="cc-snap-cell">
+            <div class="cc-snap-cell-label">机械止损</div>
+            <div class="cc-snap-cell-value">2 派</div>
+            <div class="cc-snap-cell-sub">短线破均线 / 信号条件单</div>
+          </div>
+          <div class="cc-snap-cell">
+            <div class="cc-snap-cell-label">分批扛不止损</div>
+            <div class="cc-snap-cell-value">1 派</div>
+            <div class="cc-snap-cell-sub">逆向 10 份分批</div>
+          </div>
+          <div class="cc-snap-cell">
+            <div class="cc-snap-cell-label">卖点比买点难</div>
+            <div class="cc-snap-cell-value cc-snap-up">6 / 6 共识</div>
+            <div class="cc-snap-cell-sub cc-snap-up">全场一致</div>
+          </div>
+          <div class="cc-snap-cell">
+            <div class="cc-snap-cell-label">第 0 步共识</div>
+            <div class="cc-snap-cell-value">认识自己</div>
+            <div class="cc-snap-cell-sub">性格 / 时间 / 资金 / 心性</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cc-headline-label">圆桌综合视角</div>
+      <div class="cc-headline">搭策略的第一步<strong>不是选股，而是先认清自己</strong>——你能忍多久、有多少闲钱、能不能守纪律，<em>决定了你只能选六派里的某一派</em>。六位大佬方法天差地别，却在两点上高度一致：<strong>先定仓位纪律再谈买什么</strong>，以及<strong>卖点（离场 / 止损）远比买点重要</strong>。<em>没有最好的策略，只有最适合你的策略</em>。</div>
+
+      <div class="cc-actions-intro">圆桌的几个核心视角：</div>
+      <div class="cc-actions">
+        <div class="cc-action-row">
+          <div class="cc-action-label">自上而下 · 产业卡位</div>
+          <div class="cc-action-detail"><strong>星望远</strong>：先选政策/趋势/供需三大来源里的方向，再拆产业链找"当前最核心卡位的环节"——选矿还是选铲子随阶段动态切换，估值是硬约束，熊市空仓。</div>
+        </div>
+        <div class="cc-action-row">
+          <div class="cc-action-label">信号对齐 · 卖出纪律</div>
+          <div class="cc-action-detail"><strong>洲四方</strong>：政策→产业→新闻→资金四层信号，方向对但资金没来就等，四层全绿才满仓；招牌是卖点分三档，系统性风险出现无条件离场，长线第一根大阴线就减。</div>
+        </div>
+        <div class="cc-action-row">
+          <div class="cc-action-label">估值定价 · 组合分层</div>
+          <div class="cc-action-detail"><strong>文衡价</strong>：Price=EPS×PE，宏观定仓位（牛市也不满仓）→中观定行业→用 PE Bands/PEG 定价，先看增速区间再选尺子；核心（红利/指数）+卫星（行业超额）动态切换。</div>
+        </div>
+        <div class="cc-action-row">
+          <div class="cc-action-label">逆向左侧 · 极简分批</div>
+          <div class="cc-action-detail"><strong>坤候底</strong>：只买大市值龙头，只判断价格高低不判断好坏；资金分 10 份，支撑位撑住才买 1 份、破了不买，间距不均匀、绝不加倍，以年计持仓，靠"时间站在龙头这边"扛。</div>
+        </div>
+        <div class="cc-action-row">
+          <div class="cc-action-label">自下而上 · 永远满仓</div>
+          <div class="cc-action-detail"><strong>钊审财</strong>：从生活体感发现线索→查数据验证→选最靠谱的公司→季度财报当考试；永远不空仓，市场差就从成长挪到红利，基本面变了才卖。</div>
+        </div>
+        <div class="cc-action-row">
+          <div class="cc-action-label">短线趋势 · 快进快出</div>
+          <div class="cc-action-detail"><strong>磊追浪</strong>：看一周主线不看一天，9:25 集合竞价+龙头带动确认才进，三只等分、平均持仓 3-5 天，破 5/10 日均线立刻走——并诚实提示：这条路能走通的是极少数。</div>
+        </div>
+      </div>
+
+      <div class="cc-vote">
+        <span class="cc-vote-label">流派分布：</span>
+        <span class="cc-vote-tag"><span class="dot" style="background:var(--green)"></span>自上而下·产业 1</span>
+        <span class="cc-vote-tag"><span class="dot" style="background:var(--gold)"></span>信号·纪律 1</span>
+        <span class="cc-vote-tag"><span class="dot" style="background:var(--accent)"></span>估值·组合 1</span>
+        <span class="cc-vote-tag"><span class="dot" style="background:var(--red)"></span>逆向·极简 1</span>
+        <span class="cc-vote-tag"><span class="dot" style="background:var(--green)"></span>自下而上·基本面 1</span>
+        <span class="cc-vote-tag"><span class="dot" style="background:var(--red)"></span>短线·跟随 1</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="voices">
+  <div class="section-head">
+    <div class="section-num">02 · 视角</div>
+    <div>
+      <div class="section-title">6 人怎么搭</div>
+      <div class="section-lede">每位从自己的方法论独立讲透策略搭建框架 —— 想看完整推理的人来这里</div>
+    </div>
+  </div>
+
+  <div class="voice-stack">
+
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="data:image/webp;base64,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" alt="产业策略师">
+        <div class="voice-name">🌊 产业策略师 · 星望远</div>
+      </div>
+      <p>不从"选什么股票"讲起，先定方向、再拆环节、再用估值筛个股、最后靠基本面跟踪决定去留。炒股赚钱的根本是信息差和认知差。</p>
+
+      <h4>自上而下四步框架</h4>
+      <table>
+        <thead><tr><th>步骤</th><th>做什么</th><th>关键点</th></tr></thead>
+        <tbody>
+          <tr><td>1 选方向</td><td>政策 / 产业趋势 / 供需三大来源</td><td>盯"首次提出"，脉冲式概念不碰</td></tr>
+          <tr><td>2 拆产业链</td><td>找当前最核心卡位的环节</td><td><strong>选矿还是选铲子随阶段动态切换</strong></td></tr>
+          <tr><td>3 选个股</td><td>估值合理 + 最正宗 + 中大市值</td><td>估值是硬约束，几百倍再好也不买</td></tr>
+          <tr><td>4 跟踪</td><td>季报年报增速/毛利率双验证</td><td>拿什么就盯住那行业的一切</td></tr>
+        </tbody>
+      </table>
+
+      <h4>核心卡位逻辑（本派最独特）</h4>
+      <ul>
+        <li>资源涨价 → 买有矿的龙头（金铜涨买有矿的，不买挖矿设备）</li>
+        <li>产业扩产 → 买当前最受益环节，随阶段动态切换</li>
+        <li>技术路线未定 → 买铲子/设备（所有路线都要设备）</li>
+        <li>行业太深看不准 → 也买铲子降认知门槛</li>
+      </ul>
+
+      <h4>仓位纪律</h4>
+      <ul>
+        <li>不设固定止盈止损；卖出四信号：基本面恶化 / 估值太贵 / 技术破位+环境差 / 逻辑证伪</li>
+        <li><strong>金字塔仓位</strong>——底部最重越涨越轻；<strong>熊市空仓或极轻仓</strong>（A 股一年约 20% 时间赚钱）</li>
+        <li>适合：追求成长、能做深度研究、几十万以上、中线为主</li>
+      </ul>
+
+      <div class="pull-quote">"当前阶段，钱流到哪个环节最确定，就卡哪里。"</div>
+    </article>
+
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="data:image/webp;base64,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" alt="信号派首席">
+        <div class="voice-name">📡 信号派首席 · 洲四方</div>
+      </div>
+      <p>策略核心不是买什么，是"在什么信号出现时才动手、什么信号出现时必须走"。买什么是结果，信号系统才是发动机。</p>
+
+      <h4>四层信号系统（严格优先级）</h4>
+      <table>
+        <thead><tr><th>层</th><th>信号</th><th>看什么</th></tr></thead>
+        <tbody>
+          <tr><td>方向层</td><td>政策</td><td>经济工作会议识别"持续被扶持"方向</td></tr>
+          <tr><td>拐点层</td><td>产业</td><td>供需/出清/大宗价，看一手信源不信 APP</td></tr>
+          <tr><td>发酵层</td><td>新闻资讯</td><td>一手信息是否持续反复发酵</td></tr>
+          <tr><td>扳机层</td><td>资金</td><td>成交量放大、共识形成——最后确认键</td></tr>
+        </tbody>
+      </table>
+
+      <h4>四句操作口诀</h4>
+      <ul>
+        <li>方向对+资金没来 → <strong>等</strong>（不做最早的人）</li>
+        <li>方向对+资金进来 → <strong>动手</strong>（四层对齐最理想）</li>
+        <li>方向不明+资金在炒 → 不跟</li>
+        <li>方向对+系统性风险 → <strong>无条件离场</strong>（优先级最高盖一切）</li>
+      </ul>
+
+      <h4>招牌 · 卖出纪律三档</h4>
+      <ul>
+        <li><strong>系统性风险</strong>（战争/危机）→ 立刻无差别离场，不心存侥幸</li>
+        <li><strong>行业层退出</strong> → 高频数据走平、估值高位涨不动，主动减</li>
+        <li><strong>操作纪律</strong> → 长线第一根大阴线一定减、破 5 日线减半、破 10 日线继续减；<strong>强烈建议用条件单</strong>克服人性</li>
+      </ul>
+
+      <div class="pull-quote">"墙要倒了你不能站在墙下面。卖点比买点难太多，因为它挑战的是人性。"</div>
+    </article>
+
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="data:image/webp;base64,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" alt="估值分析师">
+        <div class="voice-name">🧮 估值分析师 · 文衡价</div>
+      </div>
+      <p>Price = EPS × PE。你买的每一笔都能拆成 EPS（公司赚多少）和 PE（市场给多少倍）。自上而下三层，缺一层不算体系。</p>
+
+      <h4>三层框架</h4>
+      <table>
+        <thead><tr><th>层</th><th>决定</th><th>纪律</th></tr></thead>
+        <tbody>
+          <tr><td>宏观</td><td>买多少</td><td>股票仓常年 50-70%，<strong>牛市也不满仓</strong></td></tr>
+          <tr><td>中观</td><td>买什么行业</td><td>只做有景气度支撑的，不炒热点</td></tr>
+          <tr><td>微观</td><td>用估值定价</td><td><strong>先看增速区间再选尺子</strong></td></tr>
+        </tbody>
+      </table>
+
+      <h4>工具选型纪律（本派最独特）</h4>
+      <table>
+        <thead><tr><th>增速/特征</th><th>用什么工具</th></tr></thead>
+        <tbody>
+          <tr><td>高增速 &gt;15-20%，非周期</td><td>PEG</td></tr>
+          <tr><td>低/稳增速 &lt;15%，非周期</td><td>PE Bands + EPS 斜率</td></tr>
+          <tr><td>盈利为负/剧烈波动</td><td>PS 等</td></tr>
+          <tr><td>强周期（能源/材料/航运）</td><td>PB Bands（PE 会反向失真）</td></tr>
+        </tbody>
+      </table>
+
+      <h4>组合与买卖纪律</h4>
+      <ul>
+        <li>核心（指数/红利个股）+ 卫星（行业超额），5:5 或 4:6 跟宏观动态切换</li>
+        <li>加仓锚预期收益率；止损看盈利预期不设机械线（EPS 是动态的）</li>
+        <li><strong>资金面一票否决</strong>（腾讯教训）——板块遭系统性资金撤出，估值再便宜先等</li>
+      </ul>
+
+      <div class="pull-quote">"搭策略不是找一个必涨的票，是搭一套「宏观定仓位、中观定行业、估值定价格、盈利预期定买卖」的纪律。"</div>
+    </article>
+
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="data:image/webp;base64,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" alt="逆向投资人">
+        <div class="voice-name">🏔️ 逆向投资人 · 坤候底</div>
+      </div>
+      <p>策略越简单越扛得住、越执行得下去。做了 17 年越做越简单——不做短线、不追热点、不看复杂指标。用"大市值"一刀解决"好不好"，剩下只判断价格高低。</p>
+
+      <h4>十份分批铁律</h4>
+      <table>
+        <thead><tr><th>铁律</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>分 10 份</td><td>单只股票的钱分 10 份</td></tr>
+          <tr><td>撑住买 1 份</td><td>支撑位撑住买 1 份，破了不买等更低支撑</td></tr>
+          <tr><td>绝不加倍</td><td>每次都 1 份，到最低点也绝不加倍</td></tr>
+          <tr><td>间距不均匀</td><td>由 K 线形态定，<strong>不是等差数列</strong></td></tr>
+          <tr><td>5 只分散</td><td>买 5 只等权，跟钱多少无关</td></tr>
+        </tbody>
+      </table>
+
+      <h4>怎么确认"便宜" + 卖点</h4>
+      <ul>
+        <li>两维确认：历史 PE 分位杀到低位 + 关键支撑位（前低/密集平台/52 周低/整数关口）</li>
+        <li>到支撑位不急买，<strong>先看能不能撑住、有没有放量杀跌</strong>——撑住才买</li>
+        <li>卖出三信号：牛市结束（力竭放量冲不动）/ PE 到历史高位 / 快速冲顶做小仓 T</li>
+        <li>最大的坑：<strong>"大公司不会死"隐含前提是行业没被颠覆</strong>（隆基光伏教训）→ 往指数/ETF/红利进化</li>
+      </ul>
+
+      <div class="pull-quote">"我只会亏时间，不会亏钱。接飞刀是跌了就买，逆向是跌到支撑位、确认撑住了才买。"</div>
+    </article>
+
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="data:image/webp;base64,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" alt="财报研究员">
+        <div class="voice-name">🔬 财报研究员 · 钊审财</div>
+      </div>
+      <p>起点不是政策也不是 K 线，而是生活体感——你亲眼看得见的行业才可能看得懂，看得懂才拿得住。但体感只是发现线索的第一步，后面还有一整条验证链。</p>
+
+      <h4>观察池标准（找最靠谱，不一定最大）</h4>
+      <ul>
+        <li>管理层对周期的判断力（屡次踩错猪周期=不靠谱）</li>
+        <li>竞争地位与市场份额、护城河</li>
+        <li>财报硬指标：营收/净利/负债/PE/PB/商誉/应收</li>
+        <li>研报客观数据可信、主观结论仅参考</li>
+      </ul>
+
+      <h4>买入 · 跟踪 · 卖出</h4>
+      <ul>
+        <li>买入：估值百分位（&gt;95% 不追）+ 先建 5-10% 观察仓分批验证；<strong>每笔买入必须有新预期支撑</strong></li>
+        <li>跟踪：每季财报就是一次考试，与买入预期一致就拿、变了就走</li>
+        <li>卖出=调仓换股，<strong>永远不空仓</strong>：基本面变 / 估值过高+全民关注（卖在人声鼎沸时）/ 短线约 7% 硬止损</li>
+        <li>适合：愿读财报、能沉心研究 1-2 个行业；约 80% 中长线 + 10-20% 超短线</li>
+      </ul>
+
+      <div class="pull-quote">"看不懂就不买；基本面没变就拿着；市场不好就调仓不空仓。没有买入预期那就不是投资，是赌博。"</div>
+    </article>
+
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="data:image/webp;base64,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" alt="短线冲浪手">
+        <div class="voice-name">⚡ 短线冲浪手 · 磊追浪</div>
+      </div>
+      <p>右侧交易——不猜底、不抄底，等方向被资金确认了再上。第一件事不是选股，是判断"当周主线"。先说句实话：这套东西难，大部分人做不好。</p>
+
+      <h4>主线判断 + 进场两动作</h4>
+      <ul>
+        <li>主线硬标准：<strong>看一周不看一天</strong>——连续多日个股涨停 + 龙头带动强 + 新闻热度持续，三条同时成立</li>
+        <li><strong>9:25 集合竞价看封单量</strong>（每天最重要 5 分钟）</li>
+        <li><strong>龙头必须带动</strong>（宁德不动新能源起不来，龙头不涨不进场）</li>
+        <li>过滤：市值建议 100 亿以上 + 真供应链核心 vs 纯蹭概念</li>
+      </ul>
+
+      <h4>仓位与止损铁律</h4>
+      <table>
+        <thead><tr><th>项</th><th>铁律</th></tr></thead>
+        <tbody>
+          <tr><td>仓位</td><td>三只票等分，管不过来 3 只以上</td></tr>
+          <tr><td>周期</td><td>A 股平均 3-5 天，超短</td></tr>
+          <tr><td>止盈</td><td>盈利 10-20% 先减 1/3</td></tr>
+          <tr><td>止损</td><td><strong>破 5 或 10 日均线立刻走，不越跌越买</strong></td></tr>
+        </tbody>
+      </table>
+
+      <h4>诚实提示（三个致命误区）</h4>
+      <ul>
+        <li>追高（主线没确认就冲=接盘）/ 不止损（破均线还幻想反弹）/ 频繁交易（成本吃掉利润）</li>
+        <li>需全天候盯盘、心态极稳、能接受 60% 胜率意味 10 笔亏 4 笔</li>
+        <li><strong>大部分散户做短线是亏钱的，这是事实</strong></li>
+      </ul>
+
+      <div class="pull-quote">"看一周，别看一天。破了 5 或 10 日均线立刻走——这条路能走通的是少数。"</div>
+    </article>
+
+  </div>
+</section>
+
+<section id="thinking">
+  <div class="section-head">
+    <div class="section-num">03 · 思考</div>
+    <div>
+      <div class="section-title">深度思考</div>
+      <div class="section-lede">主持人替你想到的 —— 你没想到的问题、可能误读的地方、应该问但没问的</div>
+    </div>
+  </div>
+
+  <div class="subsection-label">3a · 主持人札记</div>
+  <div class="notes-stack">
+    <article class="note-item">
+      <div class="note-num">01</div>
+      <div class="note-body">
+        <h4>六派吵得最凶的不是"买什么"，是"仓位"</h4>
+        <p>把六个人的框架摊开，最大分歧不在选股，而在"该拿多重的仓、该不该空仓"。估值派和信号派坚持永远不满仓，财报派坚持永远满仓靠调仓，产业派主张熊市空仓，逆向派用分 10 份变相控仓。这告诉我：<strong>仓位管理才是策略的骨架，选股只是填充</strong>。新手最容易本末倒置——先纠结买哪只，却从没想过该买几成。</p>
+      </div>
+    </article>
+    <article class="note-item">
+      <div class="note-num">02</div>
+      <div class="note-body">
+        <h4>六个人异口同声：卖点比买点难</h4>
+        <p>这是全场最强共识，却也最反直觉。买入时你充满希望、逻辑清晰；卖出时你被盈亏情绪绑架。所以他们不约而同把卖点<strong>规则化、机械化</strong>——甚至用条件单让工具代替人手。洲四方说"卖点挑战人性"，坤候底说"买是艺术卖是纪律"，磊追浪说"破均线立刻走"，说的是同一件事。</p>
+      </div>
+    </article>
+    <article class="note-item">
+      <div class="note-num">03</div>
+      <div class="note-body">
+        <h4>"认识自己"是藏在所有框架前面的第 0 步</h4>
+        <p>坤候底开门见山讲"能不能忍、有没有闲钱、性子稳不稳"，磊追浪反复劝"诚实评估自己是不是那少数"，钊审财强调"能力圈"。表面讲方法，实际都在讲同一件事：<strong>策略必须匹配你的性格、时间、资金和心性</strong>。上班族硬学短线、急性子硬做左侧，注定失败——不是方法错，是人和方法错配。</p>
+      </div>
+    </article>
+    <article class="note-item">
+      <div class="note-num">04</div>
+      <div class="note-body">
+        <h4>每一派都有一次"血的教训"，且都写进了框架里</h4>
+        <p>洲四方的战争被埋、文衡价的腾讯资金面、坤候底的隆基光伏、钊审财的生物环保暴雷、磊追浪的追高接盘——这些不是段子，是他们把亏损沉淀成了纪律。<strong>好策略往往不是从盈利里长出来的，是从亏损里长出来的。</strong>你搭自己的策略时，也要给教训留一个"永不再犯"的硬规则。</p>
+      </div>
+    </article>
+    <article class="note-item">
+      <div class="note-num">05</div>
+      <div class="note-body">
+        <h4>估值派和逆向派看着像，其实是两种人</h4>
+        <p>两派都买便宜的大公司，但文衡价用 PE Bands 精确算 EPS×PE、看盈利变化；坤候底只看历史 PE 分位+支撑位、模糊判断高低，甚至不判断公司好坏。前者是精算师，后者是极简主义者。<strong>同样"买便宜"，一个靠精确定价，一个靠时间和分批</strong>——选哪种，取决于你愿不愿意做那么细的功课。</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="subsection-label">3b · 主持人 Q&amp;A</div>
+  <div class="qa-stack">
+    <article class="qa-card">
+      <span class="qa-tag tag-key">🔑 关键</span>
+      <div class="qa-question">如果只能记住一条，该记哪条？</div>
+      <div class="qa-answer">
+        <p>从六派共识看：<strong>先定"我该拿几成仓、什么时候必须走"，再谈买什么</strong>。仓位纪律和卖出纪律是活下来的底盘，选股只是锦上添花。六个人方法各异，但都把纪律放在选股前面——这不是巧合。</p>
+      </div>
+    </article>
+    <article class="qa-card">
+      <span class="qa-tag tag-confuse">⚠️ 易混淆</span>
+      <div class="qa-question">"逆向抄底"和"接飞刀"到底差在哪？</div>
+      <div class="qa-answer">
+        <p>从逆向派视角看差别是决定性的：接飞刀是"跌了就买、边跌边买、越跌越加"；逆向是"跌到 K 线上看得见的支撑位、确认撑住了才买 1 份、破了就不买"。前者赌反弹，后者等确认。<strong>分 10 份、间距不均匀、绝不加倍</strong>这三条，就是逆向派防止自己变成接飞刀的护栏。</p>
+      </div>
+    </article>
+    <article class="qa-card">
+      <span class="qa-tag tag-miss">🔍 易疏忽</span>
+      <div class="qa-question">"永远满仓"和"牛市也不满仓"矛盾吗？</div>
+      <div class="qa-answer">
+        <p>表面矛盾，其实是两套风险观。财报派"永远满仓"指的是<strong>永远持有权益、靠成长↔红利轮动控风险，从不空仓等待</strong>；估值派"牛市也不满仓"指的是<strong>权益仓位上限压在 70%，留现金抵御系统性风险</strong>。一个用换仓控风险，一个用留现金控风险——没有对错，是不同性格的人对"踏空"和"回撤"哪个更难受的选择。</p>
+      </div>
+    </article>
+    <article class="qa-card">
+      <span class="qa-tag tag-meta">⭐ 重要</span>
+      <div class="qa-question">用户没问但最该想的：我到底属于哪一派？</div>
+      <div class="qa-answer">
+        <p>这才是搭策略的真问题。三个自测：<strong>你一天能看几次盘？</strong>只有收盘后能看→别碰短线；能全天盯→短线才对你开放。<strong>你能忍受套牢多久？</strong>忍不了一周→短线；忍得了一年→逆向。<strong>你愿花多少时间做功课？</strong>愿算估值读财报→估值/财报派；只想极简→逆向派。先回答这三个，比直接问"哪个策略最赚钱"有用一百倍。</p>
+      </div>
+    </article>
+    <article class="qa-card">
+      <span class="qa-tag tag-key">🔑 关键</span>
+      <div class="qa-question">六派能混用吗？</div>
+      <div class="qa-answer">
+        <p>可以，但要分清主次、别互相打架。常见稳健组合：产业/估值派选核心方向和定仓位（骨架）+ 信号派管卖出纪律（安全带）+ 财报派做季度跟踪（体检）。短线派和逆向派因周期心性差异太大，一般不和其他派混在同一笔资金里。<strong>混用的前提是每一笔钱都清楚自己走的是哪套规则</strong>——最忌讳"买时是短线、套了就改口说是长线价值投资"。</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="watch">
+  <div class="section-head">
+    <div class="section-num">04 · 关注</div>
+    <div>
+      <div class="section-title">后续关注</div>
+      <div class="section-lede">当下综合视角是基于现有认知的快照 —— 什么时候该回来重看，什么情况下我们这次的视角可能错了</div>
+    </div>
+  </div>
+
+  <div class="subsection-label">4a · 关键变量观察台（策略搭建自检表）</div>
+  <div class="trigger-wrap">
+    <table class="trigger-table">
+      <thead>
+        <tr>
+          <th style="width: 34%;">变量 · 当前状态</th>
+          <th>重新评估触发线</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="trigger-var">你的可盯盘时间<span class="now">待自评</span></td>
+          <td class="trigger-action">只能收盘后看 → <span class="down">短线派不适用，须转中长线框架</span>；能全天盯 → <span class="up">短线派才对你开放</span>。</td>
+        </tr>
+        <tr>
+          <td class="trigger-var">你的持仓忍耐力<span class="now">待自评</span></td>
+          <td class="trigger-action">套一周就焦虑 → <span class="down">逆向/价值派会让你崩溃</span>；能忍数年 → <span class="up">才具备做左侧的心性</span>。</td>
+        </tr>
+        <tr>
+          <td class="trigger-var">你的仓位纪律<span class="now">待自评</span></td>
+          <td class="trigger-action">从没想过该买几成 → <span class="down">策略骨架缺失，先补仓位管理</span>；有明确仓位上限 → <span class="up">骨架成立</span>。</td>
+        </tr>
+        <tr>
+          <td class="trigger-var">你的卖出规则<span class="now">待自评</span></td>
+          <td class="trigger-action">卖点靠盘感/情绪 → <span class="down">高危，须改为规则化（阈值/条件单）</span>；已机械化 → <span class="up">通过人性关</span>。</td>
+        </tr>
+        <tr>
+          <td class="trigger-var">你的能力圈边界<span class="now">待自评</span></td>
+          <td class="trigger-action">什么行业都想买 → <span class="down">认知分散，须收敛到 1-2 个懂的行业</span>；已聚焦 → <span class="up">具备深挖基础</span>。</td>
+        </tr>
+        <tr>
+          <td class="trigger-var">你的教训清单<span class="now">待自评</span></td>
+          <td class="trigger-action">亏过但没总结成规则 → <span class="down">大概率重复犯错</span>；已写进硬规则 → <span class="up">策略在进化</span>。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection-label">4b · 综合视角失效条件</div>
+  <div class="notes-stack">
+    <div class="note-item">
+      <div class="note-num">01</div>
+      <div class="note-body">如果你把六派规则东拼西凑、同一笔钱既想短线又想长线 —— 与"每笔钱必须清楚走哪套规则"这一共识矛盾，本报告的方法论会在你手里失效。</div>
+    </div>
+    <div class="note-item">
+      <div class="note-num">02</div>
+      <div class="note-body">如果你跳过"认识自己"直接套用某派（上班族硬学盯盘短线、急性子硬做以年计的左侧），则"策略匹配性格"这一前提被推翻，再好的框架也执行不下去。</div>
+    </div>
+    <div class="note-item">
+      <div class="note-num">03</div>
+      <div class="note-body">如果你只做买入规则、不建卖出纪律 —— 与全场 6/6 的最强共识（卖点比买点重要）直接冲突，策略等于没有安全带。</div>
+    </div>
+    <div class="note-item">
+      <div class="note-num">04</div>
+      <div class="note-body">如果你把亏损归因于"运气不好"而非复盘成规则 —— 六派都靠教训沉淀纪律，缺了这一环，策略无法迭代，"策略是长期工程"的视角对你不成立。</div>
+    </div>
+    <div class="note-item">
+      <div class="note-num">05</div>
+      <div class="note-body">如果市场进入极端环境（系统性风险/单边牛熊）而你的框架没有对应预案 —— 信号派和产业派都强调系统性风险优先级最高，缺预案的策略会在极端行情里遭遇最大回撤。</div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <p>⚠️ 以上内容由 AI 基于公开信息整理生成，仅供参考，不构成任何投资建议或个股推荐。投资有风险，决策需谨慎。</p>
+  <p class="footer-sub">stock-partner-team · Generated 2026-07-07</p>
+</footer>
+
+<script>
+(function(){
+  var toc = document.getElementById('tocSidebar');
+  if(!toc) return;
+  var items = [];
+  var labelMap = {conclusion:'01 结论', voices:'02 视角', thinking:'03 思考', watch:'04 关注'};
+  document.querySelectorAll('section[id]').forEach(function(sec){
+    var label = labelMap[sec.id] || sec.id;
+    items.push({id: sec.id, label: label, sub: false});
+    if(sec.id === 'voices'){
+      sec.querySelectorAll('.voice-card').forEach(function(card, i){
+        var name = card.querySelector('.voice-name');
+        if(name){
+          var sid = 'toc-voice-' + i;
+          card.id = sid;
+          items.push({id: sid, label: name.textContent.trim(), sub: true});
+        }
+      });
+    }
+    if(sec.id === 'thinking'){
+      sec.querySelectorAll('.note-item').forEach(function(note, i){
+        var h4 = note.querySelector('.note-body h4');
+        if(h4){
+          var sid = 'toc-note-' + i;
+          note.id = sid;
+          items.push({id: sid, label: h4.textContent.trim(), sub: true});
+        }
+      });
+      sec.querySelectorAll('.qa-card').forEach(function(qa, i){
+        var q = qa.querySelector('.qa-question');
+        if(q){
+          var sid = 'toc-qa-' + i;
+          qa.id = sid;
+          var t = q.textContent.trim();
+          if(t.length > 22) t = t.slice(0, 22) + '…';
+          items.push({id: sid, label: t, sub: true});
+        }
+      });
+    }
+  });
+  items.forEach(function(it){
+    var a = document.createElement('a');
+    a.className = 'toc-item' + (it.sub ? ' toc-sub' : '');
+    a.href = '#' + it.id;
+    a.textContent = it.label;
+    a.title = it.label;
+    toc.appendChild(a);
+  });
+  var targets = items.map(function(it){ return document.getElementById(it.id); }).filter(Boolean);
+  var links = Array.prototype.slice.call(toc.querySelectorAll('.toc-item'));
+  function onScroll(){
+    var y = window.scrollY + 140;
+    var active = 0;
+    for(var i = 0; i < targets.length; i++){
+      if(targets[i] && targets[i].offsetTop <= y) active = i;
+    }
+    links.forEach(function(l, i){ l.classList.toggle('active', i === active); });
+  }
+  window.addEventListener('scroll', onScroll, {passive: true});
+  onScroll();
+})();
+</script>
+
+<script src="../assets/page-enhance.js"></script>
+</body>
+</html>
