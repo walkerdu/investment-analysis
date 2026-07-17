@@ -51,7 +51,7 @@
       "category": "basics",
       "tags": ["术语图鉴", "估值指标", "HBM存储链", "物理AI产业链", "自动驾驶分级", "SVG图解"],
       "date": "2026-06-29",
-      "source": "/Users/sasalu/.workbuddy/ai-artifacts/investment-glossary/2026-06-29-AI投研术语图鉴.html",
+      "source": "/Users/sasalu_1/.workbuddy/ai-artifacts/investment-glossary/2026-06-29-AI投研术语图鉴.html",
       "path": "pages/2026-06-29-AI投研术语图鉴.html",
       "summary": "系统整理80+个投研专业词语与缩写，六大类编排、10幅SVG图解。持续扩充——新增自动驾驶/Robotaxi圆桌涌现的估值方法(EV/Sales、SOTP、期权价值框架)、商业基本面(UE单车经济、GAAP、现金跑道)与交易概念(禁售期、基石、SAE分级)。"
     },
@@ -134,6 +134,16 @@
       "source": "/Users/sasalu/WorkBuddy/2026-07-07-16-58-54/deliverables/stock-partner/2026-07-07/如何搭建交易策略-圆桌报告.html",
       "path": "pages/2026-07-07-如何搭建交易策略.html",
       "summary": "六位专家各讲一套流派：产业卡位、四层信号、估值定价、逆向分批、永远满仓、短线趋势——6/6共识是先定仓位纪律、卖点重于买点，「先认清自己」是隐藏的第0步。没有最好的策略，只有最适合你性格/时间/资金/心性的策略。"
+    },
+    {
+      "id": "2026-07-17-智谱暴跌与全市场杀跌",
+      "title": "智谱暴跌26%与全市场杀跌 · 圆桌报告",
+      "category": "roundtable",
+      "tags": ["智谱", "解禁", "Kimi K3", "PS估值", "创业板崩盘", "AI杀估值"],
+      "date": "2026-07-17",
+      "source": "/Users/sasalu_1/.workbuddy/ai-artifacts/stock-partner/智谱暴跌-圆桌报告.html",
+      "path": "pages/2026-07-17-智谱暴跌与全市场杀跌.html",
+      "summary": "6视角圆桌拆解智谱单日-26%与创业板-7.45%崩盘：解禁1.48倍流通盘+Kimi K3开源+全球科技杀估值三重共振，PS 659倍仍极贵，6位一致偏空，合理关注区间500-800港元。"
     }
   ]
 }
