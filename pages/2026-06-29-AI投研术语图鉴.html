@@ -709,7 +709,7 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
           <td><strong>指数移动平均线</strong></td>
           <td>EMA</td>
           <td>Exponential Moving Average</td>
-          <td>对近期价格赋予指数递减权重的移动平均线，比简单移动平均线（MA/SMA）对价格变化反应更灵敏、滞后更小。常用周期 EMA12/EMA26，是 MACD 指标的计算基础（DIF = EMA12 − EMA26）。短周期 EMA 上穿长周期 EMA 为金叉、下穿为死叉；EMA 周期越长越平滑，常与 MA 配合用作支撑/压力位。<br><strong>报告用法</strong>：MACD 的 DIF 线本质是 12日EMA 与 26日EMA 的差值——圆桌报告中"中际旭创 MACD 死叉大幅发散、DIF −22.3"背后即短期 EMA 跌破长期 EMA 且缺口持续扩大，是光模块主升浪结束的技术信号。</td>
+          <td>对近期价格赋予指数递减权重的移动平均线，比简单移动平均线（MA/SMA）对价格变化反应更灵敏、滞后更小。<strong>计算公式</strong>：EMA<sub>t</sub> = P<sub>t</sub> × α + EMA<sub>t−1</sub> × (1 − α)，其中 α = 2 / (N + 1)，N 为周期天数（EMA12 的 α ≈ 0.154、EMA26 的 α ≈ 0.074）；首日 EMA 通常取首日收盘价或前 N 日简单均值作初值。常用周期 EMA12/EMA26，是 MACD 指标的计算基础（DIF = EMA12 − EMA26）。短周期 EMA 上穿长周期 EMA 为金叉、下穿为死叉；EMA 周期越长越平滑，常与 MA 配合用作支撑/压力位。<br><strong>报告用法</strong>：MACD 的 DIF 线本质是 12日EMA 与 26日EMA 的差值——圆桌报告中"中际旭创 MACD 死叉大幅发散、DIF −22.3"背后即短期 EMA 跌破长期 EMA 且缺口持续扩大，是光模块主升浪结束的技术信号。</td>
         </tr>
         <tr>
           <td><strong>指数平滑异同移动平均线</strong></td>
