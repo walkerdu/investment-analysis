@@ -296,13 +296,13 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
 </nav>
 
 <section class="hero">
-  <div class="kicker">GLOSSARY · 更新至 2026-07-07 · 投资基础 · 持续扩充</div>
+  <div class="kicker">GLOSSARY · 更新至 2026-07-18 · 投资基础 · 持续扩充</div>
   <h1>投研术语图鉴</h1>
   <div class="hero-dek">
-    系统整理 108+ 个投研专业词语与缩写，按估值财务、技术分析、资金市场、半导体存储、物理AI、宏观市场六大类编排，并对 10 个核心概念配 SVG 图解。本图鉴作为投资基础知识库，持续扩充——本次新增"智谱暴跌"圆桌涌现的估值与盘面术语：估值财务（ARR年度经常性收入、流动比率）、技术分析（量比）共3个核心概念。
+    系统整理 109+ 个投研专业词语与缩写，按估值财务、技术分析、资金市场、半导体存储、物理AI、宏观市场六大类编排，并对 10 个核心概念配 SVG 图解。本图鉴作为投资基础知识库，持续扩充——本次新增技术分析类术语：指数移动平均线（EMA），作为 MACD 的计算基础与均线系统的灵敏变体，补全移动平均线家族。
   </div>
   <div class="host">
-    <span>📚 术语总数：104+　·　🎨 SVG图解：10幅　·　🗓 更新日期：2026-07-17</span>
+    <span>📚 术语总数：105+　·　🎨 SVG图解：10幅　·　🗓 更新日期：2026-07-18</span>
   </div>
 </section>
 
@@ -704,6 +704,12 @@ footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
           <td>MA5/10/20</td>
           <td>Moving Average (5/10/20-day)</td>
           <td>过去N个交易日收盘价的平均值连成的线。MA5=5日线（短期），MA10=10日线（中短期），MA20=20日线（中期）。股价在均线之上=强势，跌破=走弱信号。<br><strong>报告用法</strong>："14只龙头破MA5+MA10"是机器人板块退潮的核心盘面信号；寒武纪5日线1457是"命门"。</td>
+        </tr>
+        <tr>
+          <td><strong>指数移动平均线</strong></td>
+          <td>EMA</td>
+          <td>Exponential Moving Average</td>
+          <td>对近期价格赋予指数递减权重的移动平均线，比简单移动平均线（MA/SMA）对价格变化反应更灵敏、滞后更小。常用周期 EMA12/EMA26，是 MACD 指标的计算基础（DIF = EMA12 − EMA26）。短周期 EMA 上穿长周期 EMA 为金叉、下穿为死叉；EMA 周期越长越平滑，常与 MA 配合用作支撑/压力位。<br><strong>报告用法</strong>：MACD 的 DIF 线本质是 12日EMA 与 26日EMA 的差值——圆桌报告中"中际旭创 MACD 死叉大幅发散、DIF −22.3"背后即短期 EMA 跌破长期 EMA 且缺口持续扩大，是光模块主升浪结束的技术信号。</td>
         </tr>
         <tr>
           <td><strong>指数平滑异同移动平均线</strong></td>
@@ -1705,6 +1711,5 @@ window.addEventListener('load', function(){
 })();
 </script>
 
-<script src="../assets/page-enhance.js"></script>
 </body>
 </html>
