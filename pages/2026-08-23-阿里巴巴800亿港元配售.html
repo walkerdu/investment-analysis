@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿里巴巴 800 亿港元配售 · 投研圆桌报告</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #F7F5F3; --bg-secondary: #FFFFFF; --bg-card: #FFFFFF;
+  --bg-elevated: #FAFAF9; --bg-warm: #F5F2EE; --bg-dark: #2D2926;
+  --text-primary: #2D2926; --text-secondary: #5C5652;
+  --text-muted: #8A8480; --text-light: #A8A29E;
+  --accent: #D97706; --accent-light: #FEF3C7; --accent-hover: #B45309;
+  --border: #E5E2DE; --border-light: #F0EEEC;
+  --red: #DC2626; --green: #059669; --gold: #D97706; --blue: #2563EB;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', Georgia, serif;
+  background: var(--bg-primary); color: var(--text-primary);
+  line-height: 1.8; font-size: 16px; -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { font-family: inherit; font-weight: 600; letter-spacing: 0.02em; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+.prose { max-width: 760px; margin: 0 auto; }
+.prose p { font-size: 1.05rem; line-height: 1.9; margin-bottom: 20px; color: var(--text-primary); }
+.section-head { max-width: 1100px; display: grid; grid-template-columns: 120px 1fr; gap: 32px; align-items: baseline; margin: 0 auto 48px; padding: 0 48px; }
+.section-num { font-size: 0.9rem; color: var(--accent); letter-spacing: 0.15em; border-top: 1px solid var(--accent); padding-top: 8px; }
+.section-title { font-size: 2rem; }
+.section-lede { color: var(--text-muted); margin-top: 6px; font-size: 1rem; }
+section { padding: 72px 0; }
+
+/* ===== Nav ===== */
+nav { position: sticky; top: 0; z-index: 100; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; background: rgba(247,245,243,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-light); }
+.nav-logo { font-weight: 600; font-size: 1rem; }
+.nav-links { display: flex; gap: 28px; }
+.nav-links a { color: var(--text-secondary); font-size: 0.95rem; }
+.nav-links a:hover { color: var(--accent); }
+
+/* ===== Hero ===== */
+.hero { max-width: 1100px; margin: 0 auto; padding: 96px 48px 48px; }
+.kicker { color: var(--accent); font-size: 0.9rem; letter-spacing: 0.15em; font-weight: 500; margin-bottom: 24px; }
+.hero h1 { font-size: 3rem; line-height: 1.25; margin-bottom: 24px; max-width: 900px; }
+.hero-dek { max-width: 760px; font-size: 1.15rem; color: var(--text-secondary); line-height: 1.9; margin-bottom: 40px; }
+.host { display: inline-flex; align-items: center; gap: 12px; font-size: 0.95rem; color: var(--text-muted); }
+.host img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); }
+
+/* ===== Module 1 · Conclusion Card ===== */
+.conclusion-wrap { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+.conclusion-card {
+  padding: 40px 48px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-left: 6px solid var(--accent); border-radius: 20px;
+  box-shadow: 0 4px 28px rgba(217, 119, 6, 0.06);
+}
+#conclusion { padding: 0; }
+#conclusion .section-head { margin-bottom: 48px; }
+.cc-question {
+  font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em;
+  margin-bottom: 8px; text-transform: uppercase;
+}
+.cc-question-text {
+  font-size: 1.4rem; font-weight: 600; color: var(--text-primary);
+  margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px dashed var(--border);
+}
+.cc-question-text::before { content: "「"; color: var(--accent); }
+.cc-question-text::after { content: "」"; color: var(--accent); }
+
+.cc-snapshot { margin-bottom: 32px; }
+.cc-snapshot-label {
+  font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.18em;
+  font-weight: 600; margin-bottom: 14px; text-transform: uppercase;
+}
+.cc-snapshot-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  background: var(--bg-elevated); border: 1px solid var(--border-light);
+  border-radius: 12px; overflow: hidden;
+}
+.cc-snap-cell {
+  padding: 16px 20px;
+  border-right: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-elevated);
+}
+.cc-snap-cell:nth-child(4n) { border-right: none; }
+.cc-snap-cell:nth-last-child(-n+4) { border-bottom: none; }
+.cc-snap-cell-label {
+  font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+.cc-snap-cell-value {
+  font-size: 1.4rem; font-weight: 600; color: var(--text-primary);
+  font-variant-numeric: tabular-nums; line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+.cc-snap-cell-sub {
+  font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.cc-snap-up { color: var(--red); }
+.cc-snap-down { color: var(--green); }
+
+.cc-headline-label {
+  font-size: 0.8rem; color: var(--accent); letter-spacing: 0.2em;
+  font-weight: 600; margin-bottom: 14px; text-transform: uppercase;
+}
+.cc-headline {
+  font-size: 1.15rem; font-weight: 500; color: var(--text-primary);
+  letter-spacing: 0.01em; line-height: 1.75;
+  margin-bottom: 32px; padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+.cc-headline strong { font-weight: 700; color: var(--text-primary); }
+.cc-headline em { font-style: normal; font-weight: 700; color: var(--red); }
+
+.cc-actions-intro {
+  font-size: 0.95rem; color: var(--text-muted); letter-spacing: 0.02em;
+  margin-bottom: 18px;
+}
+.cc-actions {
+  display: flex; flex-direction: column;
+  margin-bottom: 28px;
+}
+.cc-action-row {
+  display: grid; grid-template-columns: 180px 1fr;
+  gap: 28px; padding: 18px 0; align-items: baseline;
+  border-bottom: 1px dashed var(--border-light);
+}
+.cc-action-row:last-child { border-bottom: none; }
+.cc-action-label {
+  font-weight: 600; color: var(--accent); font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+.cc-action-detail {
+  color: var(--text-primary); font-size: 1rem; line-height: 1.85;
+}
+.cc-action-detail strong { color: var(--text-primary); font-weight: 600; }
+
+.cc-vote {
+  display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
+  padding-top: 20px; border-top: 1px dashed var(--border);
+}
+.cc-vote-label { font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.05em; }
+.cc-vote-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.85rem; color: var(--text-secondary);
+  padding: 4px 12px; background: var(--bg-elevated); border-radius: 999px;
+  border: 1px solid var(--border-light);
+}
+.cc-vote-tag .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+/* ===== Module 2 · Voice Card ===== */
+.voice-stack { max-width: 1100px; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; gap: 24px; }
+.voice-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px 36px; min-width: 0; }
+.voice-head { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; margin-bottom: 16px; border-bottom: 1px solid var(--border-light); }
+.voice-head img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); }
+.voice-name { font-weight: 600; font-size: 1.1rem; flex: 1; }
+.voice-card ol, .voice-card ul { padding-left: 20px; }
+.voice-card li { margin-bottom: 12px; line-height: 1.8; }
+.voice-card strong { color: var(--text-primary); font-weight: 600; }
+.voice-card h4 { margin: 20px 0 10px; font-size: 1.05rem; color: var(--text-primary); }
+.voice-card p { margin-bottom: 14px; line-height: 1.85; color: var(--text-secondary); }
+.voice-card table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 0.95rem; margin: 16px 0; }
+.voice-card th, .voice-card td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border-light); }
+.voice-card th { color: var(--text-muted); font-weight: 500; background: var(--bg-elevated); font-size: 0.85rem; }
+.voice-card .table-scroll { overflow-x: auto; margin: 16px 0; }
+.voice-card .pull-quote { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 16px 0; color: var(--text-secondary); font-style: italic; }
+
+/* ===== Module 3a · Notes List（主持人札记） ===== */
+.notes-stack { max-width: 1100px; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; gap: 16px; }
+.note-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 24px 28px; display: grid; grid-template-columns: 56px 1fr; gap: 20px; align-items: baseline; }
+.note-num { font-size: 1.6rem; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1; opacity: 0.6; }
+.note-body h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text-primary); }
+.note-body p { font-size: 0.98rem; line-height: 1.85; color: var(--text-secondary); margin: 0 0 12px; }
+.note-body p:last-child { margin-bottom: 0; }
+.note-body p strong { color: var(--text-primary); }
+
+/* ===== Module 3b · Q&A Card（主持人 Q&A） ===== */
+.qa-stack { max-width: 1100px; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; gap: 18px; }
+.qa-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px 32px; }
+.qa-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; letter-spacing: 0.06em; padding: 4px 12px; border-radius: 999px; background: var(--bg-warm); color: var(--text-secondary); margin-bottom: 14px; font-weight: 500; }
+.qa-tag.tag-key { background: #FEF3C7; color: #B45309; }
+.qa-tag.tag-confuse { background: #FEE2E2; color: #B91C1C; }
+.qa-tag.tag-miss { background: #DBEAFE; color: #1D4ED8; }
+.qa-tag.tag-meta { background: #EDE9FE; color: #6D28D9; }
+.qa-question { font-size: 1.15rem; font-weight: 600; color: var(--text-primary); margin-bottom: 14px; line-height: 1.5; }
+.qa-question::before { content: "Q. "; color: var(--accent); font-weight: 700; }
+.qa-answer { color: var(--text-secondary); font-size: 1rem; line-height: 1.85; }
+.qa-answer::before { content: "A. "; color: var(--text-muted); font-weight: 600; margin-right: 4px; }
+.qa-answer p { margin-bottom: 12px; }
+.qa-answer p:last-child { margin-bottom: 0; }
+.qa-answer strong { color: var(--text-primary); }
+
+/* ===== Module 4 · Trigger Table（关键变量触发表） ===== */
+.trigger-wrap { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+.trigger-table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; font-variant-numeric: tabular-nums; }
+.trigger-table th, .trigger-table td { padding: 18px 22px; text-align: left; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+.trigger-table tr:last-child td { border-bottom: none; }
+.trigger-table th { background: var(--bg-elevated); color: var(--text-muted); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+.trigger-var { font-weight: 600; color: var(--text-primary); font-size: 1.02rem; min-width: 200px; }
+.trigger-var .now { display: block; font-weight: 400; color: var(--text-muted); font-size: 0.85rem; margin-top: 4px; letter-spacing: 0; text-transform: none; }
+.trigger-action { color: var(--text-secondary); font-size: 0.98rem; line-height: 1.85; }
+.trigger-action strong { color: var(--text-primary); font-weight: 600; }
+.trigger-action .up { color: var(--red); font-weight: 600; }
+.trigger-action .down { color: var(--green); font-weight: 600; }
+
+/* ===== Sub-section divider（用于 Module 3 内部 3a / 3b 分隔） ===== */
+.subsection-label { max-width: 1100px; margin: 48px auto 20px; padding: 0 48px; font-size: 0.85rem; color: var(--accent); letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; }
+.subsection-label:first-of-type { margin-top: 0; }
+
+/* ===== Passage Card（兜底承接：4 模块外的非标内容） ===== */
+.passage-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 36px 40px; max-width: 1100px; margin: 0 auto 24px; }
+.passage-card h3 { font-size: 1.3rem; margin-bottom: 16px; color: var(--text-primary); }
+.passage-card h4 { font-size: 1.05rem; margin: 24px 0 10px; color: var(--text-primary); }
+.passage-card p { font-size: 1rem; line-height: 1.9; margin-bottom: 16px; color: var(--text-secondary); }
+.passage-card ul, .passage-card ol { padding-left: 22px; margin-bottom: 16px; }
+.passage-card li { margin-bottom: 8px; line-height: 1.85; color: var(--text-secondary); }
+.passage-card strong { color: var(--text-primary); font-weight: 600; }
+.passage-card table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 0.95rem; margin: 16px 0 24px; }
+.passage-card th, .passage-card td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+.passage-card th { color: var(--text-muted); font-weight: 500; background: var(--bg-elevated); letter-spacing: 0.04em; font-size: 0.85rem; }
+
+/* ===== Footer ===== */
+footer { background: var(--bg-dark); color: var(--text-light); padding: 48px; text-align: center; margin-top: 72px; }
+footer p { max-width: 680px; margin: 0 auto; font-size: 0.95rem; }
+.footer-sub { margin-top: 16px; font-size: 0.8rem; color: var(--text-light); opacity: 0.7; }
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .container, .voice-stack, .qa-stack, .trigger-wrap, .notes-stack, .subsection-label, .conclusion-wrap { padding-left: 24px; padding-right: 24px; }
+  .hero { padding-left: 24px; padding-right: 24px; }
+  .conclusion-card { padding: 28px 24px; }
+  .cc-headline { font-size: 1.05rem; line-height: 1.7; }
+  .cc-action-row { grid-template-columns: 1fr; gap: 6px; }
+  .cc-snapshot-grid { grid-template-columns: repeat(2, 1fr); }
+  .cc-snap-cell:nth-child(4n) { border-right: 1px solid var(--border-light); }
+  .cc-snap-cell:nth-child(2n) { border-right: none; }
+  .cc-snap-cell:nth-last-child(-n+4) { border-bottom: 1px solid var(--border-light); }
+  .cc-snap-cell:nth-last-child(-n+2) { border-bottom: none; }
+  .hero h1 { font-size: 2.2rem; }
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .voice-card, .passage-card { padding: 24px; }
+  .qa-card { padding: 22px; }
+  .trigger-table th, .trigger-table td { padding: 14px 14px; }
+  .note-item { padding: 20px; grid-template-columns: 1fr; gap: 8px; }
+  .section-head { padding: 0 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo">📰 阿里巴巴 · 圆桌</a>
+  <div class="nav-links">
+    <a href="#conclusion">结论</a>
+    <a href="#voices">视角</a>
+    <a href="#thinking">思考</a>
+    <a href="#watch">关注</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="kicker">ROUND TABLE · 2026-08-23 · 阿里巴巴 800 亿港元港股配售</div>
+  <h1>阿里配售 800 亿港元意味着什么，后面怎么走？</h1>
+  <div class="hero-dek">六位成员从产业卡位、财报现金流、估值定价、四层信号、支撑位与盘面六个维度独立研判：方向高度共识，时机也高度共识——摊薄 3.5% 不是重点，"回购托底这条腿撤了"才是。</div>
+  <div class="host">
+    <img src="data:image/webp;base64,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" alt="投研主编">
+    <span>投研主编 · 圆汇众（Yuan）· 腾讯自选股股票投研专家团</span>
+  </div>
+</section>
+
+<section id="conclusion">
+  <div class="section-head">
+    <div class="section-num">01 · 结论</div>
+    <div><h2>圆桌怎么看</h2><p class="section-dek">多视角交叉验证后的综合判断</p></div>
+  </div>
+  <div class="conclusion-wrap">
+    <div class="conclusion-card">
+
+    <div class="cc-question">YOU ASKED</div>
+    <div class="cc-question-text">7X24快讯 发布于2026-08-23 12:40：阿里巴巴宣布拟在香港配售新股，配售总额为800亿港元。分析一下这个意味着什么，以及阿里后面的走势</div>
+
+    <div class="cc-snapshot">
+      <div class="cc-snapshot-label">当前关键数据 · 行情截至 2026-08-21 收盘 / 配售公告 2026-08-23</div>
+      <div class="cc-snapshot-grid">
+        <div class="cc-snap-cell">
+          <div class="cc-snap-cell-label">阿里巴巴-W 09988.HK</div>
+          <div class="cc-snap-cell-value">123.00</div>
+          <div class="cc-snap-cell-sub cc-snap-down">港元 · 跌 2.54%</div>
+        </div>
+        <div class="cc-snap-cell">
+          <div class="cc-snap-cell-label">BABA.US</div>
+          <div class="cc-snap-cell-value">119.34</div>
+          <div class="cc-snap-cell-sub cc-snap-down">美元 · 跌 8.57%</div>
+        </div>
+        <div class="cc-snap-cell">
+          <div class="cc-snap-cell-label">ADR 换算价 · 相对港股</div>
+          <div class="cc-snap-cell-value">116.67</div>
+          <div class="cc-snap-cell-sub cc-snap-down">港元 · 折价 5.15% 未消化</div>
+        </div>
+        <div class="cc-snap-cell">
+          <div class="cc-snap-cell-label">配售规模 · 摊薄</div>
+          <div class="cc-snap-cell-value">800 亿</div>
+          <div class="cc-snap-cell-sub">港元（约102亿美元）· 摊薄约 3.4%–3.7%</div>
+        </div>
+        <div class="cc-snap-cell">
+          <div class="cc-snap-cell-label">AI云与算力服务收入</div>
+          <div class="cc-snap-cell-value">484.37 亿</div>
+          <div class="cc-snap-cell-sub cc-snap-up">元 · +45%（22季新高）</div>
+        </div>
+        <div class="cc-snap-cell">
+          <div class="cc-snap-cell-label">AI云经调整 EBITA</div>
+          <div class="cc-snap-cell-value">56.28 亿</div>
+          <div class="cc-snap-cell-sub cc-snap-up">元 · +133%，利润率 12%</div>
+        </div>
+        <div class="cc-snap-cell">
+          <div class="cc-snap-cell-label">单季资本开支 · 自由现金流</div>
+          <div class="cc-snap-cell-value">676.78 亿</div>
+          <div class="cc-snap-cell-sub cc-snap-down">元（+75%）· FCF -446.70 亿</div>
+        </div>
+        <div class="cc-snap-cell">
+          <div class="cc-snap-cell-label">净利润 · 经营利润率</div>
+          <div class="cc-snap-cell-value">104.44 亿</div>
+          <div class="cc-snap-cell-sub cc-snap-down">元（-75%）· 利润率 14%→6%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cc-headline-label">圆桌综合视角</div>
+    <div class="cc-headline">这既不是"利空砸出黄金坑"，也不是"看好AI顺手融点钱"——<strong>800 亿港元配售是阿里把自己从"电商现金牛"改写成"AI 基建投入期公司"的价格标签</strong>。摊薄 3.5% 本身微不足道，真正的信息是<em>内生现金流已覆盖不了当前 Capex 强度</em>，且<em>"回购托底"这条估值腿撤了</em>。六位成员在方向上高度共识（AI 云是真生意），在时机上也高度共识：<strong>现在不是舒服的介入位置</strong>。</div>
+
+    <div class="cc-actions-intro">圆桌的几个核心视角：</div>
+    <div class="cc-actions">
+      <div class="cc-action-row">
+        <div class="cc-action-label">从产业卡位看</div>
+        <div class="cc-action-detail">2026 年九大云厂 capex 破 8867 亿美元、+90%，需求已从训练切到推理，产业趋势毫无争议成立。但 capex 上行阶段最受益的从来不是掏钱那一方——<strong>阿里在这条链上是支出方</strong>，最确定的收益在上游（光模块/光芯片、液冷电源、国产芯片与晶圆代工）。中美 AI capex 2027 年差距约 8:1，阿里这 102 亿美元只有 Alphabet 的 1/8。</div>
+      </div>
+      <div class="cc-action-row">
+        <div class="cc-action-label">从现金流硬约束看</div>
+        <div class="cc-action-detail">FY27Q1 自由现金流 -446.70 亿，年化缺口约 1787 亿；配售 730 亿人民币<strong>只覆盖年缺口 41%，约 1.6 个季度失血量</strong>。三年 3800 亿计划已被单季 676.78 亿打穿（原计划年均 1267 亿，实际年化 2707 亿、是 2.1 倍），剩余 1900 亿只够 2.8 个季度——<strong>大概率还有第二轮融资</strong>。</div>
+      </div>
+      <div class="cc-action-row">
+        <div class="cc-action-label">从估值尺子看</div>
+        <div class="cc-action-detail">PE(TTM) 27.94 位于 3 年 99.34 分位，看似极贵，但 FY2026 EPS 同比 -53.3%、股价只跌 33.6%——<strong>是分母塌得比股价快</strong>，PE 与 PEG 0.40 都已失效。换成 SOTP：电商 8.5x P/E + 云 6x P/S + 国际 2x P/S + 净现金 → <strong>中枢 170 港元</strong>（悲观 138 / 乐观 191）。市场对云 P/S 的分歧从中金 8x 到 iFAST 3x 差 2.7 倍，这就是 88.65–185.17 这个 52 周区间的解释。</div>
+      </div>
+      <div class="cc-action-row">
+        <div class="cc-action-label">从信号层次看</div>
+        <div class="cc-action-detail">政策✅ + 产业✅ + 资讯⚠️（已被广泛感知，进入尾段）+ 资金❌（8/21 放量 182.50 亿冲高回落、净流出 4.72 亿）——<strong>前三层过关，第四层不及格</strong>。8/21 暴跌反应的是财报（配售 8/23 才公告），<strong>摊薄压力一分钱还没定价，8/24 开盘才是第一个真正的定价日</strong>。800 亿 ≈ 7.8 个交易日全部成交额，叠加 Reg S 套利盘对冲抛压。</div>
+      </div>
+      <div class="cc-action-row">
+        <div class="cc-action-label">从盘面与支撑位看</div>
+        <div class="cc-action-detail">8/21 已破 MA5(124.46) 与 MA10(123.98)，<strong>生死线在 MA20(121.62) 与前低 121.50 的重合区</strong>；ADR 换算价 116.667 是明牌补跌压力，周一重心大概率落在 116–120。逆向视角的第一档支撑 120 港元大概率被跳空跨过，往下最厚的筹码带在 112–115。</div>
+      </div>
+    </div>
+
+    <div class="cc-vote">
+      <span class="cc-vote-label">投票分布：</span>
+      <span class="cc-vote-tag"><span class="dot" style="background:var(--red)"></span>长期产业方向认可 6</span>
+      <span class="cc-vote-tag"><span class="dot" style="background:var(--green)"></span>当下时机偏空/观望 5</span>
+      <span class="cc-vote-tag"><span class="dot" style="background:var(--gold)"></span>有条件小仓位 1</span>
+      <span class="cc-vote-tag"><span class="dot" style="background:var(--accent)"></span>定性：硬约束 3 / 抢窗口 2 / 只看盘面 1</span>
+    </div>
+
+  </div>
+  </div>
+</section>
+
+<section id="voices">
+  <div class="section-head">
+    <div class="section-num">02 · 视角</div>
+    <div>
+      <div class="section-title">6 人怎么看</div>
+      <div class="section-lede">每位从自己的方法论独立诊断 —— 想看完整推理的人来这里</div>
+    </div>
+  </div>
+
+  <div class="voice-stack">
+
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="data:image/webp;base64,UklGRv4NAABXRUJQVlA4IPINAAAQOwCdASqAAIAAPlEijkUjoiEhKpGMcHAKCWIAzmxaz7fbec1bX875EPGGN/3HcsHbA8wX9UOlJ5mfuA9038Zvdj6Bv7EdbH6Bv7AenB+2fwt/uf+2ntc3Rfwr8kPuX3H9gnOP1+6kfyv8D/mOKn5Eah3sn/XcHaAP5tvCy1R+/nmv/7LylPGj859gf+T/3f/r/3L8o/kk/7/9D6Qvp//0e4n+s//V7Iv7geyl+3jeyGUNOHNOSXtL3XC/V40gdsN1/KQOAjaBf/F1Dr6HbuvTJ0Z9phb04pEtX88vh+qZhxDp8LlGjyBXxJ6b20pK9TU6BJVRNNKhyfVq621aQHLwhinbICK4pWqEEql/4QThpnPscsKsr7DHvWqYgPBR6OdBEVN0di44HaQnKrOV45xrhdYO/eEw4/m3WVIEgwbVP+sE2ug2oJnZ6lU+2G9vTci5Ph2SLKI9/91Q3BpxLpJM2nzyPI2ZIJlqQA49bXxVHz5vt5WkrbJtjS6UT9tEhSGUuSlBrpCXl4OS2MOTym/Z36iE7CtQKv7AmNfGg21WIgoDu0W9IFkvoTEy5YTCxpvF+aLkYcrDic8FMg/2Pa52gx6DxVo1/B66diVwHtXvshBwtIcmGmof9skGEs0dnLggAP7+lCi2B2Ld0sLdu90jV4eUZrpotz8R0vC7ICic3WCrYM0NsWaWuf6Vvf8V85vhPcCeEinv9AJX9h5rf0Nu8hp52CnuA3pAPhnqdG0ZsL5E7fKau+za8bq/ZVgyu2M3ZGwGFLFBAPtdtLPBKDWzFV4kLxxo4G43zYMJDGqlfbJRMXvS6WZ+bo1e6xt3tP+YoITQd2DG3LRx0U4X6irOd1Vt4WgRu1wC6xb2qfheEYv4KZwD4ezjPG3uy3yeadMsswU27PIhTbU7+ztwe4bdkCWMiZsP71hR2VywWk72Wf44qln1+Xka/VpqOqUZtuOp6+HpUjVyMSRHUN9FL5oBoau6b0NGKWZSoEwrKlwsgucJexYl/Qf1UmaA6vsq4sFb9Mnp7/fUzQTD23+mvPkeUyYSuN4iOWbhgE+qG0AlNWy3hZzsIaQIzFiveqfmaSDsIHyo0grzhi90J9pQSSL22nZDc9vydpppeXhVq1j/IpYIHjBKgqdSHnf/ZrFQXEpETpOZLmuBjK17FEMqyPsey4CyMpRADMszznWJsOljCrkJ2Vf1Vr8xxTJCsXNtlZStBac+9wKE1L0667x9ZIopvzY+XVTUGV6cY57//crZwVUOoirthGuzjyCkVA/wFHHO7TWiXr0DDubkKCAsUG6Dh6z9p6mjRDLv49ymV6X4vdaqxW2lAktalIy2FVTlP3VFHyqNNk+WEBlj/Ms/HwHo60I8YQvQDYoCz4tmZLHe6SClMdRKYyM3etboY5Ki/ywCl5NRWP6UDRFLezvQl9N6xgbxEJyYMQMvJZ/oqqhWFwCvt6hCdH4jj6RY+l3dCoRdmA1Qh+P/Gg3tdm1pQWYR1+ut7CST97Td/QjERh3mOiKMO3SRNY1NsEcPwLtSmWsvbA1simnKOKAb1QSbM0aSd4byFwS4n90L1PzFX8o3JLYFst6irmtcuKdpgop5TaPvTAFXyTAtkGe/OBnfwfRHJccKv1obk/3C3YHu3/BBS+flYOiY8jFMSJKiKvKou/gWfT33/Tcw4b7feEVXElnw8CrcL3VmT4MFIXIYN47XeD4IOu79mu2qp7U6PTse03Ph2MEWCFPCE72soAvX82l5QRh/VcELqbQvr68ktz26OvlgDKC5sZ8EW1YYf4LXEqbQCrXjRoMFgigHbLy1TKLknXjRANoW2AkKEJZ7/I5nEQkUN8LckDHwac9tW5b1Jhr0SA3ujwN5AxHIW6k8q0EEuqJmnCpBC+90aTXaRFxDeUv6ncYOw9pmDsrtgGDY8KsOmWtfM4oj7aJXNYVIh7XqmUs0RmYOtYoYlIekyMjZ6WKEPdzQb2kjgzHN1GVZ9N3sZrJUIYNf+E93XG1cGGJbE4wyCIOGEExiE2RmOh2onpUf4543t4LZxLkUBuPOW47OV3st17ayMXOHMrUZalEUPkDuCFMjlymjdooBynSD6ur1BdxiNEKRS1aC1lJiojzPuciolQuMyc9C7XyJBZV8NAkn7k6+3HHrp4BvtZqAzYRs4jae6KSpg/aR/TLIMiAzqai/l0YoNq23aDFmcq6C9xATNRmBsbuwWuHikStIW7cRPN812duq3wgaYEVyCgkh7Qc30OdutJQdYWt1ggm1Gr0SZ/5/qQ9h/KDVcw4uL9z0rdLPuidKuNJRvA/Nz2JRwOeeSmsteGWUXSja12HX1eHb4mNJClbW9gcbBrljZi/keJjmJAgXJfGFOZIzV67n/Afuh7+Sa8op0GW3ByJnyFBDCmw4CGwxGJ0S/vv68cT44ehUL95oIiFSklm9MVVoANfCXhcu/Eko3o72GNc18/ng/B3uvmrOMq5xV+E57r8FGz8F8P7zZZwUoyIsFwOr3MuKXzfoPtzg3fDT4W7vSWtr9Lcg1R3FvV0d7rB55G/DL+/1A824XpO/+XPRfvwxtdPhLE1AZrpJR6eDLjgRgxda1e4G6MumJ8J3XLgPb50E4MWv/aGV7F2KQQpb88QNrP4nw+VsC3tPJHBg+xz8d+0ldT0TXaoA4XpOPNTx4OlVVjnPglLbfB9xFW/AXPXE6KD4+RogFq9tOByq9oI4cLxyZn66/b1VFurnQtoRUBU+Ihwl5Jh/ymvoZtThBNDhxAJdCcZQzH+gtRX2vkRaRgE7kix853x5HB5H4Y+mZdGuwAeh2egkAV+L8g2qbJJ2RP63Pv9tK03n+N0za7c1t1evtlP2EL1S+3agZIbXfwapeDq/t+imMJSaPCjawn0+M2cygcFRz6JUlNs2KhVt1HvBvr+YnPEp0KGzPlHdQYMTcwrkMVybf3ZP+I7Z7nKT50OLbbeelND5NkI/GAElRZZ1SGn5FQwBVjhsp1RxIzO9+UE+/7U++H2+E/q/K1TAnCQcQRD+UWCVMEwSW8Ub9OK/6QmgaSwli4T1ZlKcw1h+LN3D/WQEd0qSu+umCoFmijduSF/otyG6B6vAFJXeit+vtPHy0SBfrQb6+FL+rOJJzCESCIeszU7Sq65dYxrMl5Dr8FP7RkoAjLkC7W/Jk6QK13p1yuaFFnVqT78DH9WmYch8ly0Ie45cmp84yFhW4VwTitQ2QQcs63qBs8j5v6C/8/E5nqEi+lSCVyu65mwhAbA/82Hf/jp1b34V54ng+7mSpf2/FqcwvEP127b6xzV6P8xdPTOkMkiNRG7Vprxgb0s/LAZ8xOCNs1euyUnjkNzJPCugv8kPkla+CWoHZFzXuv5/vK54SPcn0aX2j/xEUwLFZaJbjh+RlykCqtYdj3/Z7zDBGdI3aFvCTzFdKLy1QYYeZSGGWwfPhhl3J2EPqiECv1cnEyulU6S5agdYv3OMFS8ERpAdpkCyDxIjcLWtjSZLVKaTU7K3WrK6odq4oWiYTD4XIuWHhzd72Y/XiFNMA1RAan8vI654jTP4vW94Ut+0zsRTNNKV9x0gq9hQjHZfntXadaKFuIBRyWlunCLpFSbHAoZ5NgpWViPD+5fz2Kzj/+8AzMOd6ZxK3lvxEWRVQs460FiiTOO6ZM+/f1xgQGvOhtfAIz3PiGIn7WIEGHfTRw17875uizHrhKMTn+WhjyAuh2YwmGgjHqTfFqOHqxJu2bbHfDbmOD5bTOpttMawEX1Lj1hpPCm92rwdvMDrbmRI0osNeFXnhE4Xx5sQiuurjv8pTkF7jORF7FiaWTF8LrslL6MeRNqOCOhr0erLGusndT2nUYm0YDVfzp2F157zcNC9ycqTX5L1uusVMJWEM0GDjhIZq5plEKHrtuMY4Lg5EaVAR/HwNcvmsm+6X6SUauQ1Af3aAzZloIW9GJBZzZlRsLsWvueStatKz3pLVLjClm2JhQ7kpBYkfVHtY00yLg0dr/PYxxubG/921W90zxy0glnQ5f5Sbsz1ioo6PDMrypzkwGIvV6sHO566u06bMFCDYzLoh+33QXtK2tEHC2IPn9g3T7di8dtYEVYABG96iG8l0hiDFyNA+o2Tg2hIKuydXjzh0d7vGznvVLZDBaVwZPnXqfwMUaPpVIvQLlgUVrvTYKoIccOvk9dwPPMwp0lJxUFdsfDXFHIFBm45cMAgGTPMViDp04PeBMcbBz8lIIVQZLZ3pLzOdUuFdZRbzKM2F4CijfCu95VumzxGIPWqH8Tsqi83/0pcVNH88OzpjNXpepsYWqUCkua4M9Y+bTaRiXSIAQsggLBjF+TDYGXEmYFIWgHl5yROP9FStSg1UAo9cnVnYG4Vj5RcHQffpuhWWAyzfhKuqave/BeuuTmbkd2R3DJOOdmaFIHxLKmzKykdwY/W/PtfEN2l10kkOPLG3B9xEv86isPQjzaGKkVE1y0ySkKKjF0tAkyDQ2cfCgwFaOluKXa4kpYfxNeNxBa/Z0qvVq2N4qAprqn5eyYjzCl99qxpEtyh8zigsF7+qeQzoNJOObxIwJJtmmT8BJh5ei631ie3vf1dB7fjpEzQWK07OLea9VzpE7x++ViSLUouo85E/ZsS+6E2PhXNEw72akmZhTUfIUmHyJrAGVfCTDTLBBqfzVCDkpHH72QjO62SArIuLla5I8M0HmUkL0d1bkvzbpnOOhEVLk07Q9d+tDTb7T6vvQ/4HgaYG8v4J9829VW3Nuzs7K1G8BOV5NkyqYZCnzZBAAA=" alt="产业策略师">
+        <div class="voice-name">🌊 产业策略师 · 星望远</div>
+      </div>
+      <p><strong>方法论定调</strong>：同一条产业链，不同阶段受益的环节完全不一样——capex 上行阶段，钱流向最确定的是收钱的上游，不是花钱的云厂。</p>
+
+      <h4>景气度定位：从 1 到 10 的中段，且还在上修</h4>
+      <p>2026 年九大云厂商合计 capex 将破 8867 亿美元、同比近 +90%；2027 年集邦给到约 1.3 万亿美元、增速收敛到近 +50%（WebSearch：集邦咨询 8/3 预测经同花顺/新浪转载）。<strong>总量还在扩，但二阶导已经开始拐头</strong>——不是爆发初期，也不是见顶，是"从 1 到 10"的中段：业绩在兑现，增速在收敛。</p>
+      <p>结构性变化更关键：需求已从训练驱动切到推理驱动，全球算力分配预训练 30-40%、推理 60-70%，IDC 预测 2028 年推理占 73%（WebSearch：雪球研究汇编，卖方口径待核实）。推理需求长尾、持续、可复购，解决了"脉冲式没有持续性"的老问题。</p>
+      <p>中美体量差要看清：高盛估阿里+腾讯+字节+百度 2026 年 AI capex 约 1020 亿美元、2027 年 1230 亿美元，对应美国 hyperscaler 7640 亿 / 10180 亿美元，<strong>2027 年差距约 8:1</strong>。腾讯 Q2 单季 capex 527 亿元、+170%，其中 514 亿元是算力采购预付款——<strong>"预付锁产能"是供给紧张最硬的证据</strong>。</p>
+
+      <h4>产业链卡位表</h4>
+      <table>
+        <thead><tr><th>环节</th><th>卡位强度</th><th>逻辑</th><th>兑现节奏</th></tr></thead>
+        <tbody>
+          <tr><td>上游材料/零部件（光模块、光芯片、高速内存、PCB、高速连接器）</td><td>★★★★★</td><td>capex 扩产直接变订单，价格+量双升</td><td>已在兑现，2026H2-2027 最饱满</td></tr>
+          <tr><td>基建配套（液冷温控、供电、机箱电源）</td><td>★★★★☆</td><td>单机柜功耗抬升带来的强制升级，不再可选</td><td>已在兑现</td></tr>
+          <tr><td>国产算力芯片 / 晶圆代工</td><td>★★★★☆</td><td>供给刚性最强。中芯 Q2 营收 30 亿美元、环比 +20%，毛利 25%，稼动率 94% 满载</td><td>2026-2027 持续</td></tr>
+          <tr><td>服务器 ODM</td><td>★★★☆☆</td><td>有量没利，毛利被上游挤</td><td>跟随</td></tr>
+          <tr><td><strong>云服务商（阿里/腾讯/百度）</strong></td><td>★★★☆☆</td><td>收入起量但被 capex 和折旧吃掉利润，是<strong>支出方</strong></td><td>兑现最慢，2027 后才见真章</td></tr>
+          <tr><td>AI 应用端</td><td>★★☆☆☆</td><td>还在烧钱，阿里 AI 实验室与应用单季亏 138.61 亿</td><td>未到炒作时点</td></tr>
+        </tbody>
+      </table>
+
+      <h4>这 800 亿意味着什么：三层解读</h4>
+      <ul>
+        <li><strong>第一层，供给紧张的确认书</strong>：账上还有 4745 亿元现金、465 亿美元净现金，三年 3800 亿才投了 1900 亿——不缺钱还要融，说明可投产能比原计划多、且要抢窗口。这对上游是明确利好。</li>
+        <li><strong>第二层，军备竞赛入场券的定价</strong>：Alphabet 847.5 亿美元、英特尔 200 亿、SpaceX IPO+债 1110 亿、字节传闻 200 亿、英伟达联合华尔街筹建 5000 亿算力融资平台——阿里 102 亿美元排全球第三大一级后续发行，但<strong>绝对额只有 Alphabet 的 1/8</strong>。够维持第一梯队，不够改变全球格局。</li>
+        <li><strong>第三层，股东成本</strong>：摊薄约 3.3-3.4%，且是在 52 周高点回落 33.6%、财报后美股单日 -8.57% 的<strong>弱势位置增发</strong>。融资本身不是坏事，但短期供给压力实打实。</li>
+      </ul>
+
+      <h4>我最担心的产业风险：2027 年的折旧墙</h4>
+      <p>管理层说 capex 三年内回本、有望缩到 2 年。这个说法的前提是<strong>推理价格不能塌</strong>。而产业事实是：中国 inference 价格已经跌了两年，2027 年国产算力集中投产后三家（字节领跑、腾讯追赶、阿里稳步）同时持有超建产能，多余算力必然找出口——降价填国内，或低毛利出海卖 token。<strong>capex 是现在花的，折旧从明年开始摊，收入弹性却取决于一个正在跌价的市场。</strong></p>
+      <p>三个跟踪抓手：① AI 云收入环比增速能否守住 +45% 台阶；② AI 云 EBITA 利润率 12% 能否往上（往下走就是价格战开打）；③ 单位算力收入（ARR / 累计 capex）趋势。</p>
+
+      <h4>牛熊判断</h4>
+      <p>产业层面看牛；阿里个股定性为<strong>"产业牛市中的震荡标的"</strong>。按我的框架，主仓位放上游最受益环节，阿里作为"中国 AI 资产稀缺入口"给小比例底仓、分批建，等两件事出现再考虑加：AI 云 EBITA 利润率确认向上 + 股价站回并守住关键均线体系。</p>
+
+      <div class="pull-quote">"融资金额大小从不决定收益归属，决定收益归属的是钱最终流到哪个环节。方向对、环节错，一样赚不到钱。"</div>
+    </article>
+
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="data:image/webp;base64,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" alt="财报研究员">
+        <div class="voice-name">🔬 财报研究员 · 钊审财</div>
+      </div>
+      <p><strong>方法论定调</strong>：我不看故事，我看现金流量表。8/20 那份财报和 8/23 这笔配售是同一件事的两半——财报告诉你缺口有多大，配售告诉你缺口怎么补。</p>
+
+      <h4>先算账：缺口到底有多大</h4>
+      <table>
+        <thead><tr><th>口径</th><th>FY27Q1 单季</th><th>年化推算</th></tr></thead>
+        <tbody>
+          <tr><td>资本开支</td><td>676.78 亿（+75%）</td><td>≈ 2707 亿</td></tr>
+          <tr><td>经营活动现金流</td><td>229.45 亿（+11%）</td><td>≈ 918 亿</td></tr>
+          <tr><td>自由现金流</td><td><strong>-446.70 亿</strong></td><td><strong>≈ -1787 亿</strong></td></tr>
+        </tbody>
+      </table>
+      <p><strong>年化现金缺口约 1787 亿人民币。这次配售 800 亿港元 ≈ 730 亿人民币，只覆盖年缺口约 41%，折算约 1.6 个季度的失血量。</strong></p>
+      <p>现金余额：无限制现金及短期投资从 3 月末 5208.24 亿掉到 6 月末 4745.05 亿，<strong>单季净减 463 亿</strong>。按这个失血速度大约 10 个季度见底——还没算回购、分红、债务到期。</p>
+      <p><strong>最关键的一条，是三年 3800 亿计划的口径已经作废</strong>：3800 亿摊三年是每年约 1267 亿，而 Q1 单季就烧了 676.78 亿，年化 2707 亿，<strong>是原计划节奏的 2.1 倍</strong>。已投 1900 亿、剩 1900 亿——按现速只够再烧 2.8 个季度，约到 FY27Q4 见底。<strong>所以 3800 亿这个数字后面几乎必然要上调，融资也不会是一次性的。</strong></p>
+      <p>这就回答了"为什么账上 465 亿美元净现金还要增发"：<strong>净现金是存量，资本开支是流量</strong>。这是<strong>前瞻性的硬约束，不是流动性危机</strong>。</p>
+
+      <h4>利润率为什么从 14% 掉到 6%——不是电商崩了，是三笔钱同时砸下来</h4>
+      <ul>
+        <li>AI实验室与应用 EBITA <strong>-138.61 亿</strong>（去年 -32.24 亿），单项同比多亏约 106 亿；</li>
+        <li>所有其他 -33.43 亿（去年 +6.87 亿），同比反转约 40 亿；</li>
+        <li>费用刚性上台阶：研发 225.29 亿 +50%（占收入 6.1%→8.4%）、G&amp;A 127.08 亿 +72%（含欧盟 DSA 5.5 亿欧元罚款计提）、商誉减值 44.58 亿。</li>
+      </ul>
+      <p>净利润 -75% 比经营利润 -57% 更狠，差额主要来自投资损益/公允价值变动（<strong>明细待核实，不编</strong>）。所以我更认非 GAAP：207.15 亿 -38%。<strong>定性：这是"主动开支型下滑"，不是"经营恶化型下滑"。</strong></p>
+
+      <h4>分部三档诊断</h4>
+      <ul>
+        <li><strong>✅ 验证成功——AI云</strong>：收入 484.37 亿 +45%（22季新高），EBITA 56.28 亿 <strong>+133%</strong>，测算 EBITA 利润率约 11.6%（去年约 7.2%）。<strong>规模在扩、利润率同时在扩</strong>，这是最硬的正面证据。</li>
+        <li><strong>🔴 红灯——核心电商现金牛在失速</strong>：中国电商收入 1109 亿 -8%，CMR -7%、<strong>同口径仅 +1%</strong>。阿里电商集团整体 EBITA 397.49 亿 <strong>-1%</strong>——这是唯一给全公司供血的分部，它不涨，AI 的账就得靠外部融资填。<strong>这条是我最在意的变化。</strong></li>
+        <li><strong>⚠️ 待验证——即时零售</strong>：收入 532.95 亿 +45% 增速漂亮，但它现在是拖累电商集团利润率的那一块，本质是用钱买频次。</li>
+      </ul>
+
+      <h4>管理层动作：从"回报股东"切到"再投资"</h4>
+      <p>三个动作连起来看：① 回购从数十亿美元量级缩到 <strong>1.62 亿美元</strong>；② 启动 2019 年上市以来首次配售；③ 组织架构重组，AI 单列报表。<strong>"一手停回购、一手发新股"意味着资本配置逻辑体制性切换。</strong> 单列报表意味着敢被单独考核，这是加分项；但同时意味着——<strong>未来 2-3 年别再拿"回购托底"当估值支撑，这条腿撤了。</strong></p>
+      <p>关于吴泳铭"Capex 三年回本、甚至 2.5-2 年"：我的态度是<strong>"可以听，但不当结论"</strong>。按年化 2700 亿 capex 要三年回本，隐含每年新增数百亿量级现金利润，而当前 AI 相关产品 ARR（<strong>收入</strong>，不是利润）才 495 亿。2030 年云 1000 亿美元收入（当前云年化约 271 亿美元）隐含约 4 年 39% 复合增速。<strong>不是不可能，但这是需要连续 8 个季度考试及格的强假设。</strong></p>
+
+      <h4>季度跟踪表（我的考卷）</h4>
+      <table>
+        <thead><tr><th>指标</th><th>FY26Q1</th><th>FY27Q1</th><th>变化</th><th>评级</th></tr></thead>
+        <tbody>
+          <tr><td>总收入</td><td>≈2467 亿（推算）</td><td>2689.53 亿</td><td>+9%</td><td>中性</td></tr>
+          <tr><td>经营利润率</td><td>14%</td><td>6%</td><td>-8pct</td><td>⚠️</td></tr>
+          <tr><td>非GAAP净利</td><td>≈334 亿（推算）</td><td>207.15 亿</td><td>-38%</td><td>⚠️</td></tr>
+          <tr><td>AI云收入</td><td>≈334 亿（推算）</td><td>484.37 亿</td><td>+45%</td><td>✅</td></tr>
+          <tr><td>AI云 EBITA</td><td>≈24 亿（推算）</td><td>56.28 亿</td><td>+133%</td><td>✅✅</td></tr>
+          <tr><td>电商集团 EBITA</td><td>401 亿（推算）</td><td>397.49 亿</td><td>-1%</td><td>⚠️ 关键</td></tr>
+          <tr><td>CMR（同口径）</td><td>—</td><td>—</td><td>+1%</td><td>🔴</td></tr>
+          <tr><td>AI实验室 EBITA</td><td>-32.24 亿</td><td>-138.61 亿</td><td>亏损扩大</td><td>⚠️ 计划内</td></tr>
+          <tr><td>资本开支</td><td>386.76 亿</td><td>676.78 亿</td><td>+75%</td><td>中性（战略）</td></tr>
+          <tr><td>自由现金流</td><td>≈-223 亿（推算）</td><td>-446.70 亿</td><td>恶化 1 倍</td><td>🔴</td></tr>
+          <tr><td>现金及短投</td><td>—</td><td>4745.05 亿</td><td>单季 -463 亿</td><td>⚠️</td></tr>
+          <tr><td>回购</td><td>数十亿美元量级</td><td>1.62 亿美元</td><td>近乎停止</td><td>体制切换</td></tr>
+        </tbody>
+      </table>
+
+      <h4>下季度（FY27Q2）我要考的五道题</h4>
+      <ul>
+        <li>AI 相关产品 ARR 是否真到 100 亿美元？管理层自己出的考题，<strong>没兑现 = 第一张红牌</strong>。</li>
+        <li>AI云 EBITA 利润率能否守住 11%+ 并继续走高？这是"回本论"唯一的实证支点。</li>
+        <li><strong>CMR 同口径能否回到 +3% 以上？这是我心里的第一顺位变量。</strong></li>
+        <li>资本开支节奏与 3800 亿计划是否上调？若单季继续 650 亿+ 且计划上调，<strong>第二轮融资在路上</strong>。</li>
+        <li>FCF 缺口是否收窄、回购是否恢复？回购哪天恢复，就是管理层认为投入高峰过去的信号。</li>
+      </ul>
+      <p><strong>我的止损条件</strong>：电商集团 EBITA 转明显负增长 + CMR 同口径持续为负 + 云 EBITA 利润率掉头，<strong>三条同时出现我就走，不管跌了多少</strong>。单看资本开支大、利润跌 75%，我不动——那是买入时就预期到的代价。</p>
+
+      <div class="pull-quote">"接下来阿里的股价大概率不再由 EPS 驱动，而由 ARR 曲线和云的利润率驱动。你要么接受用财报每季度考它，要么就别碰它。"</div>
+    </article>
+
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="data:image/webp;base64,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" alt="估值分析师">
+        <div class="voice-name">🧮 估值分析师 · 文衡价</div>
+      </div>
+      <p><strong>方法论定调</strong>：这次配售摊薄只有 3.4%–3.8%，本身不是大事；真正的问题是当前 PE(TTM) 27.94 已经不能用了——<strong>分母塌了 53%</strong>。想给阿里定价，必须从 PE 切到 SOTP。</p>
+
+      <h4>摊薄测算：3.4%–3.8%，不是核心</h4>
+      <table>
+        <thead><tr><th>折价假设</th><th>发行价(HKD)</th><th>新增股数(亿)</th><th>占原股本</th><th>摊薄后占新股本</th></tr></thead>
+        <tbody>
+          <tr><td>0%（平价）</td><td>123.00</td><td>6.50</td><td>3.39%</td><td>3.28%</td></tr>
+          <tr><td>-3%</td><td>119.31</td><td>6.71</td><td>3.50%</td><td>3.38%</td></tr>
+          <tr><td><strong>-5%（基准）</strong></td><td><strong>116.85</strong></td><td><strong>6.85</strong></td><td><strong>3.57%</strong></td><td><strong>3.45%</strong></td></tr>
+          <tr><td>-8%</td><td>113.16</td><td>7.07</td><td>3.69%</td><td>3.56%</td></tr>
+          <tr><td>-10%</td><td>110.70</td><td>7.23</td><td>3.77%</td><td>3.63%</td></tr>
+        </tbody>
+      </table>
+      <p><strong>为什么基准取 -5%</strong>：BABA.US 当晚跌 8.57% 到 119.34 美元，ADR 换算价 116.667 港元，已相对港股折价 5.15%——<strong>美股这一跌基本把配售价打出来了</strong>。Reg S 大额发行常规折价 3%–8%，配售价落在 <strong>115–118 港元</strong>是合理推断。</p>
+      <p>对 EPS 的影响：按一致预期 FY2027 EPS 约 6.22 港元，摊薄 3.5% 后降到约 6.00 港元，PE 从 19.8x 抬到 20.5x——<strong>代价就是 0.7 倍 PE。这点摊薄根本不构成卖出理由。</strong></p>
+      <p>关键在另一边：手握 4745 亿现金、净现金 465 亿美元为何还要融 102 亿美元？答案在现金流量表：<strong>年化 FCF 缺口约 1800 亿元（250 亿美元）</strong>。真实含义是——<strong>内生现金流已经覆盖不了 AI Capex 强度了。这是资金面的信息，不是估值面的</strong>，而我最深刻的教训就是资金面可以压倒估值。</p>
+
+      <h4>PE(TTM) 27.94 到底贵不贵？这个问题问错了</h4>
+      <table>
+        <thead><tr><th>口径</th><th>当前分位</th><th>30% 分位</th><th>70% 分位</th></tr></thead>
+        <tbody>
+          <tr><td>10 年</td><td><strong>72.04%</strong></td><td>18.66x</td><td>27.17x</td></tr>
+          <tr><td>5 年</td><td><strong>77.22%</strong></td><td>17.36x</td><td>24.17x</td></tr>
+          <tr><td>3 年</td><td><strong>99.34%</strong></td><td>16.16x</td><td>19.88x</td></tr>
+        </tbody>
+      </table>
+      <p>看起来 3 年 99 分位"贵到天上"。<strong>但这是陷阱。</strong> FY2026A EPS 4.63 港元、同比 <strong>-53.3%</strong>（iFAST），而股价从 185.17 跌到 123 只跌 33.6%。股价在跌、PE 在涨，只有一个解释：<strong>EPS 塌得比股价更快。</strong></p>
+      <p><strong>PE(TTM) 27.94 在 99 分位，不是"贵"的证据，是"这把尺子该换了"的证据。</strong></p>
+      <p>PEG 分档：FY2027E 18.1x / +45.6% → PEG <strong>0.40</strong>；FY2028E 13.6x / +40.4% → <strong>0.34</strong>；中金非GAAP隐含 13x / +55.7% → <strong>0.23</strong>。数学上全部"闭眼买"，<strong>但我不会这么用</strong>——这个 45%–55% 增速是从崩掉的低基数反弹出来的<strong>修复性增速</strong>，性质接近周期股盈利回升。<strong>PEG 0.4 只能当"下行空间有限"的旁证，不能当买入锚点。</strong></p>
+
+      <h4>正确的尺子：SOTP 分部估值</h4>
+      <table>
+        <thead><tr><th>分部</th><th>年化基数</th><th>我的倍数</th><th>估值(亿美元)</th><th>倍数依据</th></tr></thead>
+        <tbody>
+          <tr><td>中国电商集团</td><td>adj 净利约 1240 亿元</td><td><strong>8.5x P/E</strong></td><td>1,470</td><td>中金 7x / iFAST 10x 取中值</td></tr>
+          <tr><td>AI 云与算力</td><td>收入 1937 亿元</td><td><strong>6.0x P/S</strong></td><td>1,626</td><td>中金 8x / iFAST 3x 取中值</td></tr>
+          <tr><td>国际电商</td><td>收入 1110 亿元</td><td><strong>2.0x P/S</strong></td><td>310</td><td>iFAST 口径</td></tr>
+          <tr><td>即时零售 + AI 实验室</td><td>年化亏 554 亿元</td><td>亏损与期权价值互抵</td><td>0</td><td>保守处理</td></tr>
+          <tr><td>净现金（含募资后）</td><td>465 + 102</td><td>1.0x</td><td>567</td><td>财报 + 本次配售</td></tr>
+          <tr><td>蚂蚁 33% 股权</td><td>—</td><td>—</td><td>350 <strong>（待核实）</strong></td><td>保守取值</td></tr>
+          <tr><td><strong>合计</strong></td><td></td><td></td><td><strong>4,323</strong></td><td></td></tr>
+        </tbody>
+      </table>
+      <p>对应 3.37 万亿港元，摊薄后 198.6 亿股 → <strong>中枢 170 港元</strong>。</p>
+
+      <h4>估值区间表（敏感度全在云的 P/S 上）</h4>
+      <table>
+        <thead><tr><th>情景</th><th>云 P/S</th><th>隐含总值</th><th>对应股价(HKD)</th><th>相对 123</th></tr></thead>
+        <tbody>
+          <tr><td>悲观：云增速回落至 20% 以下、AI ARR 不达标</td><td>3.0x</td><td>3,510 亿美元</td><td><strong>138</strong></td><td>+12%</td></tr>
+          <tr><td><strong>中枢：云维持 40%+ 增速、利润率稳在 12%</strong></td><td><strong>6.0x</strong></td><td><strong>4,323 亿美元</strong></td><td><strong>170</strong></td><td><strong>+38%</strong></td></tr>
+          <tr><td>乐观：云 2030 年 1000 亿美元收入路径被认可</td><td>8.0x</td><td>4,865 亿美元</td><td><strong>191</strong></td><td>+55%</td></tr>
+        </tbody>
+      </table>
+      <p>交叉验证：中金 SOTP 目标价 <strong>172 港元</strong>，iFAST <strong>206 港元</strong>。<strong>注意云的倍数分歧有多大</strong>：中金 8x、iFAST 3x，差 2.7 倍——<strong>这就是当前市场对阿里最大的分歧点，也是 88.65 到 185.17 这个 52 周区间的解释</strong>。</p>
+
+      <h4>大类配置视角</h4>
+      <ul>
+        <li>全球第三大股权融资，说明<strong>全球 AI Capex 军备竞赛已进入"上市公司集体外部融资"阶段</strong>——AI 投资强度已超过头部公司内生现金流生成能力。这会同时压制全球 AI 资产的短期估值。</li>
+        <li>阿里 EV/年化收入约 <strong>2.3x</strong>，海外同体量云+平台公司普遍 5x 以上。<strong>这个折价里有一部分是地缘和监管的永久性折价，不会因为业绩好就消失</strong>——必须写进假设，不能当"低估待修复"。</li>
+        <li>净现金占市值 18.7%（募资后），EV 约 2459 亿美元。</li>
+        <li><strong>核心+卫星定位</strong>：阿里的现金流特征（FCF 净流出、Capex 高峰、EPS 剧烈波动）决定它<strong>不具备核心仓位属性</strong>（那是长江电力、神华的位置），只能进卫星仓位，博云业务重定价的弹性。</li>
+      </ul>
+      <p><strong>按我的框架</strong>，当前 123 港元对应 SOTP 中枢 170 的 <strong>72% 位置，安全边际约 28%</strong>；悲观情景 138 已在其上方。但<strong>估值给的是空间，资金面决定的是时间</strong>——一级市场刚吸走 800 亿港元流动性，短期资金面是逆风。真正的分水岭是下一份财报里云的收入斜率和 FCF 缺口。</p>
+
+      <div class="pull-quote">"这次配售摊薄了 3.5% 的 EPS，但它真正告诉市场的是——阿里已经把自己从'电商现金牛'改写成'AI 基建投入期公司'。估值工具必须跟着换，还拿 PE 看的人会一直看错。"</div>
+    </article>
+
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="data:image/webp;base64,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" alt="信号派首席">
+        <div class="voice-name">📡 信号派首席 · 洲四方</div>
+      </div>
+      <p><strong>方法论定调</strong>：方向过关，资金没来。这是我框架里"方向对 + 资金没来 → 等"的教科书案例。</p>
+
+      <h4>四层信号矩阵</h4>
+      <table>
+        <thead><tr><th>层级</th><th>信号内容</th><th>判定</th></tr></thead>
+        <tbody>
+          <tr><td><strong>政策</strong></td><td>AI/算力自主可控是持续扶持方向（非一次性利好），阿里是国内全栈 AI 稀缺载体</td><td>✅ <strong>强，持续</strong></td></tr>
+          <tr><td><strong>产业</strong></td><td>AI 云收入 484.37 亿 +45%（22季新高），AI 产品 ARR 破 495 亿、连续 12 季三位数增长，云 EBITA 率升至 12%</td><td>✅ <strong>强，已被财报验证</strong></td></tr>
+          <tr><td><strong>资讯</strong></td><td>8/20 财报 → 8/21 美股暴跌 8.57% → 8/23 配售公告，三天密集释放</td><td>⚠️ <strong>已被广泛感知，进入尾段</strong></td></tr>
+          <tr><td><strong>资金</strong></td><td>8/21 港股放量 182.50 亿（振幅 6.58%），高开 129.20 冲 129.80 后砸到 121.50，收 123.00 跌 2.54%，净流出 4.72 亿；美股同日 -8.57%</td><td>❌ <strong>放量出货，不是进场</strong></td></tr>
+        </tbody>
+      </table>
+      <p><strong>前三层过关，第四层不及格。按我的优先级规则：方向是大前提，资金是介入时机的硬约束。所以答案是等，不是买。</strong></p>
+
+      <h4>关键分歧一：8/21 暴跌反应的是财报，不是配售</h4>
+      <p>8/21 美股 -8.57% 时配售公告还没出（8/23 才发）。跌的是财报里这三个数：净利润 -75%、经营利润率 14%→6%、FCF 净流出 446.70 亿。</p>
+      <p>港股 8/21 日内结构更说明问题：<strong>高开 129.20 → 最高 129.80 → 最低 121.50 → 收 123.00</strong>，成交额 182.50 亿（8 月日均约 103 亿，放大 1.8 倍），量比 1.89。早盘还有资金去做 AI 云的亮点，被一路砸到接近全天低点——典型的<strong>放量冲高回落</strong>。</p>
+      <p>结论：<strong>财报的负面已部分消化，配售的摊薄压力一分钱都还没反应。8/24 港股开盘才是第一个真正的定价日。</strong></p>
+
+      <h4>关键分歧二：供给压力可以量化</h4>
+      <table>
+        <thead><tr><th>假设折价</th><th>定价</th><th>新增股数</th><th>占总股本</th></tr></thead>
+        <tbody>
+          <tr><td>0%</td><td>123.00</td><td>6.50 亿股</td><td>3.39%</td></tr>
+          <tr><td>5%</td><td>116.85</td><td>6.85 亿股</td><td>3.57%</td></tr>
+          <tr><td>8%</td><td>113.16</td><td>7.07 亿股</td><td>3.69%</td></tr>
+        </tbody>
+      </table>
+      <p>三条压力线：① 摊薄约 3.4%–3.7%；② <strong>800 亿港元 ≈ 7.8 个交易日的全部成交额</strong>，这是短期最硬的供给；③ <strong>Reg S 套利盘对冲</strong>——认购方通常同步在美股 ADR 或港股融券端做空对冲锁定折价，这是配售公告后 1–3 个交易日最常见的抛压来源，比"主力资金流入流出指标"真实得多。</p>
+
+      <h4>关键分歧三：公司自己给了一条重要情报</h4>
+      <p>官方 PR 与市场解读都提到，选这个窗口是因为"OpenAI、Anthropic 预计年底陆续上市，全球 AI 主题资金将迎来分流高峰"。<strong>公司自己承认现在是最好的窗口——反过来讲，它认为后面的窗口会变差。这是这条公告里信息量最大的一句话</strong>，比"100% 投 AI 基建"更值得琢磨。管理层在抢定价，而不是被逼着融资。</p>
+
+      <h4>时间窗风险：8/26 英伟达财报</h4>
+      <p>配售定价窗口正好撞上英伟达 8/26 财报——<strong>全球 AI 主题的 beta 检验节点</strong>。若指引不及预期，AI 资金整体退潮，阿里配售折价可能被迫扩大，形成"个股供给 + 板块退潮"双重压力。</p>
+      <p>另列为<strong>系统性风险苗头</strong>：英伟达联合华尔街六家机构筹建超 5000 亿美元 AI 算力融资平台——AI 资本开支正在<strong>高度金融化</strong>。金融化的产业周期，上行更陡、下行也更陡。</p>
+
+      <h4>我等的三个确认信号 / 失效条件</h4>
+      <ul>
+        <li>确认信号（缺一不可）：① 配售定价折价温和且认购倍数扎实；② 消化供给后成交量重新放大且价格站稳（放量上行，不是放量下跌）；③ 英伟达财报后全球 AI 主题资金没有系统性退潮。</li>
+        <li>退出纪律先写好：中长线仓位上，第一根大阴线出来就要减仓；破 5 日线减一半，破 10 日线继续减。建议用条件单——卖点比买点难太多。</li>
+        <li>看多逻辑失效我认错：① 云增速掉到 30% 以下或 ARR 未达 100 亿美元指引；② 云 EBITA 利润率从 12% 回落；③ AI 实验室亏损无节制放大而 ARR 不跟上；④ 短期内再出第二轮融资。</li>
+      </ul>
+
+      <div class="pull-quote">"这不是'利空砸出黄金坑'。黄金坑模型的前提是外部处罚打压导致的非基本面下跌，这次是公司主动增发 + 财报利润大幅下滑，性质完全不同，别套错模型。"</div>
+    </article>
+
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="data:image/webp;base64,UklGRqgMAABXRUJQVlA4IJwMAACQOQCdASqAAIAAPlEijkSjoiEWSpWkOAUEsgBnjh6+E84uwf378Mc6ObztD/i/a72ifMA/Sj/WfZ33EPMB+3PrRejH/ReoB/R/871ifoG/tB6bn7cfCF+3X7e/AN+xn/3u0Xhz5Z/cXt3zk4kHa3+g4md4p/O/83w84Av0L+9cU3cmf7jksaAH529WX+u/9vmD/Of9F/5/9H8BP8x/sO+2fucycc0qQjj+LWzmRBg2OehtiKCx3Tsg6agCN9nkC4MFQF5lYsDWyJa858AYpzfUNoXQKUDdbJBc0PbaFlF0UVDMH2pASO8RdKAaP+vGyBMrJsJ6J95e/4tSnYWGgP7xpfxzs74WVPPoQsfgw5ndWiv7+XtQBU8TL/NcyFWFLXAjVYHbjxLlhvg17a7cK9iqMpZ7CvJH0oUUf+vzb06h8xR6F18U+KsrVFFYPE2RFGVJL3DFutvBJjgygN2yfMcwCq4poIhs7PoDNozKE/spL9SnKuAd2RaJ2OzF1NYNpYCyRf661oEopk7///p12PoK+zk1eCeHm9UDhZ0ENjcX+2HdQGxSbU0W2D2Mdt6TjuJzVhKka/gEBAi+u4PdtQqvxXakseVcKY3CqlOaksq2VLiuCZ6AAP7//guBZh/O+WkMsehbfd6Yc4gPJLcL4j9i/w1YuRVBCjuyUJ3SD4zbt/9iy+AHHjFX68SyOlCUp1aKcNHid1B+DEicehv4pzEBmKLIFDexvW21+KnXUk4plJgUmxndto6LgyaV6aOcBgSHk8D851oSqqhI2t+pgaqFGDL42aaWoMhegTtO8WFaSIXC7IdBEbiuR5sVUpYSGICihcvipdN5wy8gAXI16mu8XMZjlzBdhNonI22wiqLOy3eOAoQuo4skq7sNiHBnsn6S6W1sMdB7YY+v2bPff7Nqbne1M4PVkZz7AbAhAvIfkX59BLTIqoFVqYUEqKXoyVsmr0WLj/PCiloJDVCCOub4Zognij/Jl/Ubbz2/a43CHYw+caySA5UAdc0tQky0B/dYZX8Is7ZQyWiKRIobkFuWvE/9rZnIuj9L+AIcKvCMNMHdP04f6m9zyMTmOVgkLKFcVbU8nHSWHgJcsjiZlzABEeo5+B+AyxXdP5qv4uR0w2MuQL9yF2xZ6mH+4K1il+VFjoxg+vbkkqsTtXWLUl/SsCncK0UTyVcrEB36hyo/4ipLJLZD6uACf+XZ79o38Vu+DusfudhwQ5hGZaHbfUjTaqjvsg8jFTsx6LQVTgAS0E3/JLtebZ8rVPZAPKvmmSiLR3dR9fbAiMquZoo/r1lx5GFkbGPQyH97OrA0Nr//Fpl0uLiUUz+rWQWQgHTV610S/ecqeO/BPJFaXGAb+KfQe1pDYRJnffID33duSRwrcyK+6TgpjsLLoEdAqP85o+6QoNrnrx36H61gRWMV8GUNbg+vFd7pW3KINwuMc/XOCGf1H8w6Z3zQ1JqEZcY/vzcgjJGWOHJ5EzO9II/KxNtyi9OwXMcJSG3LzXjDU8xcOnEYXvRXCBHBrhLhc0T+GxIR1S9o/wC7ZesQ7ok/AXofHE6w6QQmGOam3hInUo7KY1utSd5Ol1FXAqtHZOzghbTuf4Hlqspb6qojsfRibEPpN4Xj9ePMFFOBAEPn412bjBl3zpUm4d9y274SKxeufDbV+dQ+TtddTBahJbsv4d5xeTOPtuLkjKBxM/YGcKcxobOEPKFcRUKEI2qLf3n/ZA5tg//y1JDwbcCqOD/EQDULwDiXgqbTPqLVf8wyF5t5N7IpfA2uoYPcjmB6bggl8byR0z6xDhW3/S9qL0dN7gpOfHwf8tq2LO7g5xt+qJnzN++Ly3RtqWExmuQeCkeAL0AC3MGomqjB4JKNDTgUV7beoeENYXsI5t+RPH8thw1/H8ar7xuShzyFNrr/sPltCq3FUbVGU+bZqm6jQOecgrHwhDHtJq/zLdrgwx0YUKlkZwDtTI6MjqZCXhrlnL1YZU+ik8/uic9K6L36K0L9EuBjPKquCZ4BbshkKfJDqGgRy5jqYltak7r11KPR6j5jQ7WrZ8ONjI6fl/CBdbQzb/O9rwr5yLy/rx1Tl5bZO8/21Lsh45Qae7HFaKnfJOK/JQ/8WhspxGEiXswR7zy56j1BAnsFQyrKnSQdXRP3iDZHeIniI68zUH0FpB8a6WRQdk1IvC7jSfeoObW5OBkyhL5MSPxUbZJL8O/EhakfrIZmtvmqgO73lgTTiqzTeSReMYqck+bUi2rfznUStz0NZhmkNfl3dSm+gZ+VNlgQm3li44ZAQhKEL/4grU+y679qU1vIZa0OHDsF9LXhZWZos82HLGZiNWZVojgjogPNw8bBCRdtdrP5w7saPYwY+CXRJH8SFXWlvnq2LkfOW9OGdtAk9UA9Gj6tqVT9gN0ikuEweyAsiw3KtNUC+fneEctfZ9I5vKiYpnc602izjhfHlX8flRwjGScRWnL86ac/y4Sm4K5A/3pSLGLCvZB0MfkFysLZtq9G+/OybH/bs0ypWAhd1OxscoUjEo/4JlRYjt//66D3OTvT334070qMwz1zhSr3bc2crML1xN+4vhCFOOfiAnB2iU2ztY8qD3MHFy7baxJgQ/o1gFLAro1sDSApIv/BXvxjXzVA7v0Krf18SwWO/nbRlvSUhms3ABSj0OdCGRmDI7QM11oPe4c1SwgS7Db+dZLXMRyJWZTi5N40SadciMv4xvpxSF+/38dRzSu0AYTi5HQb3SI9+BhQtFch/Nl9zAbc9KpQutqy94Tz+oGfe9Dw8IpGisvYKFJIQDKq67JrLGh8m78hUuuVJWEnooaCDlFobG/KmfQsm1v8gFly/5OzYcCBFBl9Wb1JIJfsg/OwtsU/CUV5Qk4h+SkzviivLam3JZn7nOL9YYe29mv5A0lVrlanC2AsVL3CaAevP8Yt/IXz3Gu7luq7e3O+A6lTk2slY1SchK0IqH5z38qbCAmJIeHW0YfJW7+YK20vDMMYCcGIccnHfUBnfouiA2QTy3bxNU0Zt/0Vkjcl/7PXk76TZg+ciYe5Q9G305dl6/HG0ceGRaMxHqUXbJ8O8acx0nzUEtz/0k8RK1/PQk7ToxYrsMkkscliz43kc5Zh/J41NjnpYs7J6+Jjj5ppvzBjKVJRxJvST8r/Hqw5oNwKc6V8AMsRBjBZDBdkRPHRHhmbmQ5qdJEcywyXUoNuhhbr/Bmb/htY3OgsGJ1eSbB1vCOzrSUrKa3MC6zMAnDMO61qAMesyuIatwaGGKa1ic41u74OmsWqDQhvKI/LyjRfkV2OtJ8u1M4RPTs1MmG/60mB/ItpMCv04Z4opbJTbsTnPvrO63UUpJLea4ngRfOKaDHNUw4ZQmQ6th2FbdPfUhyIMhOjW6lYLzmlfyOJ/ifOvXKSDf5xQT+Ce231+sf/ITZ4UWoybfvviuVwxxsTJQlE14WatA/Lf0buX7cYlxadUM8l/3UrTs+F6yHlrjfZw/S+pUreGyvXXWpud7wNcG2ha+RZ5K9TRtVjMPcWdWIgzU+9B8b+lySySZt0TIdyXQ47qPGb0vDIVLsnroBpcwIWeaqkxb3HM19qfwUDmlnAbObwKg7jD4i0VuwaSswYq6ncgnM5zj6jyxRKNgO0cZ6W7Mv2+tg0VRB/3QA+sfHlR2quVsixpchrQwZ/7tqzhjQSC9U/5HZs42qTTPpdYEtnubZu3jqrP9suZ7sxnH2pg53a+qzozCbGaZmV5XCK1gsengdIaIzIFmeBl+tLAGLylwIJTedrKSOHdfanGKVvwphw9vpNkPLPHD+9AsJzt9U2649fAlOh45T58BvxVIQZ+QnmQpTxchZstokccU6ItDJ0iBp3hn2cqpdxCHw3b4SzdTmT8RLgTYnrKSYmec48H8Z+owdY6tNdy+Dm3LRTN/vMRDjp93UHdJfTcG8B8LkCHyceKl82CaasuuvBWXa9AZyc/P587QbWnORQJ/0lzWVJYlK74Hq3//09jsitGlh8hSRUReHSLPRkgR4Ql18g8MhkvVogkimTYY0zppJ9WeDPIOTwEjFba+/OZJv2XvX9f22ogWpLMSEvp/lt0O7Era2XJB1ENjMcs2j6K2Fcu2FpZxWu4VJ1YhU/HniEaombMJ8NUu9yGzKirhgOd+d3xaNFhV/FDIjoNrCCGUqBcpSE/zrzEoscqcbbdeQfgRPh0IGHoco8e7SK/rEAbgdQlvEkNhot0acjiP6TeMJpRqaKR8Cz7V5jBNJFHtWn2cjasKdDfu14gkMUYKW/aBY5n/600LRpU7OqhHQfxjX5wUSqeUQJkC0AAAA=" alt="逆向投资人">
+        <div class="voice-name">🏔️ 逆向投资人 · 坤候底</div>
+      </div>
+      <p><strong>方法论定调</strong>：够格，但现在这个价位不上不下的，我一份都不会动。支撑位撑住才买，撑不住就不买。</p>
+
+      <h4>回撤 33.6% 算不算"跌出来的机会"</h4>
+      <p>185.17 → 123.00，回撤 33.6%；按美股折算的 116 算，回撤 37.3%。市值 2.36 万亿港元，中国 AI + 电商双龙头——<strong>大市值这个前提条件满足了</strong>，这家公司不会死。</p>
+      <p>但说清楚：<strong>33% 不是我最喜欢的位置</strong>。真正让我兴奋的是今年 6 月那次——美股砸到 91.99 美元、港股 88.65 港元，从高点腰斩 52%，那才是"曾经八折的东西五折给我"。现在 123（或 116）是从 88.65 反弹 30%+ 之后又回落的位置，属于<strong>半山腰</strong>。反弹那段我没吃到，那就是没吃到，我不追。</p>
+
+      <h4>增发这件事，我的逆向解读</h4>
+      <p>摊薄约 3.4%——对一个净现金 465 亿美元的公司，财务上没有意义。真正有意义的是三件事：</p>
+      <ul>
+        <li>资本开支 676.78 亿 +75%、FCF 净流出 446.70 亿、期末现金从 5208 亿掉到 4745 亿——<strong>单季净现金消耗 463 亿</strong>。不是没钱，是<strong>烧钱速度已超过账上现金的舒适区</strong>。</li>
+        <li><strong>回购缩量到 1.62 亿美元。这是最关键的信号</strong>：以前公司拿钱回购托股价，现在钱全去买算力了。<strong>过去几年阿里股价的一个托底力量，暂时撤了。</strong></li>
+        <li>从"选择在财报后三天、AI 叙事最热的窗口发"这个动作看，<strong>管理层自己也知道这个价格不便宜到不忍卖股票</strong>。公司在这个位置愿意卖股，多少说明他们不认为 123 是地板价。</li>
+      </ul>
+      <p>结论：配售不是"公司有问题"，但它<strong>砸出来的坑是真坑</strong>——托底盘走了，短期多了 3.4% 筹码，新股买家是国际机构，锁定期一到就是浮筹。<strong>所以我更倾向于它会往下找更实的位置，这对我是好事。</strong></p>
+
+      <h4>支撑位分批表（我的十次机会）</h4>
+      <table>
+        <thead><tr><th>批次</th><th>价位（HKD）</th><th>支撑位依据</th><th>触发条件</th></tr></thead>
+        <tbody>
+          <tr><td>第1份</td><td><strong>120</strong></td><td>8 月箱体下沿；8/12 低 121.3、8/21 低 121.50 反复触及；整数关口</td><td>需日内不放量杀跌 + 收在 120 上方才算撑住。若周一直接跳空到 116，<strong>视为已破，此档作废</strong></td></tr>
+          <tr><td>第2份</td><td><strong>112–115</strong></td><td>7 月中下旬美股 112–118 密集成交平台折港元 ≈110–115；叠加 60 日均线（US 115.7→HK ≈113）</td><td>在此区间<strong>横 3–5 天不再新低</strong>再动手。<strong>本轮最厚的筹码带</strong></td></tr>
+          <tr><td>第3份</td><td><strong>105–108</strong></td><td>7/8–7/14 美股 108–112 跳空/缺口区折港元 ≈105–109，快速拉升段起点</td><td>缩量到此、出现下影线；破了不追加</td></tr>
+          <tr><td>第4份</td><td><strong>95–97</strong></td><td>7/1–7/7 美股 96–99 平台折港元 ≈94–96；叠加 95 整数关口</td><td>走到这里说明 AI 叙事阶段性被证伪，我照样买 1 份</td></tr>
+          <tr><td>第5份</td><td><strong>88.65</strong></td><td><strong>52 周绝对低点</strong>（美股 6/26 低 91.99 对应），终极防线</td><td>到这儿我一定买，而且仍然只买 1 份</td></tr>
+          <tr><td>第6–10份</td><td>—</td><td><strong>支撑位不明确</strong></td><td>88.65 下方是无人区，找不到清晰支撑我就不硬凑十份</td></tr>
+        </tbody>
+      </table>
+      <p>强调三点：<strong>绝不加倍</strong>（第 5 档最诱人也严格 1 份）；<strong>档位间距不均匀</strong>（K 线画出来的，不是计算器除出来的）；<strong>剩下 5 份不铺</strong>——宁可少赚，不在没有依据的地方开枪。且我不会只买阿里，按规矩要分散 5 只。</p>
+
+      <h4>给成本在 150–185 的深套持有人</h4>
+      <p>你们的问题不在阿里，<strong>在买法</strong>。150–185 建仓，说明当时是在 52 周高点附近、AI 叙事最亢奋的时候一次性上的车——那个位置任何时候都不是我的买点。</p>
+      <ul>
+        <li><strong>先算你还有几发子弹</strong>。满仓没后手，那问题已不是"要不要补"而是只能扛；扛得住的前提是清楚自己扛的是什么：大公司 + 行业地位没被颠覆 = <strong>亏时间不亏钱</strong>。</li>
+        <li>若还有子弹，<strong>从今天起改成分批</strong>，按上表往下铺——这不叫补仓，叫从今天开始重新执行一遍纪律。摊平成本是副产品，不是目的。</li>
+        <li><strong>不要在恐慌的位置动手，也不要在反弹的位置动手</strong>，这两个都是情绪。</li>
+        <li><strong>卖点想清楚了再谈扛</strong>：牛市第三波冲高放量但冲不动 → 清；PE 回到历史高位区间（阿里 30 倍附近）→ 卖；没到就不卖，别在半山腰因为难受而割。</li>
+      </ul>
+
+      <h4>我承认的软肋</h4>
+      <p>隆基教过我，"大公司不会死"有个隐含前提——<strong>行业本身没陷入结构性产能过剩</strong>。阿里现在有一个相似的味道：AI 算力是重资产投入，"三年回本"这个假设我<strong>没有能力独立验证</strong>。我的处理办法是仓位控制 + 严格分批 + 只在支撑位买，<strong>用买入价格的折扣来对冲我看不懂的部分</strong>。</p>
+
+      <div class="pull-quote">"价格够便宜，本身就是对无知的补偿。高深的方法没有，就这么简单：大公司、便宜买、等它回来。"</div>
+    </article>
+
+    <article class="voice-card">
+      <div class="voice-head">
+        <img src="data:image/webp;base64,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" alt="短线冲浪手">
+        <div class="voice-name">⚡ 短线冲浪手 · 磊追浪</div>
+      </div>
+      <p><strong>方法论定调</strong>：技术信号已经出了，但均线系统还没破。8/21 收 123.00 同时跌破 MA5 和 MA10——按我的框架这就是减仓信号，不用等消息面解释。</p>
+
+      <h4>短线关键位表</h4>
+      <table>
+        <thead><tr><th>价位（HKD）</th><th>性质</th><th>我怎么用</th></tr></thead>
+        <tbody>
+          <tr><td>129.80</td><td>8/21 盘中高点</td><td>当日 6.58% 振幅的顶，上方套牢盘密集，反弹到这就是卖压</td></tr>
+          <tr><td>126.20</td><td>8/20 收盘（财报后）</td><td>缺口上沿，回补这里才算利空出尽被资金认了</td></tr>
+          <tr><td><strong>124.46</strong></td><td><strong>MA5</strong>（8/21）</td><td>已失守。反抽站不回去 = 弱势确认</td></tr>
+          <tr><td><strong>123.98</strong></td><td><strong>MA10</strong></td><td>已失守，且 MA10 从 8/20 的 124.06 开始走平掉头</td></tr>
+          <tr><td>123.00</td><td>8/21 收盘</td><td>周一参考基准</td></tr>
+          <tr><td><strong>121.62 / 121.50</strong></td><td><strong>MA20 与 8/21 最低点重合</strong></td><td><strong>最关键一道。这里破了，均线多头排列破坏，我直接清仓不留仓</strong></td></tr>
+          <tr><td>119.90</td><td>8/14 收盘低位</td><td>MA20 破位后第一个平台支撑</td></tr>
+          <tr><td><strong>116.67</strong></td><td><strong>ADR 换算价</strong></td><td>周一理论重心。若开盘直接贴这附近，就是港股向 ADR 收敛</td></tr>
+          <tr><td>112–118</td><td>配售定价折价推算区（<strong>推算，定价未公布，待核实</strong>）</td><td>大额配售惯例折 5–8%，定价落在这里，短期就是天花板压制</td></tr>
+        </tbody>
+      </table>
+      <p>均线数值来源：港股行情指标表（8/03–8/21 逐日 MA5/MA10/MA20）。</p>
+
+      <h4>周一补跌空间怎么估</h4>
+      <p>三条线交叉：① <strong>ADR 缺口</strong> 116.667 vs 123.00 = -5.15%，是周五美股 -8.57% 的定价结果，港股周五收盘时配售消息还没落地，所以这 5% 是<strong>未消化的</strong>；② <strong>摊薄算术</strong>：按 118 定价约新增 6.78 亿股，摊薄约 3.5%——<strong>3.5% 撑不起 8.57% 的跌幅，美股跌的是"经营利润 -57% + 净利润 -75% + FCF 净流出 446.70 亿 + 还要再融 800 亿"这套组合拳，是对回报周期的怀疑</strong>；③ <strong>技术位</strong>：121.50 一破，下方真空到 119.90。</p>
+      <p><strong>我的估法：周一低开概率很高，重心大概率落在 116–120 这个带</strong>，摸到 121.50 下方几乎是默认剧本。跳空低开到 117 附近然后收上来一根长下影，和低开一路阴跌收在 116 以下，是两个完全不同的结局。</p>
+
+      <h4>集合竞价怎么看盘（港股 9:00–9:20 输入、9:20–9:28 不可撤单）</h4>
+      <ul>
+        <li><strong>开盘价相对 116.667 的位置</strong>：开在 118 以上 → 港股不认 ADR 那么悲观，抛压有限；开在 115 以下 → 有机构在借配售出货，比 ADR 还狠。</li>
+        <li><strong>竞价成交量</strong>：8/21 已是 1.47 亿股、量比 1.89 的放量。周一若竞价+开盘半小时量能超 8/21 同期且价格不再新低，那就是<strong>抛压释放</strong>的信号。</li>
+        <li><strong>腾讯的方向</strong>：8/21 腾讯 457 涨 1.24%、阿里 -2.54%，这是明摆的跷跷板——资金没离开中国科技，是在<strong>板块内部避险换仓</strong>。周一腾讯还红、阿里独跌，是个股事件；<strong>腾讯也跟着杀，才是 AI 算力这条线整体转弱</strong>。</li>
+      </ul>
+
+      <h4>AI 算力这条主线这周还算不算主线</h4>
+      <p><strong>算，但这周它不由阿里说话，由英伟达说话。</strong> 阿里 8/3 到 8/21 是 125→128→123 的震荡，MA20 从 112.44 一路爬到 121.62——<strong>趋势线还在上，只是股价先跌到均线里面了</strong>。但主线的当周检验点是 <strong>8/26 英伟达财报</strong>。所以按我的框架，<strong>8/24–8/25 我不进场</strong>：上有配售定价压制、下有 ADR 缺口，中间夹一个未知财报，纯风险敞口没有赔率。</p>
+
+      <h4>"利空出尽"反弹的三个条件（缺一不进）</h4>
+      <ul>
+        <li>配售定价公布且折价不超 8%，且定价日后第一天不再破新低；</li>
+        <li>股价站回 MA20（121.6 附近）并收在 MA10（124 附近）上方，<strong>连着两天守住</strong>；</li>
+        <li>英伟达 8/26 财报没爆雷，港股 AI 板块联动一起红。</li>
+      </ul>
+      <p>三条齐了，观察窗口是 <strong>8/27–8/28</strong>。我的做法：持仓的，8/21 破 MA5+MA10 那天减 1/3，周一若盘中有效跌破 121.50 全清；空仓的周一不接。真要上也就 1/3 仓，配主线里另外两只（腾讯是明显的强势替代品），三只等分。进场后跌破 MA10 走人。</p>
+
+      <div class="pull-quote">"逻辑对不代表现在就该买——这两件事分开看，才是短线该有的清醒。"</div>
+    </article>
+
+  </div>
+</section>
+
+<section id="thinking">
+  <div class="section-head">
+    <div class="section-num">03 · 思考</div>
+    <div>
+      <div class="section-title">深度思考</div>
+      <div class="section-lede">主持人替你想到的 —— 你没想到的问题、可能误读的地方、应该问但没问的</div>
+    </div>
+  </div>
+
+  <div class="subsection-label">3a · 主持人札记</div>
+  <div class="notes-stack">
+    <article class="note-item">
+      <div class="note-num">01</div>
+      <div class="note-body">
+        <h4>六个人吵得最凶的地方，其实不在"AI 好不好"，在"这笔钱够不够"</h4>
+        <p>我把六份报告并排看的时候，发现一个有意思的现象：<strong>没有一个人质疑 AI 云是真生意</strong>。收入 +45%、EBITA +133%、利润率从 7.2% 抬到 11.6%、ARR 破 495 亿连续 12 季三位数——这组数据把方向的争论直接终结了。真正的战场转移到了一个更冷酷的问题上：<strong>这 730 亿人民币够花多久？</strong> 财报研究员算出来是 1.6 个季度，剩余的 1900 亿计划额度按当前速度只够 2.8 个季度。这意味着<strong>摊薄不是一次性事件，而是一个可能重复的机制</strong>。这条比"摊薄 3.5%"重要一百倍，但市场今天大概只在看那 3.5%。</p>
+      </div>
+    </article>
+    <article class="note-item">
+      <div class="note-num">02</div>
+      <div class="note-body">
+        <h4>最被低估的一条负面信息，是回购从数十亿美元缩到 1.62 亿美元</h4>
+        <p>财报研究员和逆向投资人都独立提到了这一点，但角度不同：前者说这是"资本配置从股东回报切到再投资"的体制切换，后者说这是"托底盘走了"。<strong>两个人说的是同一件事的两面。</strong> 过去几年阿里股价每次深跌都有一只手在下面接——那只手现在把钱拿去买算力了。这解释了为什么估值分析师算出 SOTP 中枢 170、安全边际 28%，但六个人里没有一个说"现在就买"。<strong>估值给的是空间，托底盘给的是底。空间还在，底撤了。</strong></p>
+      </div>
+    </article>
+    <article class="note-item">
+      <div class="note-num">03</div>
+      <div class="note-body">
+        <h4>"手握 465 亿美元净现金还要融 102 亿"这个矛盾，答案在存量与流量的区别</h4>
+        <p>这是本轮最容易被误读的地方，我看到财报研究员用一句话讲透了：<strong>净现金是存量，资本开支是流量</strong>。单季 Capex 676.78 亿、FCF -446.70 亿，年化缺口约 1787 亿。4745 亿账面现金看着厚，按这个失血速度约 10 个季度见底。所以这既不是"公司缺钱"（不是流动性危机），也不是"锦上添花"（不是有钱没处花），而是<strong>前瞻性的硬约束</strong>——在市场还给面子的时候把股权融资通道打开。</p>
+      </div>
+    </article>
+    <article class="note-item">
+      <div class="note-num">04</div>
+      <div class="note-body">
+        <h4>信号派首席挖出的那句话，是这份公告里信息量最大的</h4>
+        <p>官方 PR 提到选这个窗口是因为"OpenAI、Anthropic 年底陆续上市，全球 AI 主题资金将迎来分流高峰"。信号派首席的解读很犀利：<strong>公司自己承认现在是最好的窗口——反过来讲，它认为后面的窗口会变差。</strong> 这句话里藏着管理层对未来 6 个月融资环境的判断。而逆向投资人从同一个动作里读出了另一层：<strong>公司在 123 港元这个位置愿意卖股，说明他们不认为 123 是地板价。</strong> 两个人从同一个事实读出了两个不同维度的信息，都成立。</p>
+      </div>
+    </article>
+    <article class="note-item">
+      <div class="note-num">05</div>
+      <div class="note-body">
+        <h4>我最想提醒的：产业策略师那句"支出方"的定位，可能是整场最容易被忽略的一句话</h4>
+        <p>产业趋势成立 ≠ 这只票受益。产业策略师的产业链卡位表把阿里放在 ★★★☆☆ 一档，理由是它是 <strong>capex 的支出方</strong>——它掏的 676.78 亿，最终变成上游光模块、液冷、国产芯片厂商的营收。这个定位很不讨喜，但它解释了一个财务事实：<strong>云的 α 被集团的 β 稀释了</strong>。云业务是高景气资产，可它和"承压的电商 + 烧钱的 AI 应用"绑在同一张利润表上，集团经营利润率因此从 14% 掉到 6%。想赚 AI 算力的钱，买阿里未必是效率最高的路径——这是一个"方向对、环节可能错"的经典陷阱。</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="subsection-label">3b · 主持人 Q&amp;A</div>
+  <div class="qa-stack">
+    <article class="qa-card">
+      <span class="qa-tag tag-key">🔑 关键</span>
+      <div class="qa-question">这次配售到底是利好还是利空？</div>
+      <div class="qa-answer">
+        <p><strong>它是"产业信号极强 + 资金信号极差"的复合信号，不能用单一标签。</strong> 从产业卡位看，不缺钱还要融，说明可投产能比原计划多、供给紧张确认，这对整条 AI 算力链是利好；从现金流看，它是内生现金流覆盖不住 Capex 强度的证据，是硬约束；从估值看，摊薄 3.5% 只值 0.7 倍 PE，微不足道；从资金面看，800 亿 ≈ 7.8 个交易日全部成交额，叠加 Reg S 套利盘对冲抛压，是短期最硬的供给压力。<strong>四个维度里，长期偏正面、短期偏负面——这就是为什么六位成员方向共识、时机也共识（都不认为现在舒服）。</strong></p>
+      </div>
+    </article>
+    <article class="qa-card">
+      <span class="qa-tag tag-confuse">⚠️ 易混淆</span>
+      <div class="qa-question">8/21 美股暴跌 8.57%，是不是已经把配售利空跌完了？</div>
+      <div class="qa-answer">
+        <p><strong>不是。这是本轮最容易搞错的时序问题。</strong> 配售公告是 8/23 才发的，8/21 美股跌的是 8/20 财报里的三个数：净利润 -75%、经营利润率 14%→6%、FCF 净流出 446.70 亿。<strong>摊薄压力一分钱都还没定价。</strong> 港股 8/21 的日内结构（高开 129.20 冲 129.80 后砸到 121.50，收 123.00，放量 182.50 亿）说明有资金在美股情绪传导前抢跑出货。<strong>8/24 港股开盘才是配售的第一个真正定价日</strong>，而且 ADR 换算价 116.667 相对港股还有 -5.15% 的缺口没补——从盘面视角看，周一重心大概率落在 116–120。</p>
+      </div>
+    </article>
+    <article class="qa-card">
+      <span class="qa-tag tag-confuse">⚠️ 易混淆</span>
+      <div class="qa-question">PE(TTM) 27.94 处 3 年 99 分位，是不是贵到不能碰了？</div>
+      <div class="qa-answer">
+        <p><strong>这个问题问错了方向。</strong> 从估值定价视角看，FY2026A EPS 同比 -53.3%，而股价只跌 33.6%——<strong>是分母塌得比股价快，PE 往上飘不是因为股价涨，是因为利润被主动砸低了</strong>。资本开支高峰期的公司，PE 分母被会计准则（折旧 + 研发费用化）人为压低，用 PE 定价必然误判。PEG 0.40 同样不能用，那是从崩掉的低基数反弹出来的修复性增速，性质接近周期股。<strong>正确的尺子是 SOTP</strong>：电商 8.5x P/E + 云 6x P/S + 国际 2x P/S + 净现金 → 中枢 170 港元，123 对应 72% 位置。而从逆向视角看，PE静 19.66 在阿里自己的历史里（长期 25-40 倍）确实是低位区间，但<strong>估值只告诉你"没贵到要卖"，不构成买入理由</strong>。</p>
+      </div>
+    </article>
+    <article class="qa-card">
+      <span class="qa-tag tag-miss">🔍 易疏忽</span>
+      <div class="qa-question">大家都在算 3.5% 的摊薄，但有一件事更值得盯</div>
+      <div class="qa-answer">
+        <p><strong>会不会有第二轮、第三轮。</strong> 三年 3800 亿计划摊三年是年均 1267 亿，而 Q1 单季就烧了 676.78 亿，年化 2707 亿——<strong>是原计划节奏的 2.1 倍</strong>。已投 1900 亿、剩 1900 亿，按现速只够再烧 2.8 个季度。所以 3800 亿这个数字后面几乎必然要上调。从财报视角看，这次配售 730 亿人民币只覆盖年化缺口的 41%。<strong>如果短期内出现第二轮融资，那说明 Capex 节奏已超出自身现金流承受力，摊薄就从一次性事件变成了持续机制</strong>——这才是需要盯的东西，不是这一次的 3.5%。</p>
+      </div>
+    </article>
+    <article class="qa-card">
+      <span class="qa-tag tag-meta">⭐ 重要</span>
+      <div class="qa-question">想赚中国 AI 算力这波的钱，买阿里是最优路径吗？</div>
+      <div class="qa-answer">
+        <p><strong>这是用户没问但最该问的元问题。</strong> 从产业卡位看，答案可能是否。capex 上行阶段最受益的从来不是掏钱那一方——阿里掏的 676.78 亿，最终变成上游（光模块/光芯片、液冷电源、国产芯片与晶圆代工）的营收。产业链卡位表把上游材料/零部件放在 ★★★★★、云服务商放在 ★★★☆☆，理由是云厂的收入起量但被 capex 和折旧吃掉利润，兑现最慢、2027 后才见真章。而从估值配置视角看，阿里 FCF 净流出 + EPS 剧烈波动的现金流特征，决定它<strong>不具备核心仓位属性</strong>，只能进卫星仓位博云业务重定价的弹性。<strong>阿里的独特价值是"全球资金做多中国 AI 资产的稀缺大市值入口"——这是稀缺性溢价，不是产业链效率最优。两件事别混为一谈。</strong></p>
+      </div>
+    </article>
+    <article class="qa-card">
+      <span class="qa-tag tag-key">🔑 关键</span>
+      <div class="qa-question">"三年回本、甚至 2 年"这句管理层表述，可信度多高？</div>
+      <div class="qa-answer">
+        <p><strong>从财报视角看，态度是"可以听，但不当结论"。</strong> 按年化 2700 亿 Capex 要三年回本，隐含每年新增数百亿量级的现金利润，而当前 AI 相关产品 ARR 才 495 亿（这是<strong>收入</strong>，不是利润）。2030 年阿里云外部商业化收入 1000 亿美元（当前云年化约 271 亿美元）隐含约 4 年 39% 复合增速——<strong>不是不可能，但这是需要连续 8 个季度考试及格的强假设</strong>。而从产业视角看，这个说法成立的前提是<strong>推理价格不能塌</strong>，可产业事实是中国 inference 价格已跌两年，2027 年国产算力集中投产后三家同时持有超建产能，多余算力必然找出口。<strong>Capex 是现在花的，折旧从明年开始摊，收入弹性却取决于一个正在跌价的市场——这是整套逻辑最可能被证伪的地方。</strong></p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="watch">
+  <div class="section-head">
+    <div class="section-num">04 · 关注</div>
+    <div>
+      <div class="section-title">后续关注</div>
+      <div class="section-lede">当下综合视角是基于现有数据的快照 —— 什么时候该回来重看，什么情况下我们这次的视角可能错了</div>
+    </div>
+  </div>
+
+  <div class="subsection-label">4a · 关键变量观察台</div>
+  <div class="trigger-wrap">
+    <table class="trigger-table">
+      <thead>
+        <tr>
+          <th style="width: 30%;">变量 · 当前</th>
+          <th>重新评估触发线</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="trigger-var">配售定价与折价率<span class="now">当前 未公布（推算 115–118 港元、折 3%–8%）</span></td>
+          <td class="trigger-action">折价 ≤5% 且认购超额 → <span class="up">国际机构对中国 AI 资产定价意愿强，供给压力可控</span>；折价 &gt;8% 或认购勉强 → <span class="down">资金层进一步走弱，估值锚下移至悲观情景 138 港元一带</span>。</td>
+        </tr>
+        <tr>
+          <td class="trigger-var">MA20 / 前低重合区<span class="now">当前 121.62 / 121.50</span></td>
+          <td class="trigger-action">站稳并收上 MA10（124 附近）连两日 → <span class="up">均线多头排列修复</span>；有效跌破 121.50 → <span class="down">8/3 以来多头排列破坏，下方真空至 119.90</span>。</td>
+        </tr>
+        <tr>
+          <td class="trigger-var">ADR 与港股价差<span class="now">当前 ADR 换算 116.667，折价 -5.15%</span></td>
+          <td class="trigger-action">价差收敛且港股不再新低 → <span class="up">补跌压力释放完毕</span>；港股向下贴合甚至跌破 116 → <span class="down">抛压超出 ADR 定价，机构借配售出货</span>。</td>
+        </tr>
+        <tr>
+          <td class="trigger-var">AI 相关产品 ARR<span class="now">当前 495 亿元（约73亿美元），指引下季近 100 亿美元</span></td>
+          <td class="trigger-action">达标 → <span class="up">产业信号延续，支撑 6x 以上云 P/S</span>；未达标 → <span class="down">管理层自己出的考题没及格，云倍数向 3x（对应 138 港元）收敛</span>。</td>
+        </tr>
+        <tr>
+          <td class="trigger-var">AI 云 EBITA 利润率<span class="now">当前 12%（去年同期约 7.2%）</span></td>
+          <td class="trigger-action">继续向上 → <span class="up">"回本论"获得实证支点，SOTP 中枢向 170–190 走</span>；掉头向下 → <span class="down">算力在烧钱买收入不是真生意，比收入增速放缓更严重</span>。</td>
+        </tr>
+        <tr>
+          <td class="trigger-var">CMR 同口径增速<span class="now">当前 +1%</span></td>
+          <td class="trigger-action">回到 +3% 以上 → <span class="up">现金牛恢复供血，AI 投入不必全靠外部融资</span>；持续为负 → <span class="down">唯一供血分部失守，融资依赖度上升</span>。</td>
+        </tr>
+        <tr>
+          <td class="trigger-var">自由现金流与回购<span class="now">当前 单季 -446.70 亿；回购 1.62 亿美元</span></td>
+          <td class="trigger-action">FCF 缺口收窄 + 回购恢复 → <span class="up">管理层认为投入高峰过去，托底力量回归</span>；FCF 继续恶化 + 第二轮融资出现 → <span class="down">摊薄从一次性事件变持续机制</span>。</td>
+        </tr>
+        <tr>
+          <td class="trigger-var">英伟达 8/26 财报 + 全球 AI 资金流向<span class="now">当前 待公布；OpenAI/Anthropic 年底陆续上市</span></td>
+          <td class="trigger-action">财报稳、港股 AI 板块联动一起红 → <span class="up">主线延续，右侧窗口 8/27–8/28</span>；指引不及预期 → <span class="down">全球 AI 主题退潮，形成"个股供给 + 板块退潮"双重压力</span>。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subsection-label">4b · 综合视角失效条件</div>
+  <div class="notes-stack">
+    <div class="note-item">
+      <div class="note-num">01</div>
+      <div class="note-body">
+        <h4>云的增长断裂 → 全场最硬的正面证据失效</h4>
+        <p>AI 云同比增速从 +45% 掉到 30% 以下，或 ARR 未达下季约 100 亿美元指引。这是六位成员唯一的共识支点，一旦断裂，SOTP 里 6x 云 P/S 的假设直接失效，估值锚从 170 掉向 138 甚至更低，本次"方向没问题"的共识随之动摇。</p>
+      </div>
+    </div>
+    <div class="note-item">
+      <div class="note-num">02</div>
+      <div class="note-body">
+        <h4>云的利润率掉头 → "回本论"被推翻</h4>
+        <p>AI 云 EBITA 利润率从 12% 回落。这比收入增速放缓更严重——它意味着规模扩张是靠让价换来的，而不是真生意在改善。若同时叠加 2027 年国产算力集中投产带来的推理价格战，产业策略师担心的"折旧墙"就从假设变成现实，"三年回本"的整套叙事需要重写。</p>
+      </div>
+    </div>
+    <div class="note-item">
+      <div class="note-num">03</div>
+      <div class="note-body">
+        <h4>短期内出现第二轮融资 → 摊薄从事件变机制</h4>
+        <p>配售落地后 1–2 个季度内再出股权融资，或三年 3800 亿计划明确上调。这会证明单季 676.78 亿的 Capex 节奏已超出自身现金流承受力，摊薄不再是一次性的 3.5%，而是一个持续稀释机制——这与本次"摊薄本身不构成卖出理由"的判断直接矛盾。</p>
+      </div>
+    </div>
+    <div class="note-item">
+      <div class="note-num">04</div>
+      <div class="note-body">
+        <h4>核心电商三条件同时恶化 → 供血中断</h4>
+        <p>电商集团 EBITA 转为明显负增长 + CMR 同口径持续为负 + 云 EBITA 利润率掉头。三条同时出现，意味着唯一给全公司供血的分部失守，而 AI 投入还在加速——这时"主动开支型下滑"就变成了"经营恶化型下滑"，两者在处理方式上完全不同。</p>
+      </div>
+    </div>
+    <div class="note-item">
+      <div class="note-num">05</div>
+      <div class="note-body">
+        <h4>全球 AI 资本开支金融化链条出现裂痕 → 系统性风险</h4>
+        <p>英伟达 8/26 财报指引不及预期，或超 5000 亿美元 AI 算力融资平台一类的杠杆结构出现问题。AI capex 正在高度金融化，而金融化的产业周期上行更陡、下行也更陡。若全球 AI 主题资金系统性退潮，阿里作为"做多中国 AI 资产的稀缺入口"这个稀缺性溢价会同步消失——那时估值便宜与否都不再是主要矛盾。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <p>⚠️ 以上内容由 AI 基于公开信息整理生成，仅供参考，不构成任何投资建议或个股推荐。投资有风险，决策需谨慎。</p>
+  <p class="footer-sub">stock-partner-team · Generated 2026-08-23</p>
+</footer>
+
+<script src="../assets/page-enhance.js"></script>
+</body>
+</html>
